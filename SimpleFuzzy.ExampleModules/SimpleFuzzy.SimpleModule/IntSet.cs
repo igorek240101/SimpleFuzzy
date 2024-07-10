@@ -1,23 +1,17 @@
 ﻿using SimpleFuzzy.Abstract;
 
-class IntSet : IObjSet<int>
+class AgeSet : IObjectSet
 {
-    private List<int> objects;
-    private int currentindex;
+    private byte currentobject;
 
-    public IntSet()
+    public AgeSet()
     {
-        objects = new List<int>();
-        for (int i = 0; i < 100; i++)
-        {
-            objects.Add(i+1);
-        }
-        currentindex = 0;
+        currentobject = 0;
     }
 
-    public int Extraction()
+    public object Extraction()
     {
-        return objects[currentindex];
+        return currentobject;
     }
 
     public void MoveNext()
@@ -28,18 +22,18 @@ class IntSet : IObjSet<int>
         }
         else
         {
-            currentindex++;
+            currentobject++;
         }
     }
 
     public void ToFirst()
     {
-        currentindex = 0;
+        currentobject = 0;
     }
 
     public bool IsEnd()
     {
-        if (currentindex+1 == objects.Count)
+        if (currentobject > 100)
         {
             return true;
         }
@@ -50,19 +44,5 @@ class IntSet : IObjSet<int>
     }
 }
 
-class SeriesDemo
-{
-    static void Main()
-    {
-        IntSet intSet = new IntSet();
-
-        for (int i = 0;i < 100; i++)
-        {
-            Console.WriteLine(intSet.Extraction());
-            intSet.MoveNext();
-        }
-        Console.WriteLine(intSet.Extraction());
-    }
-}
 
 

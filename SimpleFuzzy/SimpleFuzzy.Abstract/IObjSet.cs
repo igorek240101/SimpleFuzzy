@@ -1,8 +1,8 @@
 ﻿namespace SimpleFuzzy.Abstract
 {
-    public interface IObjSet<T>
+    public interface IObjectSet
     {
-        T Extraction();
+        object Extraction();
         void MoveNext();
         void ToFirst();
         bool IsEnd();
