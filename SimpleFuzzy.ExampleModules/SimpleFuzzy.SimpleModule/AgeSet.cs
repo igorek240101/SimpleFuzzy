@@ -4,10 +4,7 @@ class AgeSet : IObjectSet
 {
     private byte currentobject;
 
-    public AgeSet()
-    {
-        currentobject = 0;
-    }
+    public AgeSet() => currentobject = 0;
 
     public object Extraction()
     {
@@ -26,22 +23,9 @@ class AgeSet : IObjectSet
         }
     }
 
-    public void ToFirst()
-    {
-        currentobject = 0;
-    }
+    public void ToFirst() => currentobject = 0;
 
-    public bool IsEnd()
-    {
-        if (currentobject > 100)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
+    public bool IsEnd() => currentobject > 100;   
 }
 
 
