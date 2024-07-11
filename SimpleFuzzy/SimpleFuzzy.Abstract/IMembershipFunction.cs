@@ -8,7 +8,7 @@ namespace SimpleFuzzy.Abstract
 {
     public interface IMembershipFunction
     {
-        double membershipFunc(object elem);
+        double MembershipFunction(object elem);
         Type InputType { get; }
     }
 }

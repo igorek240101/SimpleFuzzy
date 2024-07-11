@@ -6,7 +6,7 @@ namespace SimpleFuzzy.SimpleModule
     {
         public Type InputType => typeof(byte);
 
-        public double membershipFunc(object elem)
+        public double MembershipFunction(object elem)
         {
             byte[] values = { 25, 50, 75, 100 };
             if (elem == null)
