@@ -10,6 +10,7 @@
     <Reference Include="SimpleFuzzy.Abstract">
       <HintPath>..\..\SimpleFuzzy\SimpleFuzzy.Abstract\bin\Debug\net6.0\SimpleFuzzy.Abstract.dll</HintPath>
     </Reference>
+
   </ItemGroup>
 
 </Project>
