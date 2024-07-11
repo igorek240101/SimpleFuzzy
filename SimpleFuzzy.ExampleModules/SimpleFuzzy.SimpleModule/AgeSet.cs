@@ -1,6 +1,6 @@
 ﻿using SimpleFuzzy.Abstract;
 
-class AgeSet : IObjectSet
+public class AgeSet : IObjectSet
 {
     private byte currentobject;
 
