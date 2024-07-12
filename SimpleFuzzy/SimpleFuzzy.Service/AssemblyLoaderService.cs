@@ -12,7 +12,7 @@ namespace SimpleFuzzy.Service
         List<string> exceptionsMessages = new List<string>();
         public bool gotAnException()
         {
-            return exceptionsMessages == null;
+            return exceptionsMessages != null;
         }
 
         public void addException(string expMessage)
