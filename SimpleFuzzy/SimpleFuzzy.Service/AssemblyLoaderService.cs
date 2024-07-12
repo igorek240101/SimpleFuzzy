@@ -9,6 +9,22 @@ namespace SimpleFuzzy.Service
 {
     public class AssemblyLoaderService
     {
+        List<string> exceptionsMessages = new List<string>();
+        public bool gotAnException()
+        {
+            return exceptionsMessages == null;
+        }
+
+        public void addException(string expMessage)
+        {
+            exceptionsMessages.Add(expMessage);
+        }
+
+        public string[] checkExceptions()
+        {
+            return exceptionsMessages.ToArray();
+        }
+
         public string getInfo(string filePath)
         {
             string ans = "";
@@ -18,7 +34,7 @@ namespace SimpleFuzzy.Service
             }
             catch (Exception exp)
             {
-                Console.WriteLine($"Failed according to -> {exp.Message}\n");
+                addException(exp.Message);
             }
             return ans;
         }
