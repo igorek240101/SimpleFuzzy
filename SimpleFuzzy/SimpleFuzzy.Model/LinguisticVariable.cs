@@ -1,28 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
-using SimpleFuzzy.SimpleModule;
+using SimpleFuzzy.Abstract;
 
-namespace SimpleFuzzy.Abstract
+namespace SimpleFuzzy.Model;
+
+public class LinguisticVariable
 {
-    public class LinguisticVariable
+    public readonly string? Name; // Имя лингвистической переменной
+    public readonly IObjectSet BaseSet; // Базовое множество
+    public List<IMembershipFunction> Func = new List<IMembershipFunction>(); // Список термов
+    
+    public void AddTerm(IMembershipFunction term) // Добавление термов
     {
-        public string Name { set { Name = Console.ReadLine(); } } // Имя лингвистической переменной
-
-        public IObjectSet BaseSet; // Базовое множество
-        public List<IMembershipFunction> Func = new List<IMembershipFunction>(); // Список термов
-        public void AddTerm(MembershipFunc term) => Func.Add(term);  // Добавление термов
-        public void DeleteTerm(MembershipFunc term) => Func.Remove(term); // Удаление термов
-
-        public double Graphic(IObjectSet BaseSet, MembershipFunc func) => func.MembershipFunction(BaseSet.Extraction());
-        //Значение данного терма в данной точке базового множества
-
-        public void Compare() // Сравнение типов данных
-        {
-            Type Type1 = BaseSet.Extraction().GetType(), Type2 = Func[0].GetType();
-            if (Type1 != Type2)
+        Type Type1 = BaseSet.Extraction().GetType(), Type2 = Func[0].GetType(); // Проверка типов данных
+        if (Type1 != Type2) { throw new InvalidOperationException("Выводимый и запрашиваемый тип данных не совпадают"); }
+        else { Func.Add(term); }
+    }
+    public void DeleteTerm(IMembershipFunction term) => Func.Remove(term); // Удаление термов
+    public void Graphic(IObjectSet BaseSet, List<IMembershipFunction> func)  // Создание двумерного массива для графика
+    {
+        double[,] Array = new double[func.Count(), 100];
+        for (int i = 0; i < func.Count(); i++)
             {
-                Console.WriteLine("The output and the requested data type do not match");
+            for (int j = 0; !BaseSet.IsEnd(); j++)
+            {
+                Array[i,j] = func[i].MembershipFunction(BaseSet.Extraction());
+                BaseSet.MoveNext();
             }
+            BaseSet.ToFirst();
         }
     }
 }
