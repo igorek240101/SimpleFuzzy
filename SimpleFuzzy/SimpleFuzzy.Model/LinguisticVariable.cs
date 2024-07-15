@@ -17,17 +17,18 @@ public class LinguisticVariable
         else { Func.Add(term); }
     }
     public void DeleteTerm(IMembershipFunction term) => Func.Remove(term); // Удаление термов
-    public void Graphic(IObjectSet BaseSet, List<IMembershipFunction> func)  // Создание двумерного массива для графика
+    public List<double>[] Graphic()  // Создание массива списков для графика
     {
-        double[,] Array = new double[func.Count(), 100];
-        for (int i = 0; i < func.Count(); i++)
+        List<double>[] list = new List<double>[Func.Count()];
+        for (int i = 0; i < Func.Count(); i++)
+        {
+            while (!BaseSet.IsEnd())
             {
-            for (int j = 0; !BaseSet.IsEnd(); j++)
-            {
-                Array[i,j] = func[i].MembershipFunction(BaseSet.Extraction());
+                list[i].Add(Func[i].MembershipFunction(BaseSet.Extraction()));
                 BaseSet.MoveNext();
             }
             BaseSet.ToFirst();
         }
+        return list;
     }
 }

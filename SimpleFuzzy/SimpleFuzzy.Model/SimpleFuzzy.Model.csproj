@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -10,10 +10,5 @@
     <ProjectReference Include="..\SimpleFuzzy.Abstract\SimpleFuzzy.Abstract.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Reference Include="SimpleFuzzy.SimpleModule">
-      <HintPath>..\..\SimpleFuzzy.ExampleModules\SimpleFuzzy.SimpleModule\bin\Debug\net6.0\SimpleFuzzy.SimpleModule.dll</HintPath>
-    </Reference>
-  </ItemGroup>
 
 </Project>
