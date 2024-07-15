@@ -1,42 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Reflection;
 
-namespace SimpleFuzzy.Service
+class pluginLoader
 {
-    public class AssemblyLoaderService
+    public string getInfo(string filePath)
     {
-        List<string> exceptionsMessages = new List<string>();
-        public bool gotAnException()
+        string ans = "";
+        try
         {
-            return exceptionsMessages != null;
+            ans = Assembly.LoadFrom(filePath).FullName;
         }
-
-        public void addException(string expMessage)
+        catch (Exception exp)
         {
-            exceptionsMessages.Add(expMessage);
+            throw;
         }
-
-        public string[] checkExceptions()
-        {
-            return exceptionsMessages.ToArray();
-        }
-
-        public string getInfo(string filePath)
-        {
-            string ans = "";
-            try
-            {
-                ans = Assembly.LoadFrom(filePath).FullName;
-            }
-            catch (Exception exp)
-            {
-                addException(exp.Message);
-            }
-            return ans;
-        }
+        return ans;
     }
 }
