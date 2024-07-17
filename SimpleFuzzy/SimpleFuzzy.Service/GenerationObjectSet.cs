@@ -4,7 +4,7 @@
     {
         public static string ReturnObjectSet(double first, double stepik, double last)
         {
-            if (Math.Sign(last - first) != Math.Sign(stepik) || (last - first) % stepik != 0 || stepik == 0)
+            if (Math.Sign(last - first) != Math.Sign(stepik) || stepik == 0 || (last - first) % stepik != 0)
             {
                 throw new InvalidOperationException("Создание множества с такими параметрами невозможно");
             }
