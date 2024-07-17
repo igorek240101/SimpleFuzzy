@@ -1,8 +1,10 @@
-﻿namespace SimpleFuzzy.Service
+﻿using SimpleFuzzy.Abstract;
+
+namespace SimpleFuzzy.Service
 {
-    public class GenerationObjectSet
+    public class GenerationObjectSetService : IGenerationObjectSetService
     {
-        public static string ReturnObjectSet(double first, double stepik, double last)
+        public string ReturnObjectSet(double first, double stepik, double last)
         {
             if (Math.Sign(last - first) != Math.Sign(stepik) || stepik == 0 || (last - first) % stepik != 0)
             {
