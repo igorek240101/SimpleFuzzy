@@ -1,8 +1,8 @@
 ﻿using System.Reflection;
 
-class pluginLoader
+class AssemblyLoaderService
 {
-    public string getInfo(string filePath)
+    public string GetInfo(string filePath)
     {
         string ans = "";
         try
