@@ -1,6 +1,8 @@
-﻿namespace SimpleFuzzy.Service
+﻿using SimpleFuzzy.Abstract;
+
+namespace SimpleFuzzy.Service
 {
-    public class GenerationMembershipFunction
+    public class GenerationMembershipFunctionService : IGenerationMembershipFunctionService
     {
         private readonly List<(string Condition, string Value)> _conditions = new List<(string, string)>();
 
