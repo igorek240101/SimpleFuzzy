@@ -1,18 +1,21 @@
 ﻿using System.Reflection;
 
-class AssemblyLoaderService
+namespace SimpleFuzzy.Service
 {
-    public string GetInfo(string filePath)
+    public class AssemblyLoaderService
     {
-        string ans = "";
-        try
+        public string GetInfo(string filePath)
         {
-            ans = Assembly.LoadFrom(filePath).FullName;
+            string ans = "";
+            try
+            {
+                ans = Assembly.LoadFrom(filePath).FullName;
+            }
+            catch (Exception exp)
+            {
+                throw;
+            }
+            return ans;
         }
-        catch (Exception exp)
-        {
-            throw;
-        }
-        return ans;
     }
 }
