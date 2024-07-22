@@ -7,7 +7,7 @@ using SimpleFuzzy.Service;
 
 namespace SimpleFuzzy.View
 {
-    public partial class LoaderForm : Form
+    public partial class LoaderForm : UserControl
     {
         private readonly SimpleFuzzy.Service.AssemblyLoaderService assemblyLoaderService;
 

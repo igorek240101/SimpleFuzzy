@@ -37,9 +37,9 @@
             // 
             // browseButton
             // 
-            browseButton.Location = new Point(417, 14);
+            browseButton.Location = new Point(417, 9);
             browseButton.Name = "browseButton";
-            browseButton.Size = new Size(75, 25);
+            browseButton.Size = new Size(75, 30);
             browseButton.TabIndex = 2;
             browseButton.Text = "Обзор";
             browseButton.UseVisualStyleBackColor = true;
@@ -49,7 +49,7 @@
             // 
             loadButton.Location = new Point(12, 45);
             loadButton.Name = "loadButton";
-            loadButton.Size = new Size(200, 29);
+            loadButton.Size = new Size(200, 30);
             loadButton.TabIndex = 3;
             loadButton.Text = "Загрузить модуль";
             loadButton.UseVisualStyleBackColor = true;
@@ -67,13 +67,12 @@
             // 
             // LoaderForm
             // 
-            ClientSize = new Size(504, 187);
             Controls.Add(filePathTextBox);
             Controls.Add(browseButton);
             Controls.Add(loadButton);
             Controls.Add(messageTextBox);
             Name = "LoaderForm";
-            Text = "Загрузчик модулей";
+            Size = new Size(504, 187);
             ResumeLayout(false);
             PerformLayout();
         }
