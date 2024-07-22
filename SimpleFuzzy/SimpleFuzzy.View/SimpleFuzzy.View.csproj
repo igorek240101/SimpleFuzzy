@@ -12,4 +12,10 @@
     <ProjectReference Include="..\SimpleFuzzy.Abstract\SimpleFuzzy.Abstract.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="SimpleFuzzy.Service">
+      <HintPath>..\SimpleFuzzy.Service\bin\Debug\net6.0\SimpleFuzzy.Service.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>
