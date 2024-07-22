@@ -24,9 +24,8 @@ public class LinguisticVariable
     
     public void AddTerm(IMembershipFunction term) 
     {
-        Type Type1 = baseSet.Extraction().GetType(), Type2 = func[0].GetType(); // Проверка типов данных
-        if (Type1 != Type2) { throw new InvalidOperationException("Выводимый и запрашиваемый тип данных не совпадают"); }
-        else { func.Add(term); }
+        if (baseSet.Extraction().GetType() != term.InputType) { throw new InvalidOperationException("Выводимый и запрашиваемый тип данных не совпадают"); }
+        else { func.Add(term); } // Проверка типов данных
     }
     public void DeleteTerm(IMembershipFunction term) => func.Remove(term); 
     public List<double>[] Graphic()  // Создание массива списков для графика
