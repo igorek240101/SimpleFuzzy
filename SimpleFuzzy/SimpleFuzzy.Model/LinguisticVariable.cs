@@ -16,7 +16,15 @@ public class LinguisticVariable
     public IObjectSet BaseSet
     {
         get { return baseSet; }
-        set { if (isRedact == true) { baseSet = value; } }
+        set {
+            if (isRedact == true)
+                if (func.Count == 0) { baseSet = value; }
+                else
+                {
+                    if (func[0].InputType == value.GetType()) { baseSet = value; }
+                    else { throw new InvalidOperationException("Выводимый и запрашиваемый тип данных не совпадают"); }
+                }
+        }
     }
     public List<IMembershipFunction> func = new List<IMembershipFunction>(); // Список термов
     public readonly bool isRedact; // Возможность редактирования
@@ -24,8 +32,14 @@ public class LinguisticVariable
     
     public void AddTerm(IMembershipFunction term) 
     {
-        if (baseSet.Extraction().GetType() != term.InputType) { throw new InvalidOperationException("Выводимый и запрашиваемый тип данных не совпадают"); }
-        else { func.Add(term); } // Проверка типов данных
+        if (baseSet == null)
+        {
+            if (func.Count == 0) { func.Add(term); }
+            else if (term.InputType == func[0].InputType) { func.Add(term); }
+            else { throw new InvalidOperationException("Тип данных добавляемого терма не совпадает с уже имеющимися термами в списке"); }
+        }
+        else if (baseSet.Extraction().GetType() != term.InputType) { throw new InvalidOperationException("Выводимый и запрашиваемый тип данных не совпадают"); }
+            else { func.Add(term); } // Проверка типов данных
     }
 
     public void Save()
