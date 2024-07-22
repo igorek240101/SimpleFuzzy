@@ -4,7 +4,7 @@ using SimpleFuzzy.Service;
 
 namespace SimpleFuzzy.View
 {
-    public partial class GenerationObjectSetUI : Form
+    public partial class GenerationObjectSetUI : UserControl
     {
         public GenerationObjectSetUI()
         {
@@ -12,7 +12,7 @@ namespace SimpleFuzzy.View
             txtFirst.TextChanged += ValidateInput;
             txtStep.TextChanged += ValidateInput;
             txtLast.TextChanged += ValidateInput;
-            btnGenerate.Click += BtnGenerate_Click;
+            btnGenerate.Click += ButtonGenerate_Click;
         }
 
 
@@ -36,7 +36,7 @@ namespace SimpleFuzzy.View
             lblError.MaximumSize = new Size(lblError.Parent.ClientSize.Width - 20, 0);
         }
 
-            private void BtnGenerate_Click(object sender, EventArgs e)
+            private void ButtonGenerate_Click(object sender, EventArgs e)
         {
             double first = double.Parse(txtFirst.Text);
             double step = double.Parse(txtStep.Text);
