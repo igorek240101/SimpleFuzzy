@@ -17,14 +17,6 @@ namespace SimpleFuzzy.View
         public MainWindow()
         {
             InitializeComponent();
-
-            linguisticVariableUI = new LinguisticVariableUI();
-            linguisticVariableUI.Dock = DockStyle.Fill;
-            this.Controls.Add(linguisticVariableUI);
-
-            this.ClientSize = linguisticVariableUI.PreferredSize;
-            this.FormBorderStyle = FormBorderStyle.FixedSingle;
-            this.MaximizeBox = false;
         }
     }
 }
