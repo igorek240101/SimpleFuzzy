@@ -34,8 +34,8 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            Name = "SimpleFuzzy";
-            Text = "Генератор кода базовых множеств";
+            Name = "MainWindow";
+            Text = "SimpleFuzzy";
             ResumeLayout(false);
         }
 

@@ -9,12 +9,7 @@ namespace SimpleFuzzy.View
         public GenerationObjectSetUI()
         {
             InitializeComponent();
-            txtFirst.TextChanged += ValidateInput;
-            txtStep.TextChanged += ValidateInput;
-            txtLast.TextChanged += ValidateInput;
-            btnGenerate.Click += ButtonGenerate_Click;
         }
-
 
         private void ValidateInput(object sender, EventArgs e)
         {
