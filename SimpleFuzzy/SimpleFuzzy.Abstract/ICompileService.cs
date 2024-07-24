@@ -2,6 +2,6 @@
 {
     public interface ICompileService
     {
-        public void SaveFileAt(string exeCode, string savePath);
+        public void Compile(string exeCode, string savePath);
     }
 }

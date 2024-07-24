@@ -5,7 +5,7 @@ namespace SimpleFuzzy.Service
 {
     public class CompileService : ICompileService
     {
-        public void SaveFileAt(string exeCode, string savePath)
+        public void Compile(string exeCode, string savePath)
         {
             var compiler = CodeDomProvider.CreateProvider("CSharp");
 
