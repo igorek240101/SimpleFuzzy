@@ -4,13 +4,13 @@ using System;
 using System.Drawing;
 using System.Windows.Forms;
 using System.IO;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace SimpleFuzzy.View
 {
-    public partial class VisualCrane : Form
+    public partial class VisualCrane : UserControl, ISimulator
     {
-        private SimpleFuzzy.SimpleModule.CraneSimulator simulator;
+        private CraneSimulator simulator;
+        private System.Windows.Forms.Timer timer;
         private bool isSimulationRunning = false;
 
         public VisualCrane()
@@ -18,6 +18,17 @@ namespace SimpleFuzzy.View
             InitializeComponent();
             SetupSimulator();
             SetupControls();
+        }
+
+        public UserControl GetVisualObject() { return this; }
+
+        private void SetupSimulator()
+        {
+            simulator = new CraneSimulator();
+            simulator.StateChanged += OnSimulatorStateChanged;
+
+            timer = new System.Windows.Forms.Timer { Interval = 16 }; // ~60 FPS
+            timer.Tick += (s, e) => simulator.Step();
         }
 
         // Изменения значений
@@ -29,23 +40,51 @@ namespace SimpleFuzzy.View
             numPlatformPosition.Maximum = Math.Min(numBeamSize.Value * 0.525M, numBeamSize.Value - 1);
             if (numPlatformPosition.Value > numPlatformPosition.Maximum) numPlatformPosition.Value = numPlatformPosition.Maximum;
 
-            simulator.crane.Invalidate();
+            Invalidate();
         }
         private void numPlatformPosition_ValueChanged(object sender, EventArgs e)
         {
             simulator.platformPosition = (double)numPlatformPosition.Value;
-            simulator.crane.Invalidate();
+            Invalidate();
         }
 
-        private void SetupSimulator()
+        private void UpdateVisuals()
         {
-            simulator = new CraneSimulator();
-            var VisualCrane = new SimpleFuzzy.SimpleModule.VisualCrane { craneSimulator = simulator };
-            simulator.GetVisualObject().Dock = DockStyle.Fill;
-            cranePanel.Controls.Add(simulator.GetVisualObject());
-            VisualCrane.Dock = DockStyle.Fill;
+            numPlatformPosition.Value = (decimal)simulator.platformPosition;
+            numInitialPosition.Value = (decimal)simulator.x;
+            numInitialAngle.Value = (decimal)(simulator.y * 180 / Math.PI);
+            forceTrackBar.Value = (int)(simulator.f * 10);
+
+            Invalidate();
         }
 
+        private void CheckCargoLoading()
+        {
+            double containerBottom = simulator.y + simulator.l * Math.Cos(simulator.y);
+            double platformHeight = 0.5;
+
+            if (Math.Abs(containerBottom - platformHeight) < 0.1 &&
+                simulator.x >= simulator.platformPosition &&
+                simulator.x <= simulator.platformPosition + 5 &&
+                Math.Abs(simulator.y) < 0.1 &&
+                Math.Abs(simulator.GetNormalizedPosition()) < 0.1)
+            {
+                MessageBox.Show("Груз успешно установлен на платформу!", "Успешная загрузка", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                simulator.Reset();
+            }
+        }
+
+
+        private void OnSimulatorStateChanged(object sender, EventArgs e)
+        {
+            if (e is SimulatorEventArgs args)
+            {
+                if (args.IsEmergency) MessageBox.Show(args.Message, "Аварийная ситуация", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                else if (!string.IsNullOrEmpty(args.Message)) MessageBox.Show(args.Message, "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            UpdateVisuals();
+            CheckCargoLoading();
+        }
         private void SetupControls()
         {
             // Настройка стилей для элементов управления
@@ -140,14 +179,14 @@ namespace SimpleFuzzy.View
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-            simulator.Start();
+            timer.Start();
             isSimulationRunning = true;
             DisableControls();
         }
 
         private void btnPause_Click(object sender, EventArgs e)
         {
-            simulator.Pause();
+            timer.Stop();
             isSimulationRunning = false;
             EnableControls();
         }

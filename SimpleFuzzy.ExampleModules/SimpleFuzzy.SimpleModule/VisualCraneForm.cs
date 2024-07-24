@@ -3,7 +3,6 @@ using System.Windows.Forms;
 using System;
 using System.Drawing;
 using System.IO;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace SimpleFuzzy.SimpleModule
 {
@@ -88,11 +87,8 @@ namespace SimpleFuzzy.SimpleModule
         private void InitializeComponent()
         {
             this.SuspendLayout();
-            // 
-            // VisualCrane
-            // 
             this.Name = "VisualCrane";
-            this.Size = new System.Drawing.Size(457, 326);
+            this.Size = new System.Drawing.Size(460, 330);
             this.ResumeLayout(false);
 
         }

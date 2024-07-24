@@ -6,6 +6,7 @@ namespace SimpleFuzzy.SimpleModule
 {
     public class CraneSimulator : ISimulator
     {
+        public event EventHandler<SimulatorEventArgs> StateChanged;
         public double m = 1; // Масса маятника (кг)
         public double M = 5; // Масса каретки (кг)
         public double l = 2; // Длина маятника (м)
@@ -21,19 +22,18 @@ namespace SimpleFuzzy.SimpleModule
         public double beamSize = 20; // по умолчанию размер балки 20
         public double platformPosition = 0;
         private const double MAX_ANGLE = Math.PI / 2;
-
+        private bool cargoLoaded = false;
 
         private System.Windows.Forms.Timer timer;
-        public VisualCrane crane;
-        public CraneSimulator()
-        {
-            crane = new VisualCrane { craneSimulator = this };
-            timer = new System.Windows.Forms.Timer { Interval = 16 }; // ~60 FPS
-            timer.Tick += (s, e) => Step();
-        }
-        public UserControl GetVisualObject() => crane;
 
-        public void SetBeamSize(double size) => beamSize = size;
+        public UserControl GetVisualObject()
+        {
+            throw new NotImplementedException("GetVisualObject должен быть реализован в VisualCrane");
+        }
+
+
+        protected virtual void OnStateChanged(SimulatorEventArgs e) => StateChanged?.Invoke(this, e);
+        public void SetBeamSize(double size) { beamSize = size; OnStateChanged(new SimulatorEventArgs()); }
 
         public void Step()
         {
@@ -48,56 +48,46 @@ namespace SimpleFuzzy.SimpleModule
             x = Math.Max(0, Math.Min(beamSize, x));
 
             CheckEmergencySituation();
-
-            crane.Invalidate();
+            OnStateChanged(new SimulatorEventArgs());
         }
-
-        private bool cargoLoaded = false;
-        private DateTime lastLoadTime = DateTime.MinValue;
 
         private void CheckEmergencySituation()
         {
-            if (x < 0 || x >= beamSize || Math.Abs(y) >= MAX_ANGLE) EmergencyStop();
-
-
-            // проверка на загрузку платформы
-            double containerBottom = y + l * Math.Cos(y);
-            double platformHeight = 0.5; // Примерная высота платформы в метрах
-
-            if (!cargoLoaded &&
-                Math.Abs(containerBottom - platformHeight) < 0.1 && // Проверка по вертикали
-                x >= platformPosition && x <= platformPosition + 5 && // Проверка по горизонтали
-                Math.Abs(y) < 0.1 && // Проверка вертикальности груза
-                Math.Abs(dx) < 0.1 && Math.Abs(dy) < 0.1) // Проверка на малую скорость
-            {
-                MessageBox.Show("Груз успешно установлен на платформу!", "Успешная загрузка", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                Reset();
-            }
-
-
+            if (x < 0 || x >= beamSize || Math.Abs(y) >= MAX_ANGLE) { EmergencyStop(); return; }
         }
 
         private void EmergencyStop()
         {
             string message = (x < 0 || x >= beamSize) ? "Каретка достигла края платформы!" : "Контейнер запрокинулся!";
             Reset();
-            MessageBox.Show(message, "Аварийная ситуация", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            OnStateChanged(new SimulatorEventArgs(message, true));
         }
 
         public void Start() => timer.Start();
         public void Pause() => timer.Stop();
-        public void Reset()
+        public void Reset(double initialX = 0, double initialY = 0.1, double initialPlatformPosition = 0)
         {
-            platformPosition = (double)((SimpleFuzzy.View.VisualCrane)Application.OpenForms[0]).numPlatformPosition.Value;
-            x = (double)((SimpleFuzzy.View.VisualCrane)Application.OpenForms[0]).numInitialPosition.Value;
-            y = (double)((SimpleFuzzy.View.VisualCrane)Application.OpenForms[0]).numInitialAngle.Value * Math.PI / 180;
+            x = initialX;
+            y = initialY;
             dx = dy = f = 0;
-            ((SimpleFuzzy.View.VisualCrane)Application.OpenForms[0]).forceTrackBar.Value = 0;
-            crane.Invalidate();
+            platformPosition = initialPlatformPosition;
+            OnStateChanged(new SimulatorEventArgs());
         }
 
         public void ApplyForce(double force) => f = force;
 
         public double GetNormalizedPosition() { return x / beamSize; }
+    }
+}
+
+public class SimulatorEventArgs : EventArgs
+{
+    public string Message { get; }
+    public bool IsEmergency { get; }
+
+    public SimulatorEventArgs(string message = "", bool isEmergency = false)
+    {
+        Message = message;
+        IsEmergency = isEmergency;
     }
 }
