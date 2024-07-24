@@ -9,6 +9,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="OxyPlot.Core" Version="2.1.2" />
+    <PackageReference Include="OxyPlot.WindowsForms" Version="2.1.2" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\SimpleFuzzy.Abstract\SimpleFuzzy.Abstract.csproj" />
     <ProjectReference Include="..\SimpleFuzzy.Model\SimpleFuzzy.Model.csproj" />
   </ItemGroup>
