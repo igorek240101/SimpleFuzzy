@@ -1,4 +1,4 @@
-using SimpleFuzzy.View;
+﻿using SimpleFuzzy.View;
 
 static class Program
 {

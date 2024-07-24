@@ -1,4 +1,4 @@
-using System;
+п»їusing System;
 using System.Windows.Forms;
 using SimpleFuzzy.Service;
 
@@ -24,12 +24,12 @@ namespace SimpleFuzzy.View
                 double.TryParse(this.txtStep.Text, out double step) &&
                 double.TryParse(this.txtLast.Text, out double last))
             {
-                if (step == 0) errorMessage = "Шаг не может быть равен нулю.";
-                else if (Math.Sign(last - first) != Math.Sign(step)) errorMessage = "Направление шага не соответствует начальному и конечному значению.";
-                else if ((last - first) % step != 0) errorMessage = "Конечное значение не достижимо с заданным шагом.";
+                if (step == 0) errorMessage = "РЁР°Рі РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ СЂР°РІРµРЅ РЅСѓР»СЋ.";
+                else if (Math.Sign(last - first) != Math.Sign(step)) errorMessage = "РќР°РїСЂР°РІР»РµРЅРёРµ С€Р°РіР° РЅРµ СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓРµС‚ РЅР°С‡Р°Р»СЊРЅРѕРјСѓ Рё РєРѕРЅРµС‡РЅРѕРјСѓ Р·РЅР°С‡РµРЅРёСЋ.";
+                else if ((last - first) % step != 0) errorMessage = "РљРѕРЅРµС‡РЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РЅРµ РґРѕСЃС‚РёР¶РёРјРѕ СЃ Р·Р°РґР°РЅРЅС‹Рј С€Р°РіРѕРј.";
                 else isValid = true;
             }
-            else lblError.Text = "Пожалуйста, введите корректные числовые значения";
+            else lblError.Text = "РџРѕР¶Р°Р»СѓР№СЃС‚Р°, РІРІРµРґРёС‚Рµ РєРѕСЂСЂРµРєС‚РЅС‹Рµ С‡РёСЃР»РѕРІС‹Рµ Р·РЅР°С‡РµРЅРёСЏ";
             btnGenerate.Enabled = isValid;
             lblError.Text = errorMessage;
             lblError.AutoSize = true;
@@ -47,7 +47,7 @@ namespace SimpleFuzzy.View
                 string generatedCode = GenerationObjectSet.ReturnObjectSet(first, step, last);
                 txtGeneratedCode.Text = generatedCode;
             }
-            catch (InvalidOperationException ex) { MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+            catch (InvalidOperationException ex) { MessageBox.Show(ex.Message, "РћС€РёР±РєР°", MessageBoxButtons.OK, MessageBoxIcon.Error); }
         }
     }
 }
