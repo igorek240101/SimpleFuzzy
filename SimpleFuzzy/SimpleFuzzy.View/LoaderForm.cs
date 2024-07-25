@@ -1,9 +1,9 @@
-using System;
+п»їusing System;
 using System.IO;
 using System.Windows.Forms;
 using SimpleFuzzy.Service;
-// Из-за возможной несовместимости Metroframework и .NET 6.0,
-// пришлось переделать приложение под WinForms
+// РР·-Р·Р° РІРѕР·РјРѕР¶РЅРѕР№ РЅРµСЃРѕРІРјРµСЃС‚РёРјРѕСЃС‚Рё Metroframework Рё .NET 6.0,
+// РїСЂРёС€Р»РѕСЃСЊ РїРµСЂРµРґРµР»Р°С‚СЊ РїСЂРёР»РѕР¶РµРЅРёРµ РїРѕРґ WinForms
 
 namespace SimpleFuzzy.View
 {
@@ -35,7 +35,7 @@ namespace SimpleFuzzy.View
             string filePath = filePathTextBox.Text;
             if (string.IsNullOrWhiteSpace(filePath))
             {
-                messageTextBox.Text = "Пожалуйста, укажите путь к файлу.";
+                messageTextBox.Text = "РџРѕР¶Р°Р»СѓР№СЃС‚Р°, СѓРєР°Р¶РёС‚Рµ РїСѓС‚СЊ Рє С„Р°Р№Р»Сѓ.";
                 return;
             }
 
@@ -43,28 +43,28 @@ namespace SimpleFuzzy.View
             {
                 if (!File.Exists(filePath))
                 {
-                    throw new FileNotFoundException("Указанный файл не существует.", filePath);
+                    throw new FileNotFoundException("РЈРєР°Р·Р°РЅРЅС‹Р№ С„Р°Р№Р» РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚.", filePath);
                 }
 
                 if (Path.GetExtension(filePath).ToLower() != ".dll")
                 {
-                    throw new FileFormatException("Файл должен иметь расширение .dll");
+                    throw new FileFormatException("Р¤Р°Р№Р» РґРѕР»Р¶РµРЅ РёРјРµС‚СЊ СЂР°СЃС€РёСЂРµРЅРёРµ .dll");
                 }
 
                 string assemblyName = assemblyLoaderService.GetInfo(filePath);
-                messageTextBox.Text = $"Модуль успешно загружен: {assemblyName}";
+                messageTextBox.Text = $"РњРѕРґСѓР»СЊ СѓСЃРїРµС€РЅРѕ Р·Р°РіСЂСѓР¶РµРЅ: {assemblyName}";
             }
             catch (FileNotFoundException ex)
             {
-                messageTextBox.Text = $"Ошибка: Файл не найден. {ex.Message}";
+                messageTextBox.Text = $"РћС€РёР±РєР°: Р¤Р°Р№Р» РЅРµ РЅР°Р№РґРµРЅ. {ex.Message}";
             }
             catch (BadImageFormatException ex)
             {
-                messageTextBox.Text = $"Ошибка: Неверный формат файла. {ex.Message}";
+                messageTextBox.Text = $"РћС€РёР±РєР°: РќРµРІРµСЂРЅС‹Р№ С„РѕСЂРјР°С‚ С„Р°Р№Р»Р°. {ex.Message}";
             }
             catch (Exception ex)
             {
-                messageTextBox.Text = $"Ошибка при загрузке модуля: {ex.Message}";
+                messageTextBox.Text = $"РћС€РёР±РєР° РїСЂРё Р·Р°РіСЂСѓР·РєРµ РјРѕРґСѓР»СЏ: {ex.Message}";
             }
         }
     }
