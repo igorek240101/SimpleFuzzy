@@ -34,6 +34,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new System.Drawing.Size(800, 450);
             Name = "MainWindow";
             Text = "SimpleFuzzy";
             ResumeLayout(false);
