@@ -4,33 +4,21 @@ using SimpleFuzzy.View;
 
 namespace SimpleFuzzy
 {
-    public class MainForm : Form
+    public class MainWindow : Form
     {
-        private LoaderForm loaderForm;
-
-        public MainForm()
+        public MainWindow()
         {
             InitializeComponent();
-            InitializeLoaderForm();
         }
 
         private void InitializeComponent()
         {
             SuspendLayout();
-            // 
-            // MainForm
-            // 
-            ClientSize = new Size(510, 194);
-            Name = "MainForm";
+            ClientSize = new Size(800, 450);
+            Name = "MainWindow";
             Text = "SimpleFuzzy";
             ResumeLayout(false);
         }
 
-        private void InitializeLoaderForm()
-        {
-            loaderForm = new LoaderForm();
-            loaderForm.Dock = DockStyle.Fill;
-            this.Controls.Add(loaderForm);
-        }
     }
 }

@@ -48,7 +48,7 @@ namespace SimpleFuzzy.View
 
                 if (Path.GetExtension(filePath).ToLower() != ".dll")
                 {
-                    throw new BadImageFormatException("װאיכ המכזום טלועü נאסרטנוםטו .dll");
+                    throw new FileFormatException("װאיכ המכזום טלועü נאסרטנוםטו .dll");
                 }
 
                 string assemblyName = assemblyLoaderService.GetInfo(filePath);
