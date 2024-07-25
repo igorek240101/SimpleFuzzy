@@ -1,4 +1,4 @@
-using System;
+п»їusing System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
@@ -56,21 +56,21 @@ namespace SimpleFuzzy.View
             {
                 Location = new Point(10, y),
                 Size = new Size(110, 20),
-                PlaceholderText = "Состояние"
+                PlaceholderText = "РЎРѕСЃС‚РѕСЏРЅРёРµ"
             };
 
             var valueTextBox = new TextBox
             {
                 Location = new Point(130, y),
                 Size = new Size(110, 20),
-                PlaceholderText = "Значение"
+                PlaceholderText = "Р—РЅР°С‡РµРЅРёРµ"
             };
 
             var removeButton = new Button
             {
                 Location = new Point(250, y),
                 Size = new Size(80, 27),
-                Text = "Удалить"
+                Text = "РЈРґР°Р»РёС‚СЊ"
             };
             removeButton.Click += (sender, e) => RemoveConditionRow((Button)sender);
 
@@ -91,7 +91,7 @@ namespace SimpleFuzzy.View
                 panelConditions.Controls.Remove(sender);
                 conditionControls.RemoveAt(index);
 
-                // Перестановка оставшихся условий
+                // РџРµСЂРµСЃС‚Р°РЅРѕРІРєР° РѕСЃС‚Р°РІС€РёС…СЃСЏ СѓСЃР»РѕРІРёР№
                 for (int i = index; i < conditionControls.Count; i++)
                 {
                     conditionControls[i].Condition.Location = new Point(10, i * 30);
@@ -126,12 +126,12 @@ namespace SimpleFuzzy.View
         {
             try
             {
-                var plotModel = new PlotModel { Title = "Функция принадлежности" };
+                var plotModel = new PlotModel { Title = "Р¤СѓРЅРєС†РёСЏ РїСЂРёРЅР°РґР»РµР¶РЅРѕСЃС‚Рё" };
                 plotModel.Axes.Clear();
                 plotModel.Series.Clear();
 
-                var lineSeries = new LineSeries { Title = "Функция", StrokeThickness = 2, Color = OxyColors.Blue };
-                var intersectionSeries = new ScatterSeries { Title = "Пересечения", MarkerType = MarkerType.Circle, MarkerSize = 4, MarkerFill = OxyColors.Red };
+                var lineSeries = new LineSeries { Title = "Р¤СѓРЅРєС†РёСЏ", StrokeThickness = 2, Color = OxyColors.Blue };
+                var intersectionSeries = new ScatterSeries { Title = "РџРµСЂРµСЃРµС‡РµРЅРёСЏ", MarkerType = MarkerType.Circle, MarkerSize = 4, MarkerFill = OxyColors.Red };
 
                 var baseSet = ParseBaseSet(comboBoxBaseSet.SelectedItem.ToString());
                 double min = baseSet.Item1;
@@ -140,7 +140,7 @@ namespace SimpleFuzzy.View
                 double yMin = double.MaxValue;
                 double yMax = double.MinValue;
 
-                // Увеличим количество точек для более гладкого графика
+                // РЈРІРµР»РёС‡РёРј РєРѕР»РёС‡РµСЃС‚РІРѕ С‚РѕС‡РµРє РґР»СЏ Р±РѕР»РµРµ РіР»Р°РґРєРѕРіРѕ РіСЂР°С„РёРєР°
                 int pointCount = 1000;
                 double step = (max - min) / pointCount;
 
@@ -162,11 +162,11 @@ namespace SimpleFuzzy.View
                 plotModel.Series.Add(lineSeries);
                 plotModel.Series.Add(intersectionSeries);
 
-                // Настройка осей
+                // РќР°СЃС‚СЂРѕР№РєР° РѕСЃРµР№
                 plotModel.Axes.Add(new LinearAxis { Position = AxisPosition.Bottom, Minimum = min, Maximum = max, Title = "X" });
                 plotModel.Axes.Add(new LinearAxis { Position = AxisPosition.Left, Minimum = Math.Max(0, yMin - 0.1), Maximum = yMax + 0.1, Title = "Y" });
 
-                // Добавление легенды
+                // Р”РѕР±Р°РІР»РµРЅРёРµ Р»РµРіРµРЅРґС‹
                 plotModel.Legends.Add(new OxyPlot.Legends.Legend
                 {
                     LegendPosition = LegendPosition.TopRight,
@@ -178,14 +178,14 @@ namespace SimpleFuzzy.View
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Произошла ошибка при визуализации: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"РџСЂРѕРёР·РѕС€Р»Р° РѕС€РёР±РєР° РїСЂРё РІРёР·СѓР°Р»РёР·Р°С†РёРё: {ex.Message}", "РћС€РёР±РєР°", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
 
         private (double, double) ParseBaseSet(string baseSetString)
         {
-            // Простой парсинг, предполагает правильный формат
+            // РџСЂРѕСЃС‚РѕР№ РїР°СЂСЃРёРЅРі, РїСЂРµРґРїРѕР»Р°РіР°РµС‚ РїСЂР°РІРёР»СЊРЅС‹Р№ С„РѕСЂРјР°С‚
             var values = baseSetString.Trim('[', ']').Split(',');
             return (double.Parse(values[0]), double.Parse(values[1]));
         }
@@ -216,7 +216,7 @@ namespace SimpleFuzzy.View
             return result;
         }
 
-        // Для обработки более сложных выражений, импортируем NCalc
+        // Р”Р»СЏ РѕР±СЂР°Р±РѕС‚РєРё Р±РѕР»РµРµ СЃР»РѕР¶РЅС‹С… РІС‹СЂР°Р¶РµРЅРёР№, РёРјРїРѕСЂС‚РёСЂСѓРµРј NCalc
         private bool EvaluateCondition(string condition)
         {
             try
@@ -226,7 +226,7 @@ namespace SimpleFuzzy.View
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Ошибка при оценке условия: {ex.Message}");
+                Console.WriteLine($"РћС€РёР±РєР° РїСЂРё РѕС†РµРЅРєРµ СѓСЃР»РѕРІРёСЏ: {ex.Message}");
                 return false;
             }
         }
@@ -240,7 +240,7 @@ namespace SimpleFuzzy.View
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Ошибка при оценке выражения: {ex.Message}");
+                Console.WriteLine($"РћС€РёР±РєР° РїСЂРё РѕС†РµРЅРєРµ РІС‹СЂР°Р¶РµРЅРёСЏ: {ex.Message}");
                 return 0;
             }
         }
