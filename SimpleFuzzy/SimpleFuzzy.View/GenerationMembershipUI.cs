@@ -226,7 +226,7 @@ namespace SimpleFuzzy.View
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Ошибка при оценке условия: {ex.Message}");
+                MessageBox.Show($"Ошибка при оценке условия: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
         }
@@ -240,7 +240,7 @@ namespace SimpleFuzzy.View
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Ошибка при оценке выражения: {ex.Message}");
+                MessageBox.Show($"Ошибка при оценке выражения: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return 0;
             }
         }
