@@ -1,23 +1,13 @@
 ﻿using System;
 using System.Windows.Forms;
-using SimpleFuzzy.View;
 
-namespace SimpleFuzzy
+namespace SimpleFuzzy.View
 {
-    public class MainWindow : Form
+    public partial class MainWindow : Form
     {
         public MainWindow()
         {
             InitializeComponent();
-        }
-
-        private void InitializeComponent()
-        {
-            SuspendLayout();
-            ClientSize = new Size(800, 450);
-            Name = "MainWindow";
-            Text = "SimpleFuzzy";
-            ResumeLayout(false);
         }
 
     }

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace SimpleFuzzy
+namespace SimpleFuzzy.View
 {
     internal static class Program
     {
