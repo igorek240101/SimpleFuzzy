@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -7,7 +7,20 @@
   </PropertyGroup>
 
   <ItemGroup>
+    
     <ProjectReference Include="..\SimpleFuzzy.Abstract\SimpleFuzzy.Abstract.csproj" />
+    
+    <ProjectReference Include="..\SimpleFuzzy.Model\SimpleFuzzy.Model.csproj" />
+    
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="SimpleFuzzy.Abstarct.View">
+      <HintPath>..\SimpleFuzzy.Abstarct.View\bin\Debug\net6.0-windows\SimpleFuzzy.Abstarct.View.dll</HintPath>
+    </Reference>
+    <Reference Include="SimpleFuzzy.SimpleModule">
+      <HintPath>..\..\SimpleFuzzy.ExampleModules\SimpleFuzzy.SimpleModule\bin\Debug\net6.0\SimpleFuzzy.SimpleModule.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

@@ -13,7 +13,7 @@ public static class AutofacConfig
         builder.RegisterType<AssemblyLoaderService>().As<IAssemblyLoaderService>();
         builder.RegisterType<GenerationMembershipFunctionService>().As<IGenerationMembershipFunctionService>();
         builder.RegisterType<GenerationObjectSetService>().As<IGenerationObjectSetService>();
-
+        builder.RegisterType<Repository>().As<IRepository>();
         var container = builder.Build();
 
         DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
