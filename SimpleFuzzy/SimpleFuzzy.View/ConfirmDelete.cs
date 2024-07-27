@@ -14,27 +14,22 @@ namespace SimpleFuzzy.View
 {
     public partial class ConfirmDelete : UserControl
     {
-        ProjectList projectList;
-        MainWindow window;
-        public ConfirmDelete()
+        ProjectListService projectList;
+        SimpleFuzzy window;
+        public ConfirmDelete(SimpleFuzzy mainWindow, ProjectListService project)
         {
             InitializeComponent();
-            label1.Text = "Вы действительно хотите безвозвратно удалить текущий проект?";
-            button1.Text = "Да";
-            button2.Text = "Нет";
-        }
-        public ConfirmDelete(MainWindow mainWindow, ProjectList project) : this()
-        {
             window = mainWindow;
             projectList = project;
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            DirectoryInfo directory = new DirectoryInfo(projectList.GivePath(projectList.currentProjectName, true));
-            foreach (FileInfo file in directory.GetFiles()) { file.Delete(); }
-            Directory.Delete(projectList.GivePath(projectList.currentProjectName, true), true);
-            projectList.DeleteProject(projectList.currentProjectName);
-            projectList.currentProjectName = null; // Обнуляeм имя текущего проекта
+            try { projectList.DeleteProject(projectList.currentProjectName); }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
             window.OpenButtons(sender, e);
             window.Locked(sender, e);
             window.Controls.Remove(this);

@@ -48,7 +48,7 @@
             label1.Name = "label1";
             label1.Size = new Size(50, 20);
             label1.TabIndex = 1;
-            label1.Text = "label1";
+            label1.Text = "Введите новое имя";
             // 
             // button1
             // 
@@ -56,7 +56,7 @@
             button1.Name = "button1";
             button1.Size = new Size(94, 29);
             button1.TabIndex = 2;
-            button1.Text = "button1";
+            button1.Text = "Готово";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
@@ -66,7 +66,7 @@
             button2.Name = "button2";
             button2.Size = new Size(94, 29);
             button2.TabIndex = 3;
-            button2.Text = "button2";
+            button2.Text = "Отмена";
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
             // 

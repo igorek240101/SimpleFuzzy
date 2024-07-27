@@ -1,29 +1,14 @@
 using SimpleFuzzy.Service;
 
 namespace SimpleFuzzy.View
-// файл projectList существует в двух экземплярах, один из которых заполняется, а другой нет
 {
-    public partial class MainWindow : Form
+    public partial class SimpleFuzzy : Form
     {
-        ProjectList projectList; 
-        public MainWindow()
+        ProjectListService projectList; 
+        public SimpleFuzzy()
         {
-            projectList = new ProjectList(); 
+            projectList = new ProjectListService(); 
             InitializeComponent();
-            button1.Text = "Создать";
-            button2.Text = "Открыть";
-            button3.Text = "Удалить";
-            button4.Text = "Переименовать";
-            button5.Text = "Копия";
-            button6.Text = "Сохранить";
-        }
-
-        private void MainWindow_Load(object sender, EventArgs e)
-        {
-                button3.Enabled = false;
-                button4.Enabled = false;
-                button5.Enabled = false;
-                button6.Enabled = false;
         }
 
         private void button1_Click(object sender, EventArgs e)

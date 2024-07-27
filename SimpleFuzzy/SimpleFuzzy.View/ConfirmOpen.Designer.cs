@@ -42,7 +42,7 @@
             button1.Name = "button1";
             button1.Size = new Size(171, 29);
             button1.TabIndex = 4;
-            button1.Text = "button1";
+            button1.Text = "Открыть проводник";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
@@ -52,7 +52,7 @@
             button2.Name = "button2";
             button2.Size = new Size(94, 29);
             button2.TabIndex = 5;
-            button2.Text = "button2";
+            button2.Text = "Отмена";
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
             // 
@@ -64,6 +64,7 @@
             listBox1.Name = "listBox1";
             listBox1.Size = new Size(408, 284);
             listBox1.TabIndex = 7;
+            listBox1.ScrollAlwaysVisible = true;
             listBox1.DoubleClick += listBox1_DoubleClick;
             // 
             // textBox1
@@ -81,7 +82,7 @@
             label1.Name = "label1";
             label1.Size = new Size(50, 20);
             label1.TabIndex = 10;
-            label1.Text = "label1";
+            label1.Text = "Введите имя проекта";
             // 
             // label2
             // 

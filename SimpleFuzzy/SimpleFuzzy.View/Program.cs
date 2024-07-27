@@ -12,7 +12,7 @@ namespace SimpleFuzzy.View
             // see https://aka.ms/applicationconfiguration.\
             AutofacConfig.ConfigureContainer();
             ApplicationConfiguration.Initialize();
-            Application.Run(new MainWindow());
+            Application.Run(new SimpleFuzzy());
         }
     }
 }

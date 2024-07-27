@@ -14,51 +14,32 @@ namespace SimpleFuzzy.View
 {
     public partial class ConfirmOpen : UserControl
     {
-        ProjectList projectList;
-        MainWindow window;
-        public ConfirmOpen()
+        ProjectListService projectList;
+        SimpleFuzzy window;
+        public ConfirmOpen(SimpleFuzzy mainWindow, ProjectListService project)
         {
             InitializeComponent();
-            label1.Text = "Введите имя проекта";
-            button1.Text = "Открыть проводник";
-            button2.Text = "Отмена";
-            listBox1.ScrollAlwaysVisible = true;
-        }
-        public ConfirmOpen(MainWindow mainWindow, ProjectList project) : this()
-        {
             window = mainWindow;
             projectList = project;
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            FolderBrowserDialog dialog = new FolderBrowserDialog();
-            dialog.RootFolder = Environment.SpecialFolder.Desktop;
-            dialog.SelectedPath = Directory.GetCurrentDirectory() + "\\Projects";
-            if (dialog.ShowDialog() == DialogResult.Cancel) { return; }
+            string path = projectList.OpenExplorer(Directory.GetCurrentDirectory() + "\\Projects");
+            if (path == "") { return; }
             try
             {
-                string path = dialog.SelectedPath;
-                string[] list = projectList.GiveList();
-                bool isContains = false;
-                for (int i = 1; i < list.Length; i++)
+                if (projectList.IsContainsPath(path))
                 {
-                    if (path == list[i])
-                    {
-                        isContains = true;
-                        projectList.currentProjectName = list[i - 1]; // Устанавливаем имя текущего проекта
-                    }
+                    // дальше по выбранной папке открывается проект
+                    button2_Click(sender, e);
                 }
-                if (!isContains) { throw new InvalidOperationException("Проекта по этому адресу не существует"); }
+                else { throw new InvalidOperationException("Проекта по этому адресу не существует"); }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
                 return;
             }
-            window.OpenButtons(sender, e);
-            window.Locked(sender, e);
-            window.Controls.Remove(this);
-            // дальше по выбранной папке открывается проект
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -114,15 +95,11 @@ namespace SimpleFuzzy.View
 
         private void listBox1_DoubleClick(object sender, EventArgs e)
         {
+            if (listBox1.SelectedItem != null)
             {
-                if (listBox1.SelectedItem != null)
-                {
-                    projectList.currentProjectName = listBox1.SelectedItem.ToString(); // Устанавливаем имя текущего проекта
-                    window.OpenButtons(sender, e);
-                    window.Locked(sender, e);
-                    window.Controls.Remove(this);
-                    // запуск проекта
-                }
+                projectList.currentProjectName = listBox1.SelectedItem.ToString(); // Устанавливаем имя текущего проекта
+                button2_Click(sender, e);
+                // запуск проекта
             }
         }
     }

@@ -43,7 +43,7 @@
             button1.Name = "button1";
             button1.Size = new Size(94, 29);
             button1.TabIndex = 0;
-            button1.Text = "button1";
+            button1.Text = "Готово";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
@@ -54,7 +54,7 @@
             label1.Name = "label1";
             label1.Size = new Size(50, 20);
             label1.TabIndex = 2;
-            label1.Text = "label1";
+            label1.Text = "Введите имя проекта";
             // 
             // textBox1
             // 
@@ -69,6 +69,7 @@
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(345, 27);
             textBox2.TabIndex = 4;
+            textBox2.Text = Directory.GetCurrentDirectory() + "\\Projects";
             // 
             // button2
             // 
@@ -76,7 +77,7 @@
             button2.Name = "button2";
             button2.Size = new Size(202, 29);
             button2.TabIndex = 5;
-            button2.Text = "button2";
+            button2.Text = "Открыть проводник";
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
             // 
@@ -87,7 +88,7 @@
             label2.Name = "label2";
             label2.Size = new Size(50, 20);
             label2.TabIndex = 6;
-            label2.Text = "label2";
+            label2.Text = "Расположение";
             // 
             // button3
             // 
@@ -95,7 +96,7 @@
             button3.Name = "button3";
             button3.Size = new Size(94, 29);
             button3.TabIndex = 7;
-            button3.Text = "button3";
+            button3.Text = "Отмена";
             button3.UseVisualStyleBackColor = true;
             button3.Click += button3_Click;
             // 
