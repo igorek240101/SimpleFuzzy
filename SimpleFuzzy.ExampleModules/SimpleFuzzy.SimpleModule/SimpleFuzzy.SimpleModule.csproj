@@ -10,15 +10,6 @@
     <Reference Include="SimpleFuzzy.Abstract">
       <HintPath>bin\Debug\net6.0\SimpleFuzzy.Abstract.dll</HintPath>
     </Reference>
-    <Reference Include="System.Drawing.Common">
-      <HintPath>bin\Debug\net6.0\System.Drawing.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Windows.Forms">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files\dotnet\packs\Microsoft.WindowsDesktop.App.Ref\6.0.31\ref\net6.0\System.Windows.Forms.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Windows.Forms.Primitives">
-      <HintPath>bin\Debug\net6.0\System.Windows.Forms.Primitives.dll</HintPath>
-    </Reference>
   </ItemGroup>
 
 </Project>

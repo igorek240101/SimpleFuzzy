@@ -1,10 +1,7 @@
-﻿using SimpleFuzzy.Abstract;
-using System.Windows.Forms;
-using System;
-using System.Drawing;
-using System.IO;
+﻿using System.Reflection;
 
-namespace SimpleFuzzy.SimpleModule
+
+namespace SimpleFuzzy.Models.SimulatorCrane
 {
     public partial class VisualCrane : UserControl
     {
@@ -24,6 +21,8 @@ namespace SimpleFuzzy.SimpleModule
 
             context = BufferedGraphicsManager.Current;
             grafx = context.Allocate(CreateGraphics(), DisplayRectangle);
+
+            var assembly = Assembly.GetExecutingAssembly();
 
             string spritesPath = Path.Combine(System.Windows.Forms.Application.StartupPath, "..", "..", "assets", "sprites");
             backgroundImage = System.Drawing.Image.FromFile(Path.Combine(spritesPath, "port2.png"));

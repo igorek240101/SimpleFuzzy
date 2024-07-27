@@ -1,8 +1,6 @@
 ﻿using SimpleFuzzy.Abstract;
-using SimpleFuzzy.View;
-using System.Windows.Forms;
 
-namespace SimpleFuzzy.SimpleModule
+namespace SimpleFuzzy.Models.SimulatorCrane
 {
     public class CraneSimulator : ISimulator
     {

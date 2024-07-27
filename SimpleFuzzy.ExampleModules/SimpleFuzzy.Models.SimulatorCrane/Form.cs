@@ -1,19 +1,15 @@
-﻿using SimpleFuzzy.SimpleModule;
-using SimpleFuzzy.Abstract;
-using System;
-using System.Drawing;
-using System.Windows.Forms;
-using System.IO;
+﻿using SimpleFuzzy.Abstract;
 
-namespace SimpleFuzzy.View
+
+namespace SimpleFuzzy.Models.SimulatorCrane
 {
-    public partial class VisualCrane : UserControl, ISimulator
+    public partial class Form : UserControl, ISimulator
     {
         private CraneSimulator simulator;
         private System.Windows.Forms.Timer timer;
         private bool isSimulationRunning = false;
 
-        public VisualCrane()
+        public Form()
         {
             InitializeComponent();
             SetupSimulator();

@@ -1,6 +1,6 @@
-﻿namespace SimpleFuzzy.View
+﻿namespace SimpleFuzzy.Models.SimulatorCrane
 {
-    partial class VisualCrane
+    partial class Form
     {
         private System.ComponentModel.IContainer components = null;
         private System.Windows.Forms.Panel cranePanel;
