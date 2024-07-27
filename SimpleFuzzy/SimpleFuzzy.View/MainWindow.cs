@@ -1,3 +1,6 @@
+﻿using System;
+using System.Windows.Forms;
+
 namespace SimpleFuzzy.View
 {
     public partial class MainWindow : Form
@@ -6,5 +9,6 @@ namespace SimpleFuzzy.View
         {
             InitializeComponent();
         }
+
     }
 }

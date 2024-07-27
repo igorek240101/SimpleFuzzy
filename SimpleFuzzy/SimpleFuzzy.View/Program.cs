@@ -1,3 +1,6 @@
+﻿using System;
+using System.Windows.Forms;
+
 namespace SimpleFuzzy.View
 {
     internal static class Program
