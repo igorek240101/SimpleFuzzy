@@ -1,8 +1,9 @@
-﻿using System.Reflection;
+﻿using SimpleFuzzy.Abstract;
+using System.Reflection;
 
 namespace SimpleFuzzy.Service
 {
-    public class AssemblyLoaderService
+    public class AssemblyLoaderService : IAssemblyLoaderService
     {
         public string GetInfo(string filePath)
         {
