@@ -1,4 +1,6 @@
 using SimpleFuzzy.Service;
+using System;
+using System.Windows.Forms;
 
 namespace SimpleFuzzy.View
 {
@@ -48,7 +50,7 @@ namespace SimpleFuzzy.View
 
         private void button6_Click(object sender, EventArgs e)
         {
-            // сохранение
+            // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         }
         public void Locked(object sender, EventArgs e)
         {
@@ -85,6 +87,5 @@ namespace SimpleFuzzy.View
             button5.Enabled = true;
             button6.Enabled = true;
         }
-
     }
 }
