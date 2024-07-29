@@ -1,6 +1,5 @@
 ﻿using SimpleFuzzy.Abstract;
 using SimpleFuzzy.Model;
-using System.Collections.ObjectModel;
 
 public class Repository : IRepository
 {
@@ -18,24 +17,24 @@ public class Repository : IRepository
         _linguisticVariables = new List<LinguisticVariable>();
     }
 
-    // Универсальный метод для получения коллекций только для чтения
-    public ReadOnlyCollection<T> GetCollection<T>()
+    // Универсальный метод для получения коллекций
+    public List<T> GetCollection<T>()
     {
         if (typeof(T) == typeof(IObjectSet))
         {
-            return _objectSets.AsReadOnly() as ReadOnlyCollection<T>;
+            return (List<T>)(object)_objectSets;
         }
         if (typeof(T) == typeof(IMembershipFunction))
         {
-            return _membershipFunctions.AsReadOnly() as ReadOnlyCollection<T>;
+            return (List<T>)(object)_membershipFunctions;
         }
         if (typeof(T) == typeof(ISimulator))
         {
-            return _simulators.AsReadOnly() as ReadOnlyCollection<T>;
+            return (List<T>)(object)_simulators;
         }
         if (typeof(T) == typeof(LinguisticVariable))
         {
-            return _linguisticVariables.AsReadOnly() as ReadOnlyCollection<T>;
+            return (List<T>)(object)_linguisticVariables;
         }
 
         throw new InvalidOperationException($"Collection for type {typeof(T).Name} is not supported.");

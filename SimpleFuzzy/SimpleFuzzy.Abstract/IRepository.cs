@@ -1,6 +1,4 @@
-﻿using System.Collections.ObjectModel;
-
-public interface IRepository
+﻿public interface IRepository
 {
-    ReadOnlyCollection<T> GetCollection<T>();
+    List<T> GetCollection<T>();
 }
