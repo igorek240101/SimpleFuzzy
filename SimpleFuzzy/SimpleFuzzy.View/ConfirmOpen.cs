@@ -15,8 +15,8 @@ namespace SimpleFuzzy.View
     public partial class ConfirmOpen : UserControl
     {
         ProjectListService projectList;
-        SimpleFuzzy window;
-        public ConfirmOpen(SimpleFuzzy mainWindow, ProjectListService project)
+        MainWindow window;
+        public ConfirmOpen(MainWindow mainWindow, ProjectListService project)
         {
             InitializeComponent();
             window = mainWindow;
@@ -24,11 +24,14 @@ namespace SimpleFuzzy.View
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            string path = projectList.OpenExplorer(Directory.GetCurrentDirectory() + "\\Projects");
-            if (path == "") { return; }
+            FolderBrowserDialog dialog = new FolderBrowserDialog();
+            dialog.RootFolder = Environment.SpecialFolder.Desktop;
+            dialog.SelectedPath = Directory.GetCurrentDirectory() + "\\Projects";
+            if (dialog.ShowDialog() == DialogResult.Cancel) { return; }
+            if (dialog.SelectedPath == "") { return; }
             try
             {
-                if (projectList.IsContainsPath(path))
+                if (projectList.IsContainsPath(dialog.SelectedPath))
                 {
                     // дальше по выбранной папке открывается проект
                     button2_Click(sender, e);

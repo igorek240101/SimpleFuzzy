@@ -2,10 +2,10 @@ using SimpleFuzzy.Service;
 
 namespace SimpleFuzzy.View
 {
-    public partial class SimpleFuzzy : Form
+    public partial class MainWindow : Form
     {
         ProjectListService projectList; 
-        public SimpleFuzzy()
+        public MainWindow()
         {
             projectList = new ProjectListService(); 
             InitializeComponent();

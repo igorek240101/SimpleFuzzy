@@ -15,8 +15,8 @@ namespace SimpleFuzzy.View
     public partial class ConfirmDelete : UserControl
     {
         ProjectListService projectList;
-        SimpleFuzzy window;
-        public ConfirmDelete(SimpleFuzzy mainWindow, ProjectListService project)
+        MainWindow window;
+        public ConfirmDelete(MainWindow mainWindow, ProjectListService project)
         {
             InitializeComponent();
             window = mainWindow;

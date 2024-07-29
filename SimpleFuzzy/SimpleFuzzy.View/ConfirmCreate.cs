@@ -14,8 +14,8 @@ namespace SimpleFuzzy.View
     public partial class ConfirmCreate : UserControl
     {
         ProjectListService projectList;
-        SimpleFuzzy window;
-        public ConfirmCreate(SimpleFuzzy mainWindow, ProjectListService project)
+        MainWindow window;
+        public ConfirmCreate(MainWindow mainWindow, ProjectListService project)
         {
             InitializeComponent();
             window = mainWindow;
@@ -35,7 +35,12 @@ namespace SimpleFuzzy.View
 
         private void button2_Click(object sender, EventArgs e)
         {
-            textBox2.Text = projectList.OpenExplorer(Directory.GetCurrentDirectory() + "\\Projects", textBox2.Text);
+            string path = Directory.GetCurrentDirectory() + "\\Projects";
+            FolderBrowserDialog dialog = new FolderBrowserDialog();
+            dialog.RootFolder = Environment.SpecialFolder.Desktop;
+            dialog.SelectedPath = path;
+            if (dialog.ShowDialog() == DialogResult.Cancel) return;
+            else { textBox2.Text = dialog.SelectedPath; }
         }
 
         private void button3_Click(object sender, EventArgs e) 

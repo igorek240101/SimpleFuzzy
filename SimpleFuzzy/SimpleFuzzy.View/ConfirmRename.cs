@@ -16,8 +16,8 @@ namespace SimpleFuzzy.View
     public partial class ConfirmRename : UserControl
     {
         ProjectListService projectList;
-        SimpleFuzzy window;
-        public ConfirmRename(SimpleFuzzy mainWindow, ProjectListService project)
+        MainWindow window;
+        public ConfirmRename(MainWindow mainWindow, ProjectListService project)
         {
             InitializeComponent();
             window = mainWindow;

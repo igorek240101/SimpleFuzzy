@@ -1,6 +1,6 @@
 ﻿namespace SimpleFuzzy.View
 {
-    partial class SimpleFuzzy
+    partial class MainWindow
     {
         /// <summary>
         ///  Required designer variable.
@@ -109,7 +109,7 @@
             button6.UseVisualStyleBackColor = true;
             button6.Click += button6_Click;
             // 
-            // SimpleFuzzy
+            // MainWindow
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -121,8 +121,8 @@
             Controls.Add(button2);
             Controls.Add(button1);
             Controls.Add(Create);
-            Name = "SimpleFuzzy";
-            Text = "Form1";
+            Name = "MainWindow";
+            Text = "SimpleFuzzy";
             ResumeLayout(false);
         }
 

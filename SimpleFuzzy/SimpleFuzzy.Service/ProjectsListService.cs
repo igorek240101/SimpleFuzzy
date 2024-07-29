@@ -1,8 +1,6 @@
 ﻿using System.IO;
 using System.Text;
-using System.Windows.Forms;
 using SimpleFuzzy.Abstract;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace SimpleFuzzy.Service
 {
@@ -133,12 +131,5 @@ namespace SimpleFuzzy.Service
             else { throw new InvalidOperationException("Проекта с таким именем не существует"); }
         }
         public string[] GiveList() { return File.ReadAllLines(pathPL, Encoding.Default); }
-        public string OpenExplorer(string path, string oldPath = "") {
-            FolderBrowserDialog dialog = new FolderBrowserDialog();
-            dialog.RootFolder = Environment.SpecialFolder.Desktop;
-            dialog.SelectedPath = path;
-            if (dialog.ShowDialog() == DialogResult.Cancel) return oldPath;
-            else { return dialog.SelectedPath; }
-        }
     }
 }
