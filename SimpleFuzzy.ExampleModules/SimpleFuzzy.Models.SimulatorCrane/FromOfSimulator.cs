@@ -3,20 +3,21 @@
 
 namespace SimpleFuzzy.Models.SimulatorCrane
 {
-    public partial class Form : UserControl, ISimulator
+    public partial class FromOfSimulator : UserControl
     {
         private CraneSimulator simulator;
         private System.Windows.Forms.Timer timer;
         private bool isSimulationRunning = false;
 
-        public Form()
+        public FromOfSimulator()
         {
             InitializeComponent();
             SetupSimulator();
             SetupControls();
-        }
 
-        public UserControl GetVisualObject() { return this; }
+            timer = new System.Windows.Forms.Timer { Interval = 16 }; // ~60 FPS
+            timer.Tick += (s, e) => simulator.Step();
+        }        
 
         private void SetupSimulator()
         {
@@ -81,6 +82,7 @@ namespace SimpleFuzzy.Models.SimulatorCrane
             UpdateVisuals();
             CheckCargoLoading();
         }
+
         private void SetupControls()
         {
             // Настройка стилей для элементов управления
@@ -189,6 +191,7 @@ namespace SimpleFuzzy.Models.SimulatorCrane
 
         private void btnReset_Click(object sender, EventArgs e)
         {
+            timer.Stop(); 
             simulator.Reset();
             isSimulationRunning = false;
             EnableControls();

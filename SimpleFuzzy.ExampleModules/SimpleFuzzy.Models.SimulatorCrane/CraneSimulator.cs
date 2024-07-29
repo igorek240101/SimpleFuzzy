@@ -22,16 +22,9 @@ namespace SimpleFuzzy.Models.SimulatorCrane
         private const double MAX_ANGLE = Math.PI / 2;
         private bool cargoLoaded = false;
 
-        private System.Windows.Forms.Timer timer;
+        public UserControl GetVisualObject() => new VisualCrane { craneSimulator = this };
 
-        public UserControl GetVisualObject()
-        {
-            throw new NotImplementedException("GetVisualObject должен быть реализован в VisualCrane");
-        }
-
-
-        protected virtual void OnStateChanged(SimulatorEventArgs e) => StateChanged?.Invoke(this, e);
-        public void SetBeamSize(double size) { beamSize = size; OnStateChanged(new SimulatorEventArgs()); }
+        public void SetBeamSize(double size) { beamSize = size; StateChanged?.Invoke(this, new SimulatorEventArgs()); }
 
         public void Step()
         {
@@ -46,7 +39,7 @@ namespace SimpleFuzzy.Models.SimulatorCrane
             x = Math.Max(0, Math.Min(beamSize, x));
 
             CheckEmergencySituation();
-            OnStateChanged(new SimulatorEventArgs());
+            StateChanged?.Invoke(this, new SimulatorEventArgs());
         }
 
         private void CheckEmergencySituation()
@@ -58,18 +51,16 @@ namespace SimpleFuzzy.Models.SimulatorCrane
         {
             string message = (x < 0 || x >= beamSize) ? "Каретка достигла края платформы!" : "Контейнер запрокинулся!";
             Reset();
-            OnStateChanged(new SimulatorEventArgs(message, true));
+            StateChanged?.Invoke(this, new SimulatorEventArgs(message, true));
         }
 
-        public void Start() => timer.Start();
-        public void Pause() => timer.Stop();
         public void Reset(double initialX = 0, double initialY = 0.1, double initialPlatformPosition = 0)
         {
             x = initialX;
             y = initialY;
             dx = dy = f = 0;
             platformPosition = initialPlatformPosition;
-            OnStateChanged(new SimulatorEventArgs());
+            StateChanged?.Invoke(this, new SimulatorEventArgs());
         }
 
         public void ApplyForce(double force) => f = force;
