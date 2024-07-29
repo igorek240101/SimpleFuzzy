@@ -6,12 +6,29 @@ namespace SimpleFuzzy.Service
 {
     public class AssemblyLoaderService : IAssemblyLoaderService
     {
+        private List<AssemblyLoadContext> assemblyContextList;
+
+        public AssemblyLoaderService()
+        {
+            assemblyContextList = new List<AssemblyLoadContext>();
+        }
         public string GetInfo(string filePath)
         {
+            foreach (var assemblyContextfromList in assemblyContextList)
+            {
+                if (assemblyContextfromList.Name == filePath)
+                {
+                    throw new InvalidOperationException("Повторная загрузка сборки в домен невозможна.");
+                }
+            }
+            var assemblyContext = new AssemblyLoadContext(name: $"{filePath}", isCollectible: true);
+            assemblyContext.LoadFromAssemblyPath(filePath);
+            assemblyContextList.Add(assemblyContext);
+            Assembly assembly = assemblyContext.Assemblies.ElementAt(0);
             string ans = "";
             try
             {
-                ans = Assembly.LoadFrom(filePath).FullName;
+                ans = assembly.FullName;
             }
             catch (Exception exp)
             {
@@ -19,18 +36,19 @@ namespace SimpleFuzzy.Service
             }
             return ans;
         }
-        public void UnloadAssembly(string? filePath)
+        public void UnloadAssembly(string assemblyName)
         {
-            if (filePath is string)
+            foreach (var assemblyContext in assemblyContextList)
             {
-                var assemblyContext = new AssemblyLoadContext(name: "UnloadAssemplyContext", isCollectible: true);
-                assemblyContext.LoadFromAssemblyPath(filePath);
-                assemblyContext.Unload();
+                if (assemblyContext.Assemblies.ElementAt(0).FullName == assemblyName)
+                {
+                    assemblyContext.Unload();
+                    GC.Collect();
+                    GC.WaitForPendingFinalizers();
+                    assemblyContextList.Remove(assemblyContext);
+                    break;
+                }   
             }
-            else
-            {
-                throw new InvalidOperationException("Путь к библиотеке не может быть null");
-            }
-        }   
+        }
     }
 }
