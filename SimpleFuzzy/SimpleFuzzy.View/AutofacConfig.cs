@@ -14,6 +14,7 @@ public static class AutofacConfig
         builder.RegisterType<GenerationMembershipFunctionService>().As<IGenerationMembershipFunctionService>();
         builder.RegisterType<GenerationObjectSetService>().As<IGenerationObjectSetService>();
         builder.RegisterType<ProjectListService>().As<IProjectListService>();
+        builder.RegisterType<CompileService>().As<ICompileService>();
 
         var container = builder.Build();
 
