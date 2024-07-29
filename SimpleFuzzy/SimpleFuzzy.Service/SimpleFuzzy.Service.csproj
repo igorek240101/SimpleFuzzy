@@ -19,10 +19,4 @@
     
   </ItemGroup>
 
-  <ItemGroup>
-    <Reference Include="SimpleFuzzy.SimpleModule">
-      <HintPath>..\..\SimpleFuzzy.ExampleModules\SimpleFuzzy.SimpleModule\bin\Debug\net6.0\SimpleFuzzy.SimpleModule.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
 </Project>
