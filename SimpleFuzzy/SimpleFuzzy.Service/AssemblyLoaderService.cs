@@ -22,32 +22,38 @@ namespace SimpleFuzzy.Service
                 }
             }
             var assemblyContext = new AssemblyLoadContext(name: $"{filePath}", isCollectible: true);
-            assemblyContext.LoadFromAssemblyPath(filePath);
+            try
+            {
+                assemblyContext.LoadFromAssemblyPath(filePath);
+            }
+            catch
+            {
+                throw new InvalidOperationException("Абсолютный путь файла введен неправильно.");
+            }
             assemblyContextList.Add(assemblyContext);
             Assembly assembly = assemblyContext.Assemblies.ElementAt(0);
             string ans = "";
-            try
-            {
-                ans = assembly.FullName;
-            }
-            catch (Exception exp)
-            {
-                throw;
-            }
+            ans = assembly.FullName;
             return ans;
         }
         public void UnloadAssembly(string assemblyName)
         {
+            bool loaded = false;
             foreach (var assemblyContext in assemblyContextList)
             {
                 if (assemblyContext.Assemblies.ElementAt(0).FullName == assemblyName)
                 {
+                    loaded = true;
                     assemblyContext.Unload();
                     GC.Collect();
                     GC.WaitForPendingFinalizers();
                     assemblyContextList.Remove(assemblyContext);
                     break;
                 }   
+            }
+            if (!loaded)
+            {
+                throw new InvalidOperationException("Удаляемой сборки нет в домене.");
             }
         }
     }
