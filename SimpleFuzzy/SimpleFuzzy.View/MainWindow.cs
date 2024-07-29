@@ -48,7 +48,7 @@ namespace SimpleFuzzy.View
 
         private void button6_Click(object sender, EventArgs e)
         {
-            // сохранение
+            // save project
         }
         public void Locked(object sender, EventArgs e)
         {
