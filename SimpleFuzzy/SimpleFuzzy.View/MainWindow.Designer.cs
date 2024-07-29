@@ -25,6 +25,7 @@ namespace SimpleFuzzy.View
             button4 = new Button();
             button5 = new Button();
             button6 = new Button();
+            button7 = new Button();
             SuspendLayout();
             // 
             // Create
@@ -56,47 +57,58 @@ namespace SimpleFuzzy.View
             // 
             // button3
             // 
+            button3.Enabled = false;
             button3.Location = new Point(200, 0);
             button3.Name = "button3";
             button3.Size = new Size(94, 29);
             button3.TabIndex = 3;
             button3.Text = "Удалить";
-            button3.Enabled = false;
             button3.UseVisualStyleBackColor = true;
             button3.Click += button3_Click;
             // 
             // button4
             // 
+            button4.Enabled = false;
             button4.Location = new Point(300, 0);
             button4.Name = "button4";
             button4.Size = new Size(94, 29);
             button4.TabIndex = 4;
             button4.Text = "Переименовать";
-            button4.Enabled = false;
             button4.UseVisualStyleBackColor = true;
             button4.Click += button4_Click;
             // 
             // button5
             // 
+            button5.Enabled = false;
             button5.Location = new Point(400, 0);
             button5.Name = "button5";
             button5.Size = new Size(94, 29);
             button5.TabIndex = 5;
             button5.Text = "Копия";
-            button5.Enabled = false;
             button5.UseVisualStyleBackColor = true;
             button5.Click += button5_Click;
             // 
             // button6
             // 
+            button6.Enabled = false;
             button6.Location = new Point(500, 0);
             button6.Name = "button6";
             button6.Size = new Size(94, 29);
             button6.TabIndex = 6;
             button6.Text = "Сохранить";
-            button6.Enabled = false;
             button6.UseVisualStyleBackColor = true;
             button6.Click += button6_Click;
+            // 
+            // button7
+            // 
+            button7.Location = new Point(600, 0); // Задайте подходящее расположение
+            button7.Name = "button7";
+            button7.Size = new Size(94, 29);
+            button7.TabIndex = 8;
+            button7.Text = "О программе";
+            button7.UseVisualStyleBackColor = true;
+            button7.Click += button7_Click;
+            button7.AutoEllipsis = true;
             // 
             // MainWindow
             // 
@@ -109,9 +121,11 @@ namespace SimpleFuzzy.View
             Controls.Add(button3);
             Controls.Add(button2);
             Controls.Add(button1);
+            Controls.Add(button7);
             Controls.Add(Create);
             Name = "MainWindow";
             Text = "SimpleFuzzy";
+            Load += MainWindow_Load_1;
             ResumeLayout(false);
         }
 
@@ -125,5 +139,6 @@ namespace SimpleFuzzy.View
         private Button button4;
         private Button button5;
         private Button button6;
+        private Button button7;
     }
 }

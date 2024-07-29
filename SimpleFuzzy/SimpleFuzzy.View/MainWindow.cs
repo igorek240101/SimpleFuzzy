@@ -6,10 +6,10 @@ namespace SimpleFuzzy.View
 {
     public partial class MainWindow : Form
     {
-        ProjectListService projectList; 
+        ProjectListService projectList;
         public MainWindow()
         {
-            projectList = new ProjectListService(); 
+            projectList = new ProjectListService();
             InitializeComponent();
         }
 
@@ -52,6 +52,13 @@ namespace SimpleFuzzy.View
         {
             // сохранение
         }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            AboutBox aboutBox = new AboutBox();
+            aboutBox.ShowDialog();
+        }
+
         public void Locked(object sender, EventArgs e)
         {
             if (projectList.currentProjectName == null)
@@ -86,6 +93,15 @@ namespace SimpleFuzzy.View
             button4.Enabled = true;
             button5.Enabled = true;
             button6.Enabled = true;
+        }
+
+        private void MainWindow_Load(object sender, EventArgs e)
+        {
+       
+        }
+        private void MainWindow_Load_1(object sender, EventArgs e)
+        {
+
         }
     }
 }
