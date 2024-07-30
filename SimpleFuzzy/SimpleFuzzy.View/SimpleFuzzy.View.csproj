@@ -11,6 +11,7 @@
   <ItemGroup>
     <PackageReference Include="Autofac" Version="8.0.0" />
     <PackageReference Include="Autofac.Mvc5" Version="6.1.0" />
+    <PackageReference Include="MetroFramework.Design" Version="1.2.0.3" />
   </ItemGroup>
 
   <ItemGroup>
