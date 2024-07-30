@@ -3,7 +3,7 @@
 public class AgeSet : IObjectSet
 {
     public bool Active { get; set; }
-    public string Name { get; } = "Membership Function";
+    public string Name { get; } = "Age set";
 
     private byte currentobject;
 
