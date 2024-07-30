@@ -1,4 +1,4 @@
-internal static class Program
+internal static class Progra
 {
     /// <summary>
     ///  The main entry point for the application.
