@@ -13,6 +13,7 @@
   <ItemGroup>
     <ProjectReference Include="..\SimpleFuzzy.Abstarct.View\SimpleFuzzy.Abstarct.View.csproj" />
     <ProjectReference Include="..\SimpleFuzzy.Abstract\SimpleFuzzy.Abstract.csproj" />
+	<ProjectReference Include="..\SimpleFuzzy.Model\SimpleFuzzy.Model.csproj" />
   </ItemGroup>
 
 </Project>
