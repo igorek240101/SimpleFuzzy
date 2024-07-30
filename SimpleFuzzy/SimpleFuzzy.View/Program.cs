@@ -1,3 +1,5 @@
+using SimpleFuzzy.View;
+
 internal static class Program
 {
     /// <summary>
