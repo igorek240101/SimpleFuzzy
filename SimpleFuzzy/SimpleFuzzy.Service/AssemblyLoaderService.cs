@@ -44,11 +44,18 @@ namespace SimpleFuzzy.Service
                 if (assemblyContext.Assemblies.ElementAt(0).FullName == assemblyName)
                 {
                     loaded = true;
-                    assemblyContext.Unload();
-                    GC.Collect();
-                    GC.WaitForPendingFinalizers();
-                    assemblyContextList.Remove(assemblyContext);
-                    break;
+                    try
+                    {
+                        assemblyContext.Unload();
+                        GC.Collect();
+                        GC.WaitForPendingFinalizers();
+                        assemblyContextList.Remove(assemblyContext);
+                        break;
+                    }
+                    catch
+                    {
+                        throw new InvalidOperationException("Выгрузить сборку не удалось.");
+                    }
                 }   
             }
             if (!loaded)
