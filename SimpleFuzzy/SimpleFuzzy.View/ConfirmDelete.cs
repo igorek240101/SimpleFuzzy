@@ -16,8 +16,6 @@ namespace SimpleFuzzy.View
     public partial class ConfirmDelete : UserControl
     {
         IProjectListService projectList;
-        MainWindow window;
-        public MainWindow Window { set { window = value; } }
         public ConfirmDelete()
         {
             InitializeComponent();
@@ -31,20 +29,23 @@ namespace SimpleFuzzy.View
                 MessageBox.Show(ex.Message);
                 return;
             }
-            window.OpenButtons(sender, e);
-            window.Locked(sender, e);
-            window.Controls.Remove(this);
+            if (Parent is MainWindow parent) 
+            {
+                parent.OpenButtons(sender, e);
+                parent.Locked(sender, e);
+            }
+            Parent.Controls.Remove(this);
         }
 
         private void button2_Click(object sender, EventArgs e) 
         {
-            window.OpenButtons(sender, e);
-            window.Controls.Remove(this);
+            if (Parent is MainWindow parent) { parent.OpenButtons(sender, e); }
+            Parent.Controls.Remove(this);
         }
 
         private void ConfirmDelete_Load(object sender, EventArgs e)
         {
-            window.BlockButtons(sender, e);
+            if (Parent is MainWindow parent) { parent.BlockButtons(sender, e); }
         }
     }
 }

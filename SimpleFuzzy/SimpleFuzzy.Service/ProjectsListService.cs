@@ -7,7 +7,6 @@ namespace SimpleFuzzy.Service
     public class ProjectListService : IProjectListService
     {
         public string pathPL = Directory.GetCurrentDirectory() + "\\ProjectsList.tt";
-        private string? currentProjectName;
         public string? CurrentProjectName { get; set; }
         public void AddProject(string name, string path)
         {

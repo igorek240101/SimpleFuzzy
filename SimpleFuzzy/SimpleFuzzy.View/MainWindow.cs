@@ -17,7 +17,6 @@ namespace SimpleFuzzy.View
         private void button1_Click(object sender, EventArgs e)
         {
             ConfirmCreate confirm = new ConfirmCreate();
-            confirm.Window = this;
             Controls.Add(confirm);
             confirm.Dock = DockStyle.Fill;
         }
@@ -25,7 +24,6 @@ namespace SimpleFuzzy.View
         private void button2_Click(object sender, EventArgs e)
         {
             ConfirmOpen confirm = new ConfirmOpen();
-            confirm.Window = this;
             Controls.Add(confirm);
             confirm.Dock = DockStyle.Fill;
         }
@@ -33,7 +31,6 @@ namespace SimpleFuzzy.View
         private void button3_Click(object sender, EventArgs e)
         {
             ConfirmDelete confirm = new ConfirmDelete();
-            confirm.Window = this;
             Controls.Add(confirm);
             confirm.Dock = DockStyle.Fill;
         }
@@ -41,7 +38,6 @@ namespace SimpleFuzzy.View
         private void button4_Click(object sender, EventArgs e)
         {
             ConfirmRename confirm = new ConfirmRename();
-            confirm.Window = this;
             Controls.Add(confirm);
             confirm.Dock = DockStyle.Fill;
         }
@@ -49,7 +45,6 @@ namespace SimpleFuzzy.View
         private void button5_Click(object sender, EventArgs e)
         {
             ConfirmCopy confirm = new ConfirmCopy();
-            confirm.Window = this;
             Controls.Add(confirm);
             confirm.Dock = DockStyle.Fill;
         }

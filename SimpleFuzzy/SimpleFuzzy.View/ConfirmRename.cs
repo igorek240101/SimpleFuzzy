@@ -17,9 +17,6 @@ namespace SimpleFuzzy.View
     public partial class ConfirmRename : UserControl
     {
         IProjectListService projectList;
-        MainWindow window;
-        public MainWindow Window { set { window = value; } }
-
         public ConfirmRename()
         {
             InitializeComponent();
@@ -41,13 +38,13 @@ namespace SimpleFuzzy.View
 
         private void button2_Click(object sender, EventArgs e) 
         {
-            window.OpenButtons(sender, e);
-            window.Controls.Remove(this);
+            if (Parent is MainWindow parent) { parent.OpenButtons(sender, e); }
+            Parent.Controls.Remove(this);
         }
 
         private void ConfirmRename_Load(object sender, EventArgs e)
         {
-            window.BlockButtons(sender, e);
+            if (Parent is MainWindow parent) { parent.BlockButtons(sender, e); }
         }
     }
 }

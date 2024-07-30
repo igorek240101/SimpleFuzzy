@@ -8,15 +8,15 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc.Html;
 using System.Windows.Forms;
+using System.Windows.Forms.Design;
 
 namespace SimpleFuzzy.View
 {
     public partial class ConfirmCreate : UserControl
     {
         IProjectListService projectList;
-        MainWindow window;
-        public MainWindow Window { set { window = value; } }
         public ConfirmCreate()
         {
             InitializeComponent();
@@ -46,14 +46,17 @@ namespace SimpleFuzzy.View
 
         private void button3_Click(object sender, EventArgs e) 
         {
-            window.OpenButtons(sender, e);
-            window.Locked(sender, e);
-            window.Controls.Remove(this);
+            if (Parent is MainWindow parent)
+            { 
+                parent.OpenButtons(sender, e);
+                parent.Locked(sender, e);
+            }
+            Parent.Controls.Remove(this);
         }
 
         private void ConfirmCreate_Load(object sender, EventArgs e) 
-        { 
-            window.BlockButtons(sender, e);
+        {
+            if (Parent is MainWindow parent) { parent.BlockButtons(sender, e); }
         }
     }
 }

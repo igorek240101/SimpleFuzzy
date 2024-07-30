@@ -10,14 +10,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace SimpleFuzzy.View
 {
     public partial class ConfirmOpen : UserControl
     {
         IProjectListService projectList;
-        MainWindow window;
-        public MainWindow Window { set { window = value; } }
         public ConfirmOpen()
         {
             InitializeComponent();
@@ -48,14 +47,17 @@ namespace SimpleFuzzy.View
 
         private void button2_Click(object sender, EventArgs e)
         {
-            window.OpenButtons(sender, e);
-            window.Locked(sender, e);
-            window.Controls.Remove(this);
+            if (Parent is MainWindow parent) 
+            {
+                parent.OpenButtons(sender, e);
+                parent.Locked(sender, e);
+            }
+            Parent.Controls.Remove(this);
         }
 
         private void ConfirmOpen_Load(object sender, EventArgs e)
         {
-            window.BlockButtons(sender, e);
+            if (Parent is MainWindow parent) { parent.BlockButtons(sender, e); }
             label2.Visible = false;
             string[] list = projectList.GiveList();
             for (int i = 0; i < list.Length; i += 3) { listBox1.Items.Add(list[i]); }

@@ -1,7 +1,7 @@
 ﻿using SimpleFuzzy.Abstract;
 using SimpleFuzzy.Model;
 
-public class Repository : IRepository
+public class RepositoryService : IRepository
 {
     // Коллекции для хранения различных типов объектов
     private readonly List<IObjectSet> _objectSets;
@@ -9,7 +9,7 @@ public class Repository : IRepository
     private readonly List<ISimulator> _simulators;
     private readonly List<LinguisticVariable> _linguisticVariables;
 
-    public Repository()
+    public RepositoryService()
     {
         _objectSets = new List<IObjectSet>();
         _membershipFunctions = new List<IMembershipFunction>();

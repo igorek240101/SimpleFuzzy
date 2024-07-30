@@ -17,8 +17,6 @@ namespace SimpleFuzzy.View
     public partial class ConfirmCopy : UserControl
     {
         IProjectListService projectList;
-        MainWindow window;
-        public MainWindow Window { set {  window = value; } }
         public ConfirmCopy() 
         {
             InitializeComponent();
@@ -47,13 +45,13 @@ namespace SimpleFuzzy.View
 
         private void button3_Click(object sender, EventArgs e) 
         {
-            window.OpenButtons(sender, e);
-            window.Controls.Remove(this);
+            if (Parent is MainWindow parent) { parent.OpenButtons(sender, e); }
+            Parent.Controls.Remove(this);
         }
 
         private void ConfirmCopy_Load(object sender, EventArgs e)
         {
-            window.BlockButtons(sender, e);
+            if (Parent is MainWindow parent) { parent.BlockButtons(sender, e); }
         }
     }
 }
