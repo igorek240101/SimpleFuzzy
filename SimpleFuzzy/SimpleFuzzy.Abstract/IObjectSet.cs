@@ -1,6 +1,6 @@
 ﻿namespace SimpleFuzzy.Abstract
 {
-    public interface IObjectSet
+    public interface IObjectSet : IModulable
     {
         object Extraction();
         void MoveNext();
