@@ -1,3 +1,4 @@
+using SimpleFuzzy.Abstract;
 using SimpleFuzzy.Service;
 using System;
 using System.Windows.Forms;
@@ -6,44 +7,49 @@ namespace SimpleFuzzy.View
 {
     public partial class MainWindow : Form
     {
-        ProjectListService projectList; 
+        IProjectListService projectList; 
         public MainWindow()
         {
-            projectList = new ProjectListService(); 
             InitializeComponent();
+            projectList = AutofacIntegration.GetInstance<IProjectListService>();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            ConfirmCreate confirm = new ConfirmCreate(this, projectList);
+            ConfirmCreate confirm = new ConfirmCreate();
+            confirm.Window = this;
             Controls.Add(confirm);
             confirm.Dock = DockStyle.Fill;
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            ConfirmOpen confirm = new ConfirmOpen(this, projectList);
+            ConfirmOpen confirm = new ConfirmOpen();
+            confirm.Window = this;
             Controls.Add(confirm);
             confirm.Dock = DockStyle.Fill;
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            ConfirmDelete confirm = new ConfirmDelete(this, projectList);
+            ConfirmDelete confirm = new ConfirmDelete();
+            confirm.Window = this;
             Controls.Add(confirm);
             confirm.Dock = DockStyle.Fill;
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            ConfirmRename confirm = new ConfirmRename(this, projectList);
+            ConfirmRename confirm = new ConfirmRename();
+            confirm.Window = this;
             Controls.Add(confirm);
             confirm.Dock = DockStyle.Fill;
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
-            ConfirmCopy confirm = new ConfirmCopy(this, projectList);
+            ConfirmCopy confirm = new ConfirmCopy();
+            confirm.Window = this;
             Controls.Add(confirm);
             confirm.Dock = DockStyle.Fill;
         }
@@ -54,7 +60,7 @@ namespace SimpleFuzzy.View
         }
         public void Locked(object sender, EventArgs e)
         {
-            if (projectList.currentProjectName == null)
+            if (projectList.CurrentProjectName == null)
             {
                 button3.Enabled = false;
                 button4.Enabled = false;

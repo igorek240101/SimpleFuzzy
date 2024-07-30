@@ -1,4 +1,5 @@
-﻿using SimpleFuzzy.Service;
+﻿using SimpleFuzzy.Abstract;
+using SimpleFuzzy.Service;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,17 +15,17 @@ namespace SimpleFuzzy.View
 {
     public partial class ConfirmDelete : UserControl
     {
-        ProjectListService projectList;
+        IProjectListService projectList;
         MainWindow window;
-        public ConfirmDelete(MainWindow mainWindow, ProjectListService project)
+        public MainWindow Window { set { window = value; } }
+        public ConfirmDelete()
         {
             InitializeComponent();
-            window = mainWindow;
-            projectList = project;
+            projectList = AutofacIntegration.GetInstance<IProjectListService>();
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            try { projectList.DeleteProject(projectList.currentProjectName); }
+            try { projectList.DeleteProject(projectList.CurrentProjectName); }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);

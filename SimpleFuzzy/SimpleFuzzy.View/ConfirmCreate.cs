@@ -1,4 +1,5 @@
-﻿using SimpleFuzzy.Service;
+﻿using SimpleFuzzy.Abstract;
+using SimpleFuzzy.Service;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,13 +14,13 @@ namespace SimpleFuzzy.View
 {
     public partial class ConfirmCreate : UserControl
     {
-        ProjectListService projectList;
+        IProjectListService projectList;
         MainWindow window;
-        public ConfirmCreate(MainWindow mainWindow, ProjectListService project)
+        public MainWindow Window { set { window = value; } }
+        public ConfirmCreate()
         {
             InitializeComponent();
-            window = mainWindow;
-            projectList = project;
+            projectList = AutofacIntegration.GetInstance<IProjectListService>();
         }
         private void button1_Click(object sender, EventArgs e)
         {

@@ -1,4 +1,5 @@
-﻿using SimpleFuzzy.Service;
+﻿using SimpleFuzzy.Abstract;
+using SimpleFuzzy.Service;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,13 +16,13 @@ namespace SimpleFuzzy.View
 {
     public partial class ConfirmCopy : UserControl
     {
+        IProjectListService projectList;
         MainWindow window;
-        ProjectListService projectList;
-        public ConfirmCopy(MainWindow mainWindow, ProjectListService project) 
+        public MainWindow Window { set {  window = value; } }
+        public ConfirmCopy() 
         {
             InitializeComponent();
-            window = mainWindow;
-            projectList = project;
+            projectList = AutofacIntegration.GetInstance<IProjectListService>();
         }
         private void button1_Click(object sender, EventArgs e)
         {
@@ -35,7 +36,7 @@ namespace SimpleFuzzy.View
 
         private void button2_Click(object sender, EventArgs e)
         {
-            try { projectList.CopyProject(projectList.currentProjectName + " - копия", textBox1.Text + $"\\{projectList.currentProjectName} - копия"); }
+            try { projectList.CopyProject(projectList.CurrentProjectName + " - копия", textBox1.Text + $"\\{projectList.CurrentProjectName} - копия"); }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
