@@ -13,10 +13,8 @@ public static class AutofacConfig
         builder.RegisterType<AssemblyLoaderService>().As<IAssemblyLoaderService>();
         builder.RegisterType<GenerationMembershipFunctionService>().As<IGenerationMembershipFunctionService>();
         builder.RegisterType<GenerationObjectSetService>().As<IGenerationObjectSetService>();
-        builder.RegisterType<Repository>().As<IRepository>();
         builder.RegisterType<ProjectListService>().As<IProjectListService>();
         builder.RegisterType<CompileService>().As<ICompileService>();
-
 
         var container = builder.Build();
 
