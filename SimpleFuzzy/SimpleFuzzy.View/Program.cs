@@ -11,6 +11,7 @@ namespace SimpleFuzzy.View
         [STAThread]
         static void Main()
         {
+            AutofacConfig.ConfigureContainer();
             ApplicationConfiguration.Initialize();
             Application.Run(new MainWindow());
         }
