@@ -6,6 +6,9 @@ namespace SimpleFuzzy.SimpleModule
 {
     public class CraneSimulator : ISimulator
     {
+        public bool Active { get; set; }
+        public string Name { get; } = "Crane simulator";
+
         public double m = 0; // Масса маятника (кг)
         public double M = 0; // Масса каретки (кг)
         public double l = 0; // Длина маятника (м)

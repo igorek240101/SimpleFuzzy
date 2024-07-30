@@ -4,6 +4,9 @@ namespace SimpleFuzzy.SimpleModule
 {
     public class MembershipFunc : IMembershipFunction
     {
+        public bool Active { get; set; }
+        public string Name { get; } = "Membership Function";
+
         public Type InputType => typeof(byte);
 
         public double MembershipFunction(object elem)
