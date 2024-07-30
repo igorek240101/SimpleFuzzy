@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SimpleFuzzy.Abstract
 {
-    public interface IMembershipFunction
+    public interface IMembershipFunction : IModulable
     {
         double MembershipFunction(object elem);
         Type InputType { get; }

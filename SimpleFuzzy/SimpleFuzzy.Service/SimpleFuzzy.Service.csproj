@@ -1,22 +1,19 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-	<TargetFramework>net6.0</TargetFramework>
+	<TargetFramework>net6.0-windows</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
-
     <PackageReference Include="System.CodeDom" Version="8.0.0" />
   </ItemGroup>
 
   <ItemGroup>
-
+    <ProjectReference Include="..\SimpleFuzzy.Abstarct.View\SimpleFuzzy.Abstarct.View.csproj" />
     <ProjectReference Include="..\SimpleFuzzy.Abstract\SimpleFuzzy.Abstract.csproj" />
-    
-    <ProjectReference Include="..\SimpleFuzzy.Model\SimpleFuzzy.Model.csproj" />
-    
+	<ProjectReference Include="..\SimpleFuzzy.Model\SimpleFuzzy.Model.csproj" />
   </ItemGroup>
 
 </Project>
