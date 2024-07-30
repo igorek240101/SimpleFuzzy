@@ -48,15 +48,15 @@ namespace SimpleFuzzy.View
         {
             if (Parent is MainWindow parent)
             { 
-                parent.OpenButtons(sender, e);
-                parent.Locked(sender, e);
+                parent.OpenButtons();
+                parent.Locked();
             }
             Parent.Controls.Remove(this);
         }
 
         private void ConfirmCreate_Load(object sender, EventArgs e) 
         {
-            if (Parent is MainWindow parent) { parent.BlockButtons(sender, e); }
+            if (Parent is MainWindow parent) { parent.BlockButtons(); }
         }
     }
 }

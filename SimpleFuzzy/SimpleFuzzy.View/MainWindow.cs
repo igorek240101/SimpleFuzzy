@@ -53,7 +53,7 @@ namespace SimpleFuzzy.View
         {
             // сохранение
         }
-        public void Locked(object sender, EventArgs e)
+        public void Locked()
         {
             if (projectList.CurrentProjectName == null)
             {
@@ -70,7 +70,7 @@ namespace SimpleFuzzy.View
                 button6.Enabled = true;
             }
         }
-        public void BlockButtons(object sender, EventArgs e)
+        public void BlockButtons()
         {
             button1.Enabled = false;
             button2.Enabled = false;
@@ -79,7 +79,7 @@ namespace SimpleFuzzy.View
             button5.Enabled = false;
             button6.Enabled = false;
         }
-        public void OpenButtons(object sender, EventArgs e)
+        public void OpenButtons()
         {
             button1.Enabled = true;
             button2.Enabled = true;

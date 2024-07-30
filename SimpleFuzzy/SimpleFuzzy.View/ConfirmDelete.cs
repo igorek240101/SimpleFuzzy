@@ -31,21 +31,21 @@ namespace SimpleFuzzy.View
             }
             if (Parent is MainWindow parent) 
             {
-                parent.OpenButtons(sender, e);
-                parent.Locked(sender, e);
+                parent.OpenButtons();
+                parent.Locked();
             }
             Parent.Controls.Remove(this);
         }
 
         private void button2_Click(object sender, EventArgs e) 
         {
-            if (Parent is MainWindow parent) { parent.OpenButtons(sender, e); }
+            if (Parent is MainWindow parent) { parent.OpenButtons(); }
             Parent.Controls.Remove(this);
         }
 
         private void ConfirmDelete_Load(object sender, EventArgs e)
         {
-            if (Parent is MainWindow parent) { parent.BlockButtons(sender, e); }
+            if (Parent is MainWindow parent) { parent.BlockButtons(); }
         }
     }
 }

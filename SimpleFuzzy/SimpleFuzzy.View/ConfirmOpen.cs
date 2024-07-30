@@ -49,15 +49,15 @@ namespace SimpleFuzzy.View
         {
             if (Parent is MainWindow parent) 
             {
-                parent.OpenButtons(sender, e);
-                parent.Locked(sender, e);
+                parent.OpenButtons();
+                parent.Locked();
             }
             Parent.Controls.Remove(this);
         }
 
         private void ConfirmOpen_Load(object sender, EventArgs e)
         {
-            if (Parent is MainWindow parent) { parent.BlockButtons(sender, e); }
+            if (Parent is MainWindow parent) { parent.BlockButtons(); }
             label2.Visible = false;
             string[] list = projectList.GiveList();
             for (int i = 0; i < list.Length; i += 3) { listBox1.Items.Add(list[i]); }

@@ -45,13 +45,13 @@ namespace SimpleFuzzy.View
 
         private void button3_Click(object sender, EventArgs e) 
         {
-            if (Parent is MainWindow parent) { parent.OpenButtons(sender, e); }
+            if (Parent is MainWindow parent) { parent.OpenButtons(); }
             Parent.Controls.Remove(this);
         }
 
         private void ConfirmCopy_Load(object sender, EventArgs e)
         {
-            if (Parent is MainWindow parent) { parent.BlockButtons(sender, e); }
+            if (Parent is MainWindow parent) { parent.BlockButtons(); }
         }
     }
 }
