@@ -6,12 +6,14 @@ public class Repository : IRepository
     // Коллекции для хранения различных типов объектов
     private readonly List<IObjectSet> _objectSets;
     private readonly List<IMembershipFunction> _membershipFunctions;
+    private readonly List<ISimulator> _simulators;
     private readonly List<LinguisticVariable> _linguisticVariables;
 
     public Repository()
     {
         _objectSets = new List<IObjectSet>();
         _membershipFunctions = new List<IMembershipFunction>();
+        _simulators = new List<ISimulator>();
         _linguisticVariables = new List<LinguisticVariable>();
     }
 
@@ -25,6 +27,10 @@ public class Repository : IRepository
         if (typeof(T) == typeof(IMembershipFunction))
         {
             return (List<T>)(object)_membershipFunctions;
+        }
+        if (typeof(T) == typeof(ISimulator))
+        {
+            return (List<T>)(object)_simulators;
         }
         if (typeof(T) == typeof(LinguisticVariable))
         {

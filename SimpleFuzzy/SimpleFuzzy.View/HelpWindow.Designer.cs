@@ -87,7 +87,6 @@
             treeView1.ShowNodeToolTips = true;
             treeView1.Size = new Size(216, 224);
             treeView1.TabIndex = 1;
-            treeView1.AfterSelect += treeView1_AfterSelect;
             // 
             // HelpWindow
             // 

@@ -18,10 +18,5 @@ namespace SimpleFuzzy.View
             window = mainWindow;
             InitializeComponent();
         }
-
-        private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
-        {
-
-        }
     }
 }

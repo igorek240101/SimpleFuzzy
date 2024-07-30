@@ -31,17 +31,15 @@ namespace SimpleFuzzy.View
             // Create
             // 
             Create.Location = new Point(0, 0);
-            Create.Margin = new Padding(3, 2, 3, 2);
             Create.Name = "Create";
-            Create.Size = new Size(66, 17);
+            Create.Size = new Size(75, 23);
             Create.TabIndex = 7;
             // 
             // button1
             // 
-            button1.Location = new Point(0, 1);
-            button1.Margin = new Padding(3, 2, 3, 2);
+            button1.Location = new Point(0, 0);
             button1.Name = "button1";
-            button1.Size = new Size(82, 22);
+            button1.Size = new Size(94, 29);
             button1.TabIndex = 1;
             button1.Text = "Создать";
             button1.UseVisualStyleBackColor = true;
@@ -49,10 +47,9 @@ namespace SimpleFuzzy.View
             // 
             // button2
             // 
-            button2.Location = new Point(88, 1);
-            button2.Margin = new Padding(3, 2, 3, 2);
+            button2.Location = new Point(100, 0);
             button2.Name = "button2";
-            button2.Size = new Size(82, 22);
+            button2.Size = new Size(94, 29);
             button2.TabIndex = 2;
             button2.Text = "Открыть";
             button2.UseVisualStyleBackColor = true;
@@ -60,58 +57,53 @@ namespace SimpleFuzzy.View
             // 
             // button3
             // 
-            button3.Enabled = false;
-            button3.Location = new Point(175, 1);
-            button3.Margin = new Padding(3, 2, 3, 2);
+            button3.Location = new Point(200, 0);
             button3.Name = "button3";
-            button3.Size = new Size(82, 22);
+            button3.Size = new Size(94, 29);
             button3.TabIndex = 3;
             button3.Text = "Удалить";
+            button3.Enabled = false;
             button3.UseVisualStyleBackColor = true;
             button3.Click += button3_Click;
             // 
             // button4
             // 
-            button4.Enabled = false;
-            button4.Location = new Point(262, 1);
-            button4.Margin = new Padding(3, 2, 3, 2);
+            button4.Location = new Point(300, 0);
             button4.Name = "button4";
-            button4.Size = new Size(82, 22);
+            button4.Size = new Size(94, 29);
             button4.TabIndex = 4;
             button4.Text = "Переименовать";
+            button4.Enabled = false;
             button4.UseVisualStyleBackColor = true;
             button4.Click += button4_Click;
             // 
             // button5
             // 
-            button5.Enabled = false;
-            button5.Location = new Point(350, 1);
-            button5.Margin = new Padding(3, 2, 3, 2);
+            button5.Location = new Point(400, 0);
             button5.Name = "button5";
-            button5.Size = new Size(82, 22);
+            button5.Size = new Size(94, 29);
             button5.TabIndex = 5;
             button5.Text = "Копия";
+            button5.Enabled = false;
             button5.UseVisualStyleBackColor = true;
             button5.Click += button5_Click;
             // 
             // button6
             // 
-            button6.Enabled = false;
-            button6.Location = new Point(438, 1);
-            button6.Margin = new Padding(3, 2, 3, 2);
+            button6.Location = new Point(500, 0);
             button6.Name = "button6";
-            button6.Size = new Size(82, 22);
+            button6.Size = new Size(94, 29);
             button6.TabIndex = 6;
             button6.Text = "Сохранить";
+            button6.Enabled = false;
             button6.UseVisualStyleBackColor = true;
             button6.Click += button6_Click;
             // 
             // button7
             // 
-            button7.Location = new Point(526, 1);
-            button7.Margin = new Padding(3, 2, 3, 2);
+            button7.Location = new Point(600, 0);
             button7.Name = "button7";
-            button7.Size = new Size(82, 22);
+            button7.Size = new Size(94, 29);
             button7.TabIndex = 8;
             button7.Text = "Справка";
             button7.UseVisualStyleBackColor = true;
@@ -119,9 +111,9 @@ namespace SimpleFuzzy.View
             // 
             // MainWindow
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(700, 338);
+            ClientSize = new Size(800, 450);
             Controls.Add(button7);
             Controls.Add(button6);
             Controls.Add(button5);
@@ -131,7 +123,6 @@ namespace SimpleFuzzy.View
             Controls.Add(button1);
             Controls.Add(Create);
             HelpButton = true;
-            Margin = new Padding(3, 2, 3, 2);
             Name = "MainWindow";
             Text = "SimpleFuzzy";
             ResumeLayout(false);
