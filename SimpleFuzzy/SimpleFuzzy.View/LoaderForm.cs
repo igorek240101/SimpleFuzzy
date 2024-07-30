@@ -1,22 +1,20 @@
-﻿using System;
-using System.IO;
-using System.Windows.Forms;
+﻿using MetroFramework.Forms;
+using MetroFramework;
+using MetroFramework.Controls;
+using SimpleFuzzy.Abstract;
 using SimpleFuzzy.Service;
-// Из-за возможной несовместимости Metroframework и .NET 6.0,
-// пришлось переделать приложение под WinForms
 
 namespace SimpleFuzzy.View
 {
-    public partial class LoaderForm : UserControl
+    public partial class LoaderForm : MetroUserControl
     {
-        private readonly SimpleFuzzy.Service.AssemblyLoaderService assemblyLoaderService;
+        private AssemblyLoaderService moduleLoaderService;
 
         public LoaderForm()
         {
             InitializeComponent();
-            assemblyLoaderService = new SimpleFuzzy.Service.AssemblyLoaderService();
+            moduleLoaderService = new AssemblyLoaderService();
         }
-
 
         private void browseButton_Click(object sender, EventArgs e)
         {
@@ -51,20 +49,20 @@ namespace SimpleFuzzy.View
                     throw new FileFormatException("Файл должен иметь расширение .dll");
                 }
 
-                string assemblyName = assemblyLoaderService.GetInfo(filePath);
+                string assemblyName = moduleLoaderService.GetInfo(filePath);
                 messageTextBox.Text = $"Модуль успешно загружен: {assemblyName}";
             }
             catch (FileNotFoundException ex)
             {
                 messageTextBox.Text = $"Ошибка: Файл не найден. {ex.Message}";
             }
-            catch (BadImageFormatException ex)
+            catch (FileFormatException ex)
             {
                 messageTextBox.Text = $"Ошибка: Неверный формат файла. {ex.Message}";
             }
             catch (Exception ex)
             {
-                messageTextBox.Text = $"Ошибка при загрузке модуля: {ex.Message}";
+                messageTextBox.Text = $"Неизвестная ошибка: {ex.Message}";
             }
         }
     }

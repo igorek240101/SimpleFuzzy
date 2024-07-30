@@ -17,7 +17,6 @@ public static class AutofacConfig
         builder.RegisterType<ProjectListService>().As<IProjectListService>();
         builder.RegisterType<CompileService>().As<ICompileService>();
 
-
         var container = builder.Build();
 
         DependencyResolver.SetResolver(new AutofacDependencyResolver(container));

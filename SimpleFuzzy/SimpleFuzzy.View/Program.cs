@@ -6,6 +6,10 @@ internal static class Progra
     [STAThread]
     static void Main()
     {
+        /// <summary>
+        ///  The main entry point for the application.
+        /// </summary>
+        AutofacConfig.ConfigureContainer();
         ApplicationConfiguration.Initialize();
         Application.Run(new MainWindow());
     }
