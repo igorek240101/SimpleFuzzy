@@ -4,7 +4,7 @@ using SimpleFuzzy.Service;
 
 namespace SimpleFuzzy.View
 {
-    public partial class LoaderForm : MetroForm
+    public partial class LoaderForm : UserControl
     {
         private AssemblyLoaderService moduleLoaderService;
 
