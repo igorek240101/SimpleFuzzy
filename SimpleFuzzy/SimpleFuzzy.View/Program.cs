@@ -1,16 +1,18 @@
-internal static class Program
+﻿using System;
+using System.Windows.Forms;
+
+namespace SimpleFuzzy.View
 {
-    /// <summary>
-    ///  The main entry point for the application.
-    /// </summary>
-    [STAThread]
-    static void Main()
+    internal static class Program
     {
         /// <summary>
         ///  The main entry point for the application.
         /// </summary>
-        AutofacConfig.ConfigureContainer();
-        ApplicationConfiguration.Initialize();
-        Application.Run(new MainWindow());
+        [STAThread]
+        static void Main()
+        {
+            ApplicationConfiguration.Initialize();
+            Application.Run(new MainWindow());
+        }
     }
 }
