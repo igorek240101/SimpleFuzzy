@@ -1,5 +1,4 @@
-﻿using SimpleFuzzy.Abstract;
-using SimpleFuzzy.Service;
+﻿using SimpleFuzzy.Service;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,17 +9,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace SimpleFuzzy.View
 {
     public partial class ConfirmOpen : UserControl
     {
-        IProjectListService projectList;
-        public ConfirmOpen()
+        ProjectListService projectList;
+        MainWindow window;
+        public ConfirmOpen(MainWindow mainWindow, ProjectListService project)
         {
             InitializeComponent();
-            projectList = AutofacIntegration.GetInstance<IProjectListService>();
+            window = mainWindow;
+            projectList = project;
         }
         private void button1_Click(object sender, EventArgs e)
         {
@@ -47,17 +47,14 @@ namespace SimpleFuzzy.View
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (Parent is MainWindow parent) 
-            {
-                parent.OpenButtons();
-                parent.Locked();
-            }
-            Parent.Controls.Remove(this);
+            window.OpenButtons(sender, e);
+            window.Locked(sender, e);
+            window.Controls.Remove(this);
         }
 
         private void ConfirmOpen_Load(object sender, EventArgs e)
         {
-            if (Parent is MainWindow parent) { parent.BlockButtons(); }
+            window.BlockButtons(sender, e);
             label2.Visible = false;
             string[] list = projectList.GiveList();
             for (int i = 0; i < list.Length; i += 3) { listBox1.Items.Add(list[i]); }
@@ -103,7 +100,7 @@ namespace SimpleFuzzy.View
         {
             if (listBox1.SelectedItem != null)
             {
-                projectList.CurrentProjectName = listBox1.SelectedItem.ToString(); // Устанавливаем имя текущего проекта
+                projectList.currentProjectName = listBox1.SelectedItem.ToString(); // Устанавливаем имя текущего проекта
                 button2_Click(sender, e);
                 // запуск проекта
             }

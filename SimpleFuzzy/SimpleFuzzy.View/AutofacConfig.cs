@@ -4,15 +4,21 @@ using SimpleFuzzy.Abstract;
 using System.Web.Mvc;
 using SimpleFuzzy.Service;
 
-public class AutofacConfig : Module
+public static class AutofacConfig
 {
-    protected override void Load(ContainerBuilder builder)
+    public static void ConfigureContainer()
     {
-        builder.RegisterType<AssemblyLoaderService>().As<IAssemblyLoaderService>().SingleInstance();
-        builder.RegisterType<GenerationMembershipFunctionService>().As<IGenerationMembershipFunctionService>().SingleInstance();
-        builder.RegisterType<GenerationObjectSetService>().As<IGenerationObjectSetService>().SingleInstance();
-        builder.RegisterType<ProjectListService>().As<IProjectListService>().SingleInstance();
-        builder.RegisterType<CompileService>().As<ICompileService>().SingleInstance();
-        builder.RegisterType<RepositoryService>().As<IRepositoryService>().SingleInstance();
+        var builder = new ContainerBuilder();
+
+        builder.RegisterType<AssemblyLoaderService>().As<IAssemblyLoaderService>();
+        builder.RegisterType<GenerationMembershipFunctionService>().As<IGenerationMembershipFunctionService>();
+        builder.RegisterType<GenerationObjectSetService>().As<IGenerationObjectSetService>();
+        builder.RegisterType<Repository>().As<IRepository>();
+        builder.RegisterType<ProjectListService>().As<IProjectListService>();
+        builder.RegisterType<CompileService>().As<ICompileService>();
+
+        var container = builder.Build();
+
+        DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
     }
 }

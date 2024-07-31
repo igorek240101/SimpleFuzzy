@@ -3,8 +3,15 @@ namespace SimpleFuzzy.View
 {
     partial class MainWindow
     {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -15,8 +22,11 @@ namespace SimpleFuzzy.View
         }
 
         #region Windows Form Designer generated code
+          
         private void InitializeComponent()
         {
+            SuspendLayout();
+            
             folderBrowserDialog1 = new FolderBrowserDialog();
             Create = new Button();
             button1 = new Button();
@@ -102,7 +112,9 @@ namespace SimpleFuzzy.View
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+
             ClientSize = new Size(800, 450);
+
             Controls.Add(button6);
             Controls.Add(button5);
             Controls.Add(button4);
@@ -110,6 +122,7 @@ namespace SimpleFuzzy.View
             Controls.Add(button2);
             Controls.Add(button1);
             Controls.Add(Create);
+
             Name = "MainWindow";
             Text = "SimpleFuzzy";
             ResumeLayout(false);
