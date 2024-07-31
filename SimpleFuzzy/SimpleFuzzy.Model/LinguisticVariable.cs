@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using SimpleFuzzy.Abstract;
+﻿using SimpleFuzzy.Abstract;
 
 namespace SimpleFuzzy.Model;
 
