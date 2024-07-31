@@ -7,13 +7,13 @@ namespace SimpleFuzzy.Service
     public class ProjectListService : IProjectListService
     {
         public string pathPL = Directory.GetCurrentDirectory() + "\\ProjectsList.tt";
-        public string? CurrentProjectName { get; set; }
+        public string? currentProjectName;
         public void AddProject(string name, string path)
         {
             if (!IsContainsName(name))
             {
                 if (name == "") throw new InvalidOperationException("Некорректное имя проекта");
-                CurrentProjectName = name;
+                currentProjectName = name;
                 FileStream file = new FileStream(pathPL, FileMode.Append);
                 StreamWriter writer = new StreamWriter(file);
                 writer.WriteLine(name);
@@ -31,7 +31,7 @@ namespace SimpleFuzzy.Service
             AddProject(name, path);
             DirectoryInfo directory = new DirectoryInfo(path);
             directory.Create();
-            DirectoryInfo source = new DirectoryInfo(GivePath(CurrentProjectName, true));
+            DirectoryInfo source = new DirectoryInfo(GivePath(currentProjectName, true));
             DirectoryInfo destin = new DirectoryInfo(path);
             foreach (var item in source.GetFiles()) { item.CopyTo(destin + item.Name, true); }
         }
@@ -52,17 +52,17 @@ namespace SimpleFuzzy.Service
                 }
                 writer.Close();
                 file.Close();
-                CurrentProjectName = null;
+                currentProjectName = null;
             }
             else { throw new InvalidOperationException("Проекта с таким именем не существует"); }
         }
         public void RenameProject(string name)
         {
-            string lastName = CurrentProjectName;
-            CopyProject(name, GivePath(CurrentProjectName, false) + $"\\{name}");
-            string currentName = CurrentProjectName;
+            string lastName = currentProjectName;
+            CopyProject(name, GivePath(currentProjectName, false) + $"\\{name}");
+            string currentName = currentProjectName;
             DeleteProject(lastName);
-            CurrentProjectName = currentName;
+            currentProjectName = currentName;
         }
         public bool IsContainsName(string name)
         {
@@ -98,7 +98,7 @@ namespace SimpleFuzzy.Service
             {
                 if (path == list[i])
                 {
-                    CurrentProjectName = list[i - 1]; // Устанавливаем имя текущего проекта
+                    currentProjectName = list[i - 1]; // Устанавливаем имя текущего проекта
                     return true;
                 }
             }
