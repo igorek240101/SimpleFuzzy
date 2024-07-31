@@ -7,10 +7,47 @@ namespace SimpleFuzzy.Service
     public class AssemblyLoaderService : IAssemblyLoaderService
     {
         private List<AssemblyLoadContext> assemblyContextList;
+        // Возврат последнего элемента списка
+        public AssemblyLoadContext AssemblyContextList { get { return assemblyContextList[assemblyContextList.Count - 1]; } }
+        public List<IMembershipFunction> memberFList;
+        public List<IObjectSet> objectSetList;
+        public List<ISimulator> simulatorList;
 
         public AssemblyLoaderService()
         {
             assemblyContextList = new List<AssemblyLoadContext>();
+            memberFList = new List<IMembershipFunction>();
+            objectSetList = new List<IObjectSet>();
+            simulatorList = new List<ISimulator>();
+        }
+
+        public (List<IMembershipFunction>, List<IObjectSet>, List<ISimulator>) AddElements(AssemblyLoadContext context)
+        {
+            for (int i = 0; i < context.Assemblies.Count(); i++)
+            {
+                Type[] array = context.Assemblies.ElementAt(i).GetTypes();
+                for (int j = 0; j < array.Length; j++)
+                {
+                    if (array[j].IsAbstract || array[j].IsInterface) { continue; }
+
+                    if (array[j] is IMembershipFunction)
+                    {
+                        try { memberFList.Add(array[j].GetConstructor(null).Invoke(null) as IMembershipFunction); }
+                        catch { }
+                    }
+                    else if (array[j] is IObjectSet)
+                    {
+                        try { objectSetList.Add(array[j].GetConstructor(null).Invoke(null) as IObjectSet); }
+                        catch { }
+                    }
+                    else if (array[j] is ISimulator)
+                    {
+                        try { simulatorList.Add(array[j].GetConstructor(null).Invoke(null) as ISimulator); }
+                        catch { }
+                    }
+                }
+            } 
+            return (memberFList, objectSetList, simulatorList);
         }
         public string GetInfo(string filePath)
         {

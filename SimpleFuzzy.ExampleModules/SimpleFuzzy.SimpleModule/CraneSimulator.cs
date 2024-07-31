@@ -24,7 +24,7 @@ namespace SimpleFuzzy.SimpleModule
 
         public VisualCrane crane = new VisualCrane();
         public CraneSimulator() {crane.craneSimulator = this; }
-        public UserControl GetVisualObject() => crane;
+        public object GetVisualObject() => crane;
 
         public void Step()
         {
