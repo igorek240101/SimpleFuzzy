@@ -3,5 +3,6 @@
     public interface IAssemblyLoaderService
     {
         string GetInfo(string filePath);
+        void UnloadAssembly(string assemblyName);
     }
 }

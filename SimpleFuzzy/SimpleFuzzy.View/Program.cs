@@ -1,3 +1,6 @@
+﻿using System;
+using System.Windows.Forms;
+
 namespace SimpleFuzzy.View
 {
     internal static class Program
@@ -8,9 +11,6 @@ namespace SimpleFuzzy.View
         [STAThread]
         static void Main()
         {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.\
-            AutofacConfig.ConfigureContainer();
             ApplicationConfiguration.Initialize();
             Application.Run(new MainWindow());
         }
