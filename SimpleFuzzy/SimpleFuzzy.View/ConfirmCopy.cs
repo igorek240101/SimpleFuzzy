@@ -1,4 +1,5 @@
-﻿using SimpleFuzzy.Service;
+﻿using SimpleFuzzy.Abstract;
+using SimpleFuzzy.Service;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,13 +16,11 @@ namespace SimpleFuzzy.View
 {
     public partial class ConfirmCopy : UserControl
     {
-        MainWindow window;
-        ProjectListService projectList;
-        public ConfirmCopy(MainWindow mainWindow, ProjectListService project) 
+        IProjectListService projectList;
+        public ConfirmCopy() 
         {
             InitializeComponent();
-            window = mainWindow;
-            projectList = project;
+            projectList = AutofacIntegration.GetInstance<IProjectListService>();
         }
         private void button1_Click(object sender, EventArgs e)
         {
@@ -35,7 +34,7 @@ namespace SimpleFuzzy.View
 
         private void button2_Click(object sender, EventArgs e)
         {
-            try { projectList.CopyProject(projectList.currentProjectName + " - копия", textBox1.Text + $"\\{projectList.currentProjectName} - копия"); }
+            try { projectList.CopyProject(projectList.CurrentProjectName + " - копия", textBox1.Text + $"\\{projectList.CurrentProjectName} - копия"); }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
@@ -46,13 +45,13 @@ namespace SimpleFuzzy.View
 
         private void button3_Click(object sender, EventArgs e) 
         {
-            window.OpenButtons(sender, e);
-            window.Controls.Remove(this);
+            if (Parent is MainWindow parent) { parent.OpenButtons(); }
+            Parent.Controls.Remove(this);
         }
 
         private void ConfirmCopy_Load(object sender, EventArgs e)
         {
-            window.BlockButtons(sender, e);
+            if (Parent is MainWindow parent) { parent.BlockButtons(); }
         }
     }
 }
