@@ -3,7 +3,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 namespace SimpleFuzzy.View
 {
     public delegate UserControl ControlConstruct();
-    public partial class MainWindow : Form, IDisposable
+    public partial class MainWindow : Form
     {
         Dictionary<UserControlsEnum, ControlConstruct> UserControls = new Dictionary<UserControlsEnum, ControlConstruct>();
         public UserControl currentControl = null;
@@ -20,8 +20,7 @@ namespace SimpleFuzzy.View
 
         public void SwichUserControl(UserControlsEnum? newWindowName)
         {
-            var toRemove = new MainWindow();
-            if (newWindowName.HasValue && currentControl == null) return;
+            var toRemove = this;
             if (currentControl != null){
                 toRemove.Controls.Remove(currentControl);
                 toRemove.Dispose();
