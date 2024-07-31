@@ -1,3 +1,4 @@
+using SimpleFuzzy.Abstract;
 using SimpleFuzzy.Service;
 using System;
 using System.Windows.Forms;
@@ -6,44 +7,44 @@ namespace SimpleFuzzy.View
 {
     public partial class MainWindow : Form
     {
-        ProjectListService projectList; 
+        IProjectListService projectList; 
         public MainWindow()
         {
-            projectList = new ProjectListService(); 
             InitializeComponent();
+            projectList = AutofacIntegration.GetInstance<IProjectListService>();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            ConfirmCreate confirm = new ConfirmCreate(this, projectList);
+            ConfirmCreate confirm = new ConfirmCreate();
             Controls.Add(confirm);
             confirm.Dock = DockStyle.Fill;
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            ConfirmOpen confirm = new ConfirmOpen(this, projectList);
+            ConfirmOpen confirm = new ConfirmOpen();
             Controls.Add(confirm);
             confirm.Dock = DockStyle.Fill;
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            ConfirmDelete confirm = new ConfirmDelete(this, projectList);
+            ConfirmDelete confirm = new ConfirmDelete();
             Controls.Add(confirm);
             confirm.Dock = DockStyle.Fill;
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            ConfirmRename confirm = new ConfirmRename(this, projectList);
+            ConfirmRename confirm = new ConfirmRename();
             Controls.Add(confirm);
             confirm.Dock = DockStyle.Fill;
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
-            ConfirmCopy confirm = new ConfirmCopy(this, projectList);
+            ConfirmCopy confirm = new ConfirmCopy();
             Controls.Add(confirm);
             confirm.Dock = DockStyle.Fill;
         }
@@ -52,9 +53,9 @@ namespace SimpleFuzzy.View
         {
             // сохранение
         }
-        public void Locked(object sender, EventArgs e)
+        public void Locked()
         {
-            if (projectList.currentProjectName == null)
+            if (projectList.CurrentProjectName == null)
             {
                 button3.Enabled = false;
                 button4.Enabled = false;
@@ -69,7 +70,7 @@ namespace SimpleFuzzy.View
                 button6.Enabled = true;
             }
         }
-        public void BlockButtons(object sender, EventArgs e)
+        public void BlockButtons()
         {
             button1.Enabled = false;
             button2.Enabled = false;
@@ -78,7 +79,7 @@ namespace SimpleFuzzy.View
             button5.Enabled = false;
             button6.Enabled = false;
         }
-        public void OpenButtons(object sender, EventArgs e)
+        public void OpenButtons()
         {
             button1.Enabled = true;
             button2.Enabled = true;
