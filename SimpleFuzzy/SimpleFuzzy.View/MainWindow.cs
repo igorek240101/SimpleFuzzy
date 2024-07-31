@@ -23,7 +23,7 @@ namespace SimpleFuzzy.View
             var toRemove = this;
             if (currentControl != null){
                 toRemove.Controls.Remove(currentControl);
-                toRemove.Dispose();
+                currentControl.Dispose();
             }
             if(newWindowName.HasValue){
                 currentControl = UserControls[newWindowName.Value]();
