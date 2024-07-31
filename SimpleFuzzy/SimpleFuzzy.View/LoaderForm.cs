@@ -8,12 +8,12 @@ namespace SimpleFuzzy.View
 {
     public partial class LoaderForm : MetroUserControl
     {
-        private AssemblyLoaderService moduleLoaderService;
+        private IAssemblyLoaderService moduleLoaderService;
 
         public LoaderForm()
         {
             InitializeComponent();
-            moduleLoaderService = new AssemblyLoaderService();
+            moduleLoaderService = AutofacIntegration.GetInstance<IAssemblyLoaderService>();
         }
 
         private void browseButton_Click(object sender, EventArgs e)
