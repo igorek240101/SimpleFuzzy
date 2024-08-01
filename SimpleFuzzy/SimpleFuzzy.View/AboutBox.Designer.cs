@@ -168,6 +168,12 @@
             ShowIcon = false;
             ShowInTaskbar = false;
             StartPosition = FormStartPosition.CenterParent;
+            Text = String.Format("О программе {0}", AssemblyTitle); 
+            labelProductName.Text = AssemblyProduct; 
+            labelVersion.Text = String.Format("Версия {0}", AssemblyVersion); 
+            labelCopyright.Text = AssemblyCopyright; 
+            labelCompanyName.Text = AssemblyCompany;
+            textBoxDescription.Text = AssemblyDescription;
             tableLayoutPanel.ResumeLayout(false);
             tableLayoutPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)logoPictureBox).EndInit();
