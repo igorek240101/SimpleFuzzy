@@ -56,6 +56,41 @@ namespace SimpleFuzzy.View
         {
             // сохранение
         }
+        private void button7_Click(object sender, EventArgs e)
+        {
+            LoaderForm form = new LoaderForm();
+            Controls.Add(form);
+            form.Dock = DockStyle.Fill;
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            FasificationForm form = new FasificationForm();
+            Controls.Add(form);
+            form.Dock = DockStyle.Fill;
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            InferenceForm form = new InferenceForm();
+            Controls.Add(form);
+            form.Dock = DockStyle.Fill;
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            DefasificationForm form = new DefasificationForm();
+            Controls.Add(form);
+            form.Dock = DockStyle.Fill;
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            SimulationForm form = new SimulationForm();
+            Controls.Add(form);
+            form.Dock = DockStyle.Fill;
+        }
+
         public void Locked()
         {
             if (projectList.CurrentProjectName == null)
@@ -64,6 +99,11 @@ namespace SimpleFuzzy.View
                 button4.Enabled = false;
                 button5.Enabled = false;
                 button6.Enabled = false;
+                button7.Enabled = false;
+                button8.Enabled = false;
+                button9.Enabled = false;
+                button10.Enabled = false;
+                button11.Enabled = false;
             }
             else
             {
@@ -71,6 +111,11 @@ namespace SimpleFuzzy.View
                 button4.Enabled = true;
                 button5.Enabled = true;
                 button6.Enabled = true;
+                button7.Enabled = true;
+                button8.Enabled = true;
+                button9.Enabled = true;
+                button10.Enabled = true;
+                button11.Enabled = true;
             }
         }
         public void BlockButtons()
@@ -81,6 +126,11 @@ namespace SimpleFuzzy.View
             button4.Enabled = false;
             button5.Enabled = false;
             button6.Enabled = false;
+            button7.Enabled = false;
+            button8.Enabled = false;
+            button9.Enabled = false;
+            button10.Enabled = false;
+            button11.Enabled = false;
         }
         public void OpenButtons()
         {
@@ -90,6 +140,11 @@ namespace SimpleFuzzy.View
             button4.Enabled = true;
             button5.Enabled = true;
             button6.Enabled = true;
+            button7.Enabled = true;
+            button8.Enabled = true;
+            button9.Enabled = true;
+            button10.Enabled = true;
+            button11.Enabled = true;
         }
 
         public void Dispose()
