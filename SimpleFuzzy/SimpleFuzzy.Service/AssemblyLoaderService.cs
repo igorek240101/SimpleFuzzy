@@ -7,7 +7,6 @@ namespace SimpleFuzzy.Service
     public class AssemblyLoaderService : IAssemblyLoaderService
     {
         private List<AssemblyLoadContext> assemblyContextList;
-
         public AssemblyLoaderService()
         {
             assemblyContextList = new List<AssemblyLoadContext>();
@@ -36,14 +35,13 @@ namespace SimpleFuzzy.Service
             ans = assembly.FullName;
             return ans;
         }
-        public void UnloadAssembly(string assemblyName)
+        public void UnloadAssembly(string assemblyName, Action<AssemblyLoadContext> Assembly_Unload)
         {
-            bool loaded = false;
             foreach (var assemblyContext in assemblyContextList)
             {
                 if (assemblyContext.Assemblies.ElementAt(0).FullName == assemblyName)
                 {
-                    loaded = true;
+                    assemblyContext.Unloading += Assembly_Unload; 
                     try
                     {
                         assemblyContext.Unload();
@@ -57,10 +55,6 @@ namespace SimpleFuzzy.Service
                         throw new InvalidOperationException("Выгрузить сборку не удалось.");
                     }
                 }   
-            }
-            if (!loaded)
-            {
-                throw new InvalidOperationException("Удаляемой сборки нет в домене.");
             }
         }
     }
