@@ -7,10 +7,42 @@ namespace SimpleFuzzy.Service
     public class AssemblyLoaderService : IAssemblyLoaderService
     {
         private List<AssemblyLoadContext> assemblyContextList;
-
+        public AssemblyLoadContext AssemblyContextList { get { return assemblyContextList[assemblyContextList.Count - 1]; } }
         public AssemblyLoaderService()
         {
             assemblyContextList = new List<AssemblyLoadContext>();
+        }
+
+        public (List<IMembershipFunction>, List<IObjectSet>, List<ISimulator>) AddElements(AssemblyLoadContext context)
+        {
+            List<IMembershipFunction> memberFList = new List<IMembershipFunction>();
+            List<IObjectSet> objectSetList = new List<IObjectSet>();
+            List<ISimulator> simulatorList = new List<ISimulator>();
+            for (int i = 0; i < context.Assemblies.Count(); i++)
+            {
+                Type[] array = context.Assemblies.ElementAt(i).GetTypes();
+                for (int j = 0; j < array.Length; j++)
+                {
+                    if (array[j].IsAbstract || array[j].IsInterface) { continue; }
+
+                    if (array[j] is IMembershipFunction)
+                    {
+                        try { memberFList.Add(array[j].GetConstructor(null).Invoke(null) as IMembershipFunction); }
+                        catch { }
+                    }
+                    else if (array[j] is IObjectSet)
+                    {
+                        try { objectSetList.Add(array[j].GetConstructor(null).Invoke(null) as IObjectSet); }
+                        catch { }
+                    }
+                    else if (array[j] is ISimulator)
+                    {
+                        try { simulatorList.Add(array[j].GetConstructor(null).Invoke(null) as ISimulator); }
+                        catch { }
+                    }
+                }
+            } 
+            return (memberFList, objectSetList, simulatorList);
         }
         public string GetInfo(string filePath)
         {

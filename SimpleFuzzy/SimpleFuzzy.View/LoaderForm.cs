@@ -3,6 +3,8 @@ using MetroFramework;
 using MetroFramework.Controls;
 using SimpleFuzzy.Abstract;
 using SimpleFuzzy.Service;
+using System.Runtime.Loader;
+using System.Reflection;
 
 namespace SimpleFuzzy.View
 {
@@ -50,6 +52,7 @@ namespace SimpleFuzzy.View
                 }
 
                 string assemblyName = moduleLoaderService.GetInfo(filePath);
+                TreeViewShow();
                 messageTextBox.Text = $"Модуль успешно загружен: {assemblyName}";
             }
             catch (FileNotFoundException ex)
@@ -64,6 +67,13 @@ namespace SimpleFuzzy.View
             {
                 messageTextBox.Text = $"Неизвестная ошибка: {ex.Message}";
             }
+        }
+        private void TreeViewShow()
+        {
+            var treeinfo = moduleLoaderService.AddElements(moduleLoaderService.AssemblyContextList);
+            for (int i = 0; i < treeinfo.Item1.Count; i++) { treeView1.Nodes[0].Nodes.Add(treeinfo.Item1[i].Name); }
+            for (int i = 0; i < treeinfo.Item2.Count; i++) { treeView1.Nodes[1].Nodes.Add(treeinfo.Item2[i].Name); }
+            for (int i = 0; i < treeinfo.Item3.Count; i++) { treeView1.Nodes[2].Nodes.Add(treeinfo.Item3[i].Name); }
         }
     }
 }
