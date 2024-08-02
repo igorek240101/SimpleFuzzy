@@ -22,7 +22,7 @@ namespace SimpleFuzzy.View
             browseButton = new MetroFramework.Controls.MetroButton();
             loadButton = new MetroFramework.Controls.MetroButton();
             messageTextBox = new MetroFramework.Controls.MetroTextBox();
-            checkBox1 = new CheckBox();
+            button1 = new Button();
             SuspendLayout();
             // 
             // filePathTextBox
@@ -84,29 +84,27 @@ namespace SimpleFuzzy.View
             messageTextBox.Theme = MetroFramework.MetroThemeStyle.Light;
             messageTextBox.UseStyleColors = false;
             // 
-            // checkBox1
+            // button1
             // 
-            checkBox1.AutoSize = true;
-            checkBox1.Location = new Point(23, 227);
-            checkBox1.Name = "checkBox1";
-            checkBox1.Size = new Size(159, 36);
-            checkBox1.TabIndex = 4;
-            checkBox1.Text = "checkBox1";
-            checkBox1.UseVisualStyleBackColor = true;
-            checkBox1.CheckedChanged += checkBox1_CheckedChanged;
+            button1.Location = new Point(23, 251);
+            button1.Name = "button1";
+            button1.Size = new Size(182, 29);
+            button1.TabIndex = 4;
+            button1.Text = "Отключить симуляцию";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // LoaderForm
             // 
             BackColor = Color.White;
-            Controls.Add(checkBox1);
+            Controls.Add(button1);
             Controls.Add(messageTextBox);
             Controls.Add(loadButton);
             Controls.Add(browseButton);
             Controls.Add(filePathTextBox);
             Name = "LoaderForm";
-            Size = new Size(621, 307);
+            Size = new Size(621, 376);
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -115,6 +113,6 @@ namespace SimpleFuzzy.View
         private MetroFramework.Controls.MetroButton browseButton;
         private MetroFramework.Controls.MetroButton loadButton;
         private MetroFramework.Controls.MetroTextBox messageTextBox;
-        private CheckBox checkBox1;
+        private Button button1;
     }
 }

@@ -9,14 +9,10 @@ namespace SimpleFuzzy.View
     public partial class LoaderForm : MetroUserControl
     {
         private IAssemblyLoaderService moduleLoaderService;
-        private MainWindow mainWindow; // Ссылка на MainWindow
-        public LoaderForm(MainWindow mainWindow)
+        public LoaderForm()
         {
             InitializeComponent();
             moduleLoaderService = AutofacIntegration.GetInstance<IAssemblyLoaderService>();
-            this.mainWindow = mainWindow;
-
-            checkBox1.Checked = mainWindow.SimulationEnabled;
         }
 
         private void browseButton_Click(object sender, EventArgs e)
@@ -68,11 +64,24 @@ namespace SimpleFuzzy.View
                 messageTextBox.Text = $"Неизвестная ошибка: {ex.Message}";
             }
         }
-
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
-            mainWindow.SimulationEnabled = checkBox1.Checked;
-            mainWindow.UpdateSimulationStatus(checkBox1.Checked);
+            if (button1.Text == "Отключить симуляцию")
+            {
+                button1.Text = "Включить симуляцию";
+                if (Parent is MainWindow parent)
+                {
+                    parent.simulationLoaded = false;
+                }
+            }
+            else
+            {
+                button1.Text = "Отключить симуляцию";
+                if (Parent is MainWindow parent)
+                {
+                    parent.simulationLoaded = true;
+                }
+            }
         }
     }
 }

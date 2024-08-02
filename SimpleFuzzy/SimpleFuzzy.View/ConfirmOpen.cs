@@ -17,12 +17,10 @@ namespace SimpleFuzzy.View
     public partial class ConfirmOpen : UserControl
     {
         IProjectListService projectList;
-        private MainWindow mainWindow;
-        public ConfirmOpen(MainWindow mainWindow)
+        public ConfirmOpen()
         {
             InitializeComponent();
             projectList = AutofacIntegration.GetInstance<IProjectListService>();
-            this.mainWindow = mainWindow;
         }
         private void button1_Click(object sender, EventArgs e)
         {
@@ -36,8 +34,12 @@ namespace SimpleFuzzy.View
                 if (projectList.IsContainsPath(dialog.SelectedPath))
                 {
                     // дальше по выбранной папке открывается проект
-                    button2_Click(sender, e);
-                    mainWindow.OpenLoader();
+                    if (Parent is MainWindow parent)
+                    {
+                        parent.OpenButtons();
+                        parent.Locked();
+                        parent.OpenLoader();
+                    }
                 }
                 else { throw new InvalidOperationException("Проекта по этому адресу не существует"); }
             }
@@ -107,8 +109,12 @@ namespace SimpleFuzzy.View
             if (listBox1.SelectedItem != null)
             {
                 projectList.CurrentProjectName = listBox1.SelectedItem.ToString(); // Устанавливаем имя текущего проекта
-                button2_Click(sender, e);
-                mainWindow.OpenLoader();
+                if (Parent is MainWindow parent)
+                {
+                    parent.OpenButtons();
+                    parent.Locked();
+                    parent.OpenLoader();
+                }
                 // запуск проекта
             }
         }
