@@ -118,6 +118,7 @@ namespace SimpleFuzzy.View
             button7.TabIndex = 8;
             button7.Text = "Загрузчик";
             button7.UseVisualStyleBackColor = true;
+            button7.Click += button7_Click;
             // 
             // button8
             // 
@@ -127,6 +128,7 @@ namespace SimpleFuzzy.View
             button8.TabIndex = 9;
             button8.Text = "Фазификация";
             button8.UseVisualStyleBackColor = true;
+            button8.Click += button8_Click;
             // 
             // button9
             // 
@@ -136,6 +138,7 @@ namespace SimpleFuzzy.View
             button9.TabIndex = 10;
             button9.Text = "Инференция";
             button9.UseVisualStyleBackColor = true;
+            button9.Click += button9_Click;
             // 
             // button10
             // 
@@ -145,6 +148,7 @@ namespace SimpleFuzzy.View
             button10.TabIndex = 11;
             button10.Text = "Дефазификация";
             button10.UseVisualStyleBackColor = true;
+            button10.Click += button10_Click;
             // 
             // button11
             // 
@@ -155,6 +159,7 @@ namespace SimpleFuzzy.View
             button11.TabIndex = 12;
             button11.Text = "Симуляция";
             button11.UseVisualStyleBackColor = true;
+            button11.Click += button11_Click;
             // 
             // MainWindow
             // 

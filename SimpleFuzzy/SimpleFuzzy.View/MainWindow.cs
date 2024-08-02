@@ -27,7 +27,7 @@ namespace SimpleFuzzy.View
             UserControls.Add(UserControlsEnum.Defasification, () => new DefasificationForm());
             UserControls.Add(UserControlsEnum.Simulation, () => new SimulationForm());
 
-           
+
             ToolTip toolTip1 = new ToolTip();
             toolTip1.SetToolTip(button11, "Симуляция не загружена или отключена.");
             Locked();
@@ -72,30 +72,7 @@ namespace SimpleFuzzy.View
         {
             // сохранение
         }
-        private void button7_Click(object sender, EventArgs e)
-        {
-            SwitchWorkspace(UserControlsEnum.Loader, button7);
-        }
 
-        private void button8_Click(object sender, EventArgs e)
-        {
-            SwitchWorkspace(UserControlsEnum.Fasification, button8);
-        }
-
-        private void button9_Click(object sender, EventArgs e)
-        {
-            SwitchWorkspace(UserControlsEnum.Inference, button9);
-        }
-
-        private void button10_Click(object sender, EventArgs e)
-        {
-            SwitchWorkspace(UserControlsEnum.Defasification, button10);
-        }
-
-        private void button11_Click(object sender, EventArgs e)
-        {
-            SwitchWorkspace(UserControlsEnum.Simulation, button11);
-        }
         // Метод для переключения рабочего пространства
         private void SwitchWorkspace(UserControlsEnum workspace, Button clickedButton)
         {
@@ -179,11 +156,13 @@ namespace SimpleFuzzy.View
         public void SwichUserControl(UserControlsEnum? newWindowName)
         {
             var toRemove = this;
-            if (currentControl != null){
+            if (currentControl != null)
+            {
                 toRemove.Controls.Remove(currentControl);
                 currentControl.Dispose();
             }
-            if(newWindowName.HasValue){
+            if (newWindowName.HasValue)
+            {
                 currentControl = UserControls[newWindowName.Value]();
                 toRemove.Controls.Add(currentControl);
             }
@@ -192,6 +171,31 @@ namespace SimpleFuzzy.View
         {
             simulationLoaded = isLoaded;
             button11.Enabled = isLoaded;
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            SwitchWorkspace(UserControlsEnum.Loader, button7);
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            SwitchWorkspace(UserControlsEnum.Fasification, button8);
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            SwitchWorkspace(UserControlsEnum.Inference, button9);
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            SwitchWorkspace(UserControlsEnum.Defasification, button10);
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            SwitchWorkspace(UserControlsEnum.Simulation, button11);
         }
     }
 }
