@@ -79,22 +79,22 @@ namespace SimpleFuzzy.View
 
         private void button8_Click(object sender, EventArgs e)
         {
-            SwitchWorkspace(UserControlsEnum.Loader, button8);
+            SwitchWorkspace(UserControlsEnum.Fasification, button8);
         }
 
         private void button9_Click(object sender, EventArgs e)
         {
-            SwitchWorkspace(UserControlsEnum.Loader, button9);
+            SwitchWorkspace(UserControlsEnum.Inference, button9);
         }
 
         private void button10_Click(object sender, EventArgs e)
         {
-            SwitchWorkspace(UserControlsEnum.Loader, button10);
+            SwitchWorkspace(UserControlsEnum.Defasification, button10);
         }
 
         private void button11_Click(object sender, EventArgs e)
         {
-            SwitchWorkspace(UserControlsEnum.Loader, button11);
+            SwitchWorkspace(UserControlsEnum.Simulation, button11);
         }
         // Метод для переключения рабочего пространства
         private void SwitchWorkspace(UserControlsEnum workspace, Button clickedButton)
