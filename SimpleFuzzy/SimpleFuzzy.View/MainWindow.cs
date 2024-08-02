@@ -191,7 +191,7 @@ namespace SimpleFuzzy.View
                 toRemove.Controls.Add(currentControl);
 
                 // Обновляем состояние кнопки симуляции
-                UpdateSimulationStatus(simulationLoaded);
+                UpdateSimulationStatus(SimulationEnabled);
             }
         }
         public void UpdateSimulationStatus(bool isLoaded)
