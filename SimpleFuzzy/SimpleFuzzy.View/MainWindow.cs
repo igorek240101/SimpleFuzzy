@@ -109,7 +109,10 @@ namespace SimpleFuzzy.View
             // Переключение UserControl
             SwichUserControl(workspace);
         }
-
+        public void OpenLoader()
+        {
+            SwitchWorkspace(UserControlsEnum.Loader, button7);
+        }
         public void Locked()
         {
             if (projectList.CurrentProjectName == null)

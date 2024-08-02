@@ -17,10 +17,12 @@ namespace SimpleFuzzy.View
     public partial class ConfirmCreate : UserControl
     {
         IProjectListService projectList;
-        public ConfirmCreate()
+        private MainWindow mainWindow;
+        public ConfirmCreate(MainWindow mainWindow)
         {
             InitializeComponent();
             projectList = AutofacIntegration.GetInstance<IProjectListService>();
+            this.mainWindow = mainWindow;
         }
         private void button1_Click(object sender, EventArgs e)
         {
@@ -32,6 +34,7 @@ namespace SimpleFuzzy.View
             }
             button3_Click(sender, e);
             // Дальше открывается проект
+            mainWindow.OpenLoader();
         }
 
         private void button2_Click(object sender, EventArgs e)
