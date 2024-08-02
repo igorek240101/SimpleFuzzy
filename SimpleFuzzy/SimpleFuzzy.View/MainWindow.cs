@@ -24,6 +24,11 @@ namespace SimpleFuzzy.View
             // Инициализация массива кнопок рабочего пространства
             workspaceButtons = new Button[] { button7, button8, button9, button10, button11 };
 
+            UserControls.Add(UserControlsEnum.Create, () => new ConfirmCreate());
+            UserControls.Add(UserControlsEnum.Open, () => new ConfirmOpen());
+            UserControls.Add(UserControlsEnum.Delete, () => new ConfirmDelete());
+            UserControls.Add(UserControlsEnum.Rename, () => new ConfirmRename());
+            UserControls.Add(UserControlsEnum.Copy, () => new ConfirmCopy());
             UserControls.Add(UserControlsEnum.Loader, () => new LoaderForm(this));
             UserControls.Add(UserControlsEnum.Fasification, () => new FasificationForm());
             UserControls.Add(UserControlsEnum.Inference, () => new InferenceForm());
@@ -35,37 +40,27 @@ namespace SimpleFuzzy.View
 
         private void button1_Click(object sender, EventArgs e)
         {
-            ConfirmCreate confirm = new ConfirmCreate();
-            Controls.Add(confirm);
-            confirm.Dock = DockStyle.Fill;
+            SwichUserControl(UserControlsEnum.Create);
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            ConfirmOpen confirm = new ConfirmOpen();
-            Controls.Add(confirm);
-            confirm.Dock = DockStyle.Fill;
+            SwichUserControl(UserControlsEnum.Open);
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            ConfirmDelete confirm = new ConfirmDelete();
-            Controls.Add(confirm);
-            confirm.Dock = DockStyle.Fill;
+            SwichUserControl(UserControlsEnum.Delete);
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            ConfirmRename confirm = new ConfirmRename();
-            Controls.Add(confirm);
-            confirm.Dock = DockStyle.Fill;
+            SwichUserControl(UserControlsEnum.Rename);
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
-            ConfirmCopy confirm = new ConfirmCopy();
-            Controls.Add(confirm);
-            confirm.Dock = DockStyle.Fill;
+            SwichUserControl(UserControlsEnum.Copy);
         }
 
         private void button6_Click(object sender, EventArgs e)

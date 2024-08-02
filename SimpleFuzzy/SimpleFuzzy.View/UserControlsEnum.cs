@@ -5,6 +5,11 @@
         Fasification,
         Inference,
         Defasification,
-        Simulation
+        Simulation,
+        Create,
+        Open,
+        Delete,
+        Rename,
+        Copy
     };
 }
