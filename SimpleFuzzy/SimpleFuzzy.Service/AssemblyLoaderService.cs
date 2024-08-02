@@ -7,22 +7,17 @@ namespace SimpleFuzzy.Service
     public class AssemblyLoaderService : IAssemblyLoaderService
     {
         private List<AssemblyLoadContext> assemblyContextList;
-        // Возврат последнего элемента списка
         public AssemblyLoadContext AssemblyContextList { get { return assemblyContextList[assemblyContextList.Count - 1]; } }
-        public List<IMembershipFunction> memberFList;
-        public List<IObjectSet> objectSetList;
-        public List<ISimulator> simulatorList;
-
         public AssemblyLoaderService()
         {
             assemblyContextList = new List<AssemblyLoadContext>();
-            memberFList = new List<IMembershipFunction>();
-            objectSetList = new List<IObjectSet>();
-            simulatorList = new List<ISimulator>();
         }
 
         public (List<IMembershipFunction>, List<IObjectSet>, List<ISimulator>) AddElements(AssemblyLoadContext context)
         {
+            List<IMembershipFunction> memberFList = new List<IMembershipFunction>();
+            List<IObjectSet> objectSetList = new List<IObjectSet>();
+            List<ISimulator> simulatorList = new List<ISimulator>();
             for (int i = 0; i < context.Assemblies.Count(); i++)
             {
                 Type[] array = context.Assemblies.ElementAt(i).GetTypes();
