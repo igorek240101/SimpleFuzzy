@@ -18,11 +18,15 @@ namespace SimpleFuzzy.View
 
         private void InitializeComponent()
         {
+            TreeNode treeNode1 = new TreeNode("Термы");
+            TreeNode treeNode2 = new TreeNode("Базовые множества");
+            TreeNode treeNode3 = new TreeNode("Симуляции");
             filePathTextBox = new MetroFramework.Controls.MetroTextBox();
             browseButton = new MetroFramework.Controls.MetroButton();
             loadButton = new MetroFramework.Controls.MetroButton();
             messageTextBox = new MetroFramework.Controls.MetroTextBox();
             button1 = new Button();
+            treeView1 = new TreeView();
             SuspendLayout();
             // 
             // filePathTextBox
@@ -86,7 +90,7 @@ namespace SimpleFuzzy.View
             // 
             // button1
             // 
-            button1.Location = new Point(23, 251);
+            button1.Location = new Point(269, 227);
             button1.Name = "button1";
             button1.Size = new Size(182, 29);
             button1.TabIndex = 4;
@@ -94,16 +98,31 @@ namespace SimpleFuzzy.View
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
+            // treeView1
+            // 
+            treeView1.Location = new Point(23, 227);
+            treeView1.Name = "treeView1";
+            treeNode1.Name = "";
+            treeNode1.Text = "Термы";
+            treeNode2.Name = "";
+            treeNode2.Text = "Базовые множества";
+            treeNode3.Name = "";
+            treeNode3.Text = "Симуляции";
+            treeView1.Nodes.AddRange(new TreeNode[] { treeNode1, treeNode2, treeNode3 });
+            treeView1.Size = new Size(240, 145);
+            treeView1.TabIndex = 4;
+            // 
             // LoaderForm
             // 
             BackColor = Color.White;
             Controls.Add(button1);
+            Controls.Add(treeView1);
             Controls.Add(messageTextBox);
             Controls.Add(loadButton);
             Controls.Add(browseButton);
             Controls.Add(filePathTextBox);
             Name = "LoaderForm";
-            Size = new Size(621, 376);
+            Size = new Size(562, 456);
             ResumeLayout(false);
         }
 
@@ -114,5 +133,6 @@ namespace SimpleFuzzy.View
         private MetroFramework.Controls.MetroButton loadButton;
         private MetroFramework.Controls.MetroTextBox messageTextBox;
         private Button button1;
+        private TreeView treeView1;
     }
 }

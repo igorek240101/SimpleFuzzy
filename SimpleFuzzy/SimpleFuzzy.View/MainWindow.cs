@@ -119,6 +119,12 @@ namespace SimpleFuzzy.View
         {
             SwitchWorkspace(UserControlsEnum.Loader, button7);
         }
+        private void button12_Click(object sender, EventArgs e)
+        {
+            AboutBox aboutBox = new AboutBox();
+            aboutBox.ShowDialog();
+
+        }
         public void Locked()
         {
             if (projectList.CurrentProjectName == null)
