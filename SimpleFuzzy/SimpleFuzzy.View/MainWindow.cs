@@ -35,14 +35,14 @@ namespace SimpleFuzzy.View
 
         private void button1_Click(object sender, EventArgs e)
         {
-            ConfirmCreate confirm = new ConfirmCreate();
+            ConfirmCreate confirm = new ConfirmCreate(this);
             Controls.Add(confirm);
             confirm.Dock = DockStyle.Fill;
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            ConfirmOpen confirm = new ConfirmOpen();
+            ConfirmOpen confirm = new ConfirmOpen(this);
             Controls.Add(confirm);
             confirm.Dock = DockStyle.Fill;
         }
@@ -114,7 +114,10 @@ namespace SimpleFuzzy.View
             // Переключение UserControl
             SwichUserControl(workspace);
         }
-
+        public void OpenLoader()
+        {
+            SwitchWorkspace(UserControlsEnum.Loader, button7);
+        }
         public void Locked()
         {
             if (projectList.CurrentProjectName == null)
