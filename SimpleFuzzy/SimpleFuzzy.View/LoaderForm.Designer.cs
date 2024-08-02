@@ -25,8 +25,8 @@ namespace SimpleFuzzy.View
             browseButton = new MetroFramework.Controls.MetroButton();
             loadButton = new MetroFramework.Controls.MetroButton();
             messageTextBox = new MetroFramework.Controls.MetroTextBox();
-            button1 = new Button();
             treeView1 = new TreeView();
+            checkBox1 = new CheckBox();
             SuspendLayout();
             // 
             // filePathTextBox
@@ -88,16 +88,6 @@ namespace SimpleFuzzy.View
             messageTextBox.Theme = MetroFramework.MetroThemeStyle.Light;
             messageTextBox.UseStyleColors = false;
             // 
-            // button1
-            // 
-            button1.Location = new Point(269, 227);
-            button1.Name = "button1";
-            button1.Size = new Size(182, 29);
-            button1.TabIndex = 4;
-            button1.Text = "Отключить симуляцию";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
-            // 
             // treeView1
             // 
             treeView1.Location = new Point(23, 227);
@@ -112,10 +102,21 @@ namespace SimpleFuzzy.View
             treeView1.Size = new Size(240, 145);
             treeView1.TabIndex = 4;
             // 
+            // checkBox1
+            // 
+            checkBox1.AutoSize = true;
+            checkBox1.Location = new Point(23, 378);
+            checkBox1.Name = "checkBox1";
+            checkBox1.Size = new Size(187, 24);
+            checkBox1.TabIndex = 5;
+            checkBox1.Text = "Отключить симуляции";
+            checkBox1.UseVisualStyleBackColor = true;
+            checkBox1.CheckedChanged += checkBox1_CheckedChanged;
+            // 
             // LoaderForm
             // 
             BackColor = Color.White;
-            Controls.Add(button1);
+            Controls.Add(checkBox1);
             Controls.Add(treeView1);
             Controls.Add(messageTextBox);
             Controls.Add(loadButton);
@@ -124,6 +125,7 @@ namespace SimpleFuzzy.View
             Name = "LoaderForm";
             Size = new Size(562, 456);
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -132,7 +134,7 @@ namespace SimpleFuzzy.View
         private MetroFramework.Controls.MetroButton browseButton;
         private MetroFramework.Controls.MetroButton loadButton;
         private MetroFramework.Controls.MetroTextBox messageTextBox;
-        private Button button1;
         private TreeView treeView1;
+        private CheckBox checkBox1;
     }
 }

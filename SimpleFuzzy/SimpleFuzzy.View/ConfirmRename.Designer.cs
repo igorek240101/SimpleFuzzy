@@ -36,7 +36,7 @@
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(161, 52);
+            textBox1.Location = new Point(162, 75);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(125, 27);
             textBox1.TabIndex = 0;
@@ -44,15 +44,15 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(12, 55);
+            label1.Location = new Point(13, 78);
             label1.Name = "label1";
-            label1.Size = new Size(50, 20);
+            label1.Size = new Size(144, 20);
             label1.TabIndex = 1;
             label1.Text = "Введите новое имя";
             // 
             // button1
             // 
-            button1.Location = new Point(292, 52);
+            button1.Location = new Point(293, 75);
             button1.Name = "button1";
             button1.Size = new Size(94, 29);
             button1.TabIndex = 2;
@@ -62,7 +62,7 @@
             // 
             // button2
             // 
-            button2.Location = new Point(292, 87);
+            button2.Location = new Point(293, 110);
             button2.Name = "button2";
             button2.Size = new Size(94, 29);
             button2.TabIndex = 3;

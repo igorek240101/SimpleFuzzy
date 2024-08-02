@@ -31,7 +31,9 @@ namespace SimpleFuzzy.View
             button10 = new Button();
             button11 = new Button();
             button12 = new Button();
-            textBox1 = new TextBox();
+            toolStrip1 = new ToolStrip();
+            toolStripLabel1 = new ToolStripLabel();
+            toolStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // Create
@@ -174,21 +176,29 @@ namespace SimpleFuzzy.View
             button12.UseVisualStyleBackColor = true;
             button12.Click += button12_Click;
             // 
-            // textBox1
+            // toolStrip1
             // 
-            textBox1.Location = new Point(272, 68);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(490, 27);
-            textBox1.TabIndex = 13;
-            textBox1.Text = "Симуляция не загружена в проект или отключена в окне загрузчика!";
-            textBox1.Visible = false;
+            toolStrip1.ImageScalingSize = new Size(20, 20);
+            toolStrip1.Items.AddRange(new ToolStripItem[] { toolStripLabel1 });
+            toolStrip1.Location = new Point(0, 0);
+            toolStrip1.Name = "toolStrip1";
+            toolStrip1.Size = new Size(781, 25);
+            toolStrip1.TabIndex = 14;
+            toolStrip1.Text = "toolStrip1";
+            toolStrip1.Visible = false;
+            // 
+            // toolStripLabel1
+            // 
+            toolStripLabel1.Name = "toolStripLabel1";
+            toolStripLabel1.Size = new Size(491, 22);
+            toolStripLabel1.Text = "Симуляция не загружена в проект или отключена в окне загрузчика!";
             // 
             // MainWindow
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(781, 502);
-            Controls.Add(textBox1);
+            Controls.Add(toolStrip1);
             Controls.Add(button12);
             Controls.Add(button11);
             Controls.Add(button10);
@@ -204,6 +214,8 @@ namespace SimpleFuzzy.View
             Controls.Add(Create);
             Name = "MainWindow";
             Text = "SimpleFuzzy";
+            toolStrip1.ResumeLayout(false);
+            toolStrip1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -224,6 +236,7 @@ namespace SimpleFuzzy.View
         private Button button10;
         private Button button11;
         private Button button12;
-        private TextBox textBox1;
+        private ToolStrip toolStrip1;
+        private ToolStripLabel toolStripLabel1;
     }
 }

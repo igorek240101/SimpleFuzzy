@@ -13,7 +13,8 @@ namespace SimpleFuzzy.View
         public UserControl currentControl = null; 
         IProjectListService projectList;
         private Button[] workspaceButtons;
-        public bool simulationLoaded = false; // Флаг загрузки симуляции
+        public bool isContainSimulator = false; // содержание симуляций
+        public bool isDisableSimulator = false; // состояние кнопки включения симуляций
         public MainWindow()
         {
             InitializeComponent();
@@ -205,18 +206,17 @@ namespace SimpleFuzzy.View
         private void button11_MouseHover(object sender, EventArgs e)
         {
 
-            if (!IsSimulationLoaded()) { textBox1.Visible = true; }
+            if (!IsSimulationLoaded()) { toolStrip1.Visible = true; }
         }
 
         private void button11_MouseLeave(object sender, EventArgs e)
         {
-            textBox1.Visible = false;
+            toolStrip1.Visible = false;
         }
 
         public bool IsSimulationLoaded() // полная проверка на наводимость
         {
-            // НАДО НАПИСАТЬ ФУНКЦИЮ, ПРОВЕРЯЮЩУЮ СОДЕРЖАНИЕ ЗАГРУЖЕННЫХ СИМУЛЯЦИЙ
-            if (simulationLoaded == true) return true;
+            if (isDisableSimulator && isContainSimulator) return true;
             else return false;
         }
     }
