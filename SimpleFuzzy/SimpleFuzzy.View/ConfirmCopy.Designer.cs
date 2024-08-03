@@ -60,7 +60,7 @@
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(268, 27);
             textBox1.TabIndex = 2;
-            textBox1.Text = "C:\\Users\\maxme\\AppData\\Local\\Microsoft\\VisualStudio\\17.0_dc9de688\\WinFormsDesigner\\p0dafman.izt\\Projects";
+            textBox1.Text = Directory.GetCurrentDirectory() + "\\Projects";
             // 
             // button2
             // 
