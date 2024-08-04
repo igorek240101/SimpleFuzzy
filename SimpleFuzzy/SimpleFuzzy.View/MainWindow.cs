@@ -10,7 +10,7 @@ namespace SimpleFuzzy.View
     {
         Dictionary<UserControlsEnum, ControlConstruct> UserControls = new Dictionary<UserControlsEnum, ControlConstruct>();
         public UserControl currentControl = null;
-        IProjectListService projectList; 
+        IProjectListService projectList;
         public MainWindow()
         {
             InitializeComponent();
@@ -107,14 +107,22 @@ namespace SimpleFuzzy.View
         public void SwichUserControl(UserControlsEnum? newWindowName)
         {
             var toRemove = this;
-            if (currentControl != null){
+            if (currentControl != null)
+            {
                 toRemove.Controls.Remove(currentControl);
                 currentControl.Dispose();
             }
-            if(newWindowName.HasValue){
+            if (newWindowName.HasValue)
+            {
                 currentControl = UserControls[newWindowName.Value]();
                 toRemove.Controls.Add(currentControl);
             }
+        }
+
+        private void button13_Click(object sender, EventArgs e)
+        {
+            HelpWindow help = new HelpWindow(this);
+            help.Show();
         }
     }
 }
