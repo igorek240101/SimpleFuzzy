@@ -34,6 +34,7 @@ namespace SimpleFuzzy.View
             button12 = new Button();
             toolTip1 = new ToolTip(components);
             toolTip1.SetToolTip(button11, "Симуляция не загружена в проект или отключена в окне загрузчика");
+            button13 = new Button();
             SuspendLayout();
             // 
             // Create
@@ -175,18 +176,29 @@ namespace SimpleFuzzy.View
             button12.Text = "О программе";
             button12.UseVisualStyleBackColor = true;
             button12.Click += button12_Click;
+            //
+            // button13
+            // 
+            button13.Location = new Point(700, 0);
+            button13.Name = "button13";
+            button13.Size = new Size(94, 29);
+            button13.TabIndex = 9;
+            button13.Text = "Справка";
+            button13.UseVisualStyleBackColor = true;
+            button13.Click += button13_Click;
             // 
             // MainWindow
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(781, 502);
             Controls.Add(button12);
             Controls.Add(button11);
             Controls.Add(button10);
             Controls.Add(button9);
             Controls.Add(button8);
             Controls.Add(button7);
+            ClientSize = new Size(800, 450);
+            Controls.Add(button13);
             Controls.Add(button6);
             Controls.Add(button5);
             Controls.Add(button4);
@@ -216,5 +228,6 @@ namespace SimpleFuzzy.View
         private Button button11;
         private Button button12;
         private ToolTip toolTip1;
+        private Button button13;
     }
 }

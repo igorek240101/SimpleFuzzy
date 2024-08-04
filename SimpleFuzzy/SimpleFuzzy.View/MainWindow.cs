@@ -199,5 +199,11 @@ namespace SimpleFuzzy.View
             else if (isContainSimulator) return true;
             else return false;
         }
+        
+        private void button13_Click(object sender, EventArgs e)
+        {
+            HelpWindow help = new HelpWindow(this);
+            help.Show();
+        }
     }
 }
