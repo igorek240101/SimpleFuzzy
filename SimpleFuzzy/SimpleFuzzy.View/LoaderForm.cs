@@ -82,14 +82,14 @@ namespace SimpleFuzzy.View
             {
                 if (Parent is MainWindow parent)
                 {
-                    parent.isDisableSimulator = false;
+                    parent.isDisableSimulator = true;
                 }
             }
             else
             {
                 if (Parent is MainWindow parent)
                 {
-                    parent.isDisableSimulator = true;
+                    parent.isDisableSimulator = false;
                 }
             }
         }

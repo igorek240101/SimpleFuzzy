@@ -39,27 +39,27 @@ namespace SimpleFuzzy.View
 
         private void button1_Click(object sender, EventArgs e)
         {
-            SwitchWorkspace(UserControlsEnum.Create);
+            SwichUserControl(UserControlsEnum.Create);
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            SwitchWorkspace(UserControlsEnum.Open);
+            SwichUserControl(UserControlsEnum.Open);
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            SwitchWorkspace(UserControlsEnum.Delete);
+            SwichUserControl(UserControlsEnum.Delete);
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            SwitchWorkspace(UserControlsEnum.Rename);
+            SwichUserControl(UserControlsEnum.Rename);
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
-            SwitchWorkspace(UserControlsEnum.Copy);
+            SwichUserControl(UserControlsEnum.Copy);
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -90,32 +90,6 @@ namespace SimpleFuzzy.View
         {
             if (IsSimulationLoaded()) SwitchWorkspace(UserControlsEnum.Simulation, button11);
         }
-
-        // Методы для переключения рабочего пространства
-        private void SwitchWorkspace(UserControlsEnum workspace, Button clickedButton)
-        {
-            foreach (Button button in workspaceButtons)
-            {
-                button.BackColor = SystemColors.Control;
-                button.Enabled = true;
-            }
-            // Выделение цветом нажатой кнопки и отключение ее
-            clickedButton.BackColor = Color.LightGray;
-            clickedButton.Enabled = false;
-
-            // Переключение UserControl
-            SwichUserControl(workspace);
-        }
-        private void SwitchWorkspace(UserControlsEnum workspace)
-        {
-            foreach (Button button in workspaceButtons)
-            {
-                button.BackColor = SystemColors.Control;
-                button.Enabled = true;
-            }
-            // Переключение UserControl
-            SwichUserControl(workspace);
-        }
         public void OpenLoader()
         {
             SwitchWorkspace(UserControlsEnum.Loader, button7);
@@ -125,6 +99,12 @@ namespace SimpleFuzzy.View
             AboutBox aboutBox = new AboutBox();
             aboutBox.ShowDialog();
 
+        }
+        private void SwitchWorkspace(UserControlsEnum workspace, Button clickedButton)
+        {
+            foreach (Button button in workspaceButtons) { button.Enabled = true; }
+            clickedButton.Enabled = false;
+            SwichUserControl(workspace);
         }
         public void Locked()
         {
@@ -205,18 +185,18 @@ namespace SimpleFuzzy.View
 
         private void button11_MouseHover(object sender, EventArgs e)
         {
-
-            if (!IsSimulationLoaded()) { toolStrip1.Visible = true; }
+            if (IsSimulationLoaded()) { toolTip1.Active = false; }
         }
 
         private void button11_MouseLeave(object sender, EventArgs e)
         {
-            toolStrip1.Visible = false;
+            toolTip1.Active = true;
         }
 
         public bool IsSimulationLoaded() // полная проверка на наводимость
         {
-            if (isDisableSimulator && isContainSimulator) return true;
+            if (isDisableSimulator) return false;
+            else if (isContainSimulator) return true;
             else return false;
         }
     }
