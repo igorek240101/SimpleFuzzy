@@ -25,7 +25,7 @@ namespace SimpleFuzzy.View
             button4 = new Button();
             button5 = new Button();
             button6 = new Button();
-            button7 = new Button();
+            button13 = new Button();
             SuspendLayout();
             // 
             // Create
@@ -99,22 +99,22 @@ namespace SimpleFuzzy.View
             button6.UseVisualStyleBackColor = true;
             button6.Click += button6_Click;
             // 
-            // button7
+            // button13
             // 
-            button7.Location = new Point(600, 0);
-            button7.Name = "button7";
-            button7.Size = new Size(94, 29);
-            button7.TabIndex = 8;
-            button7.Text = "Справка";
-            button7.UseVisualStyleBackColor = true;
-            button7.Click += button7_Click;
+            button13.Location = new Point(600, 0);
+            button13.Name = "button7";
+            button13.Size = new Size(94, 29);
+            button13.TabIndex = 8;
+            button13.Text = "Справка";
+            button13.UseVisualStyleBackColor = true;
+            button13.Click += button13_Click;
             // 
             // MainWindow
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(button7);
+            Controls.Add(button13);
             Controls.Add(button6);
             Controls.Add(button5);
             Controls.Add(button4);
@@ -138,6 +138,6 @@ namespace SimpleFuzzy.View
         private Button button4;
         private Button button5;
         private Button button6;
-        private Button button7;
+        private Button button13;
     }
 }

@@ -92,7 +92,7 @@ namespace SimpleFuzzy.View
             button6.Enabled = true;
         }
 
-        private void button7_Click(object sender, EventArgs e)
+        private void button13_Click(object sender, EventArgs e)
         {
             HelpWindow help = new HelpWindow(this);
             help.Show();
