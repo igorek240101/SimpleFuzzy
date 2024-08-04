@@ -11,7 +11,6 @@ namespace SimpleFuzzy.View
     public partial class LoaderForm : MetroUserControl
     {
         private IAssemblyLoaderService moduleLoaderService;
-
         public LoaderForm()
         {
             InitializeComponent();
@@ -74,6 +73,25 @@ namespace SimpleFuzzy.View
             for (int i = 0; i < treeinfo.Item1.Count; i++) { treeView1.Nodes[0].Nodes.Add(treeinfo.Item1[i].Name); }
             for (int i = 0; i < treeinfo.Item2.Count; i++) { treeView1.Nodes[1].Nodes.Add(treeinfo.Item2[i].Name); }
             for (int i = 0; i < treeinfo.Item3.Count; i++) { treeView1.Nodes[2].Nodes.Add(treeinfo.Item3[i].Name); }
+            if (treeView1.Nodes[2].Nodes.Count > 0 && Parent is MainWindow parent) parent.isContainSimulator = true;
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked) 
+            {
+                if (Parent is MainWindow parent)
+                {
+                    parent.isDisableSimulator = true;
+                }
+            }
+            else
+            {
+                if (Parent is MainWindow parent)
+                {
+                    parent.isDisableSimulator = false;
+                }
+            }
         }
     }
 }

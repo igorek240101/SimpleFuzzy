@@ -42,7 +42,7 @@ namespace SimpleFuzzy.Service
                 DirectoryInfo directory = new DirectoryInfo(GivePath(name, true));
                 foreach (FileInfo file1 in directory.GetFiles()) { file1.Delete(); }
                 Directory.Delete(GivePath(name, true), true);
-                string[] text = File.ReadAllLines(pathPL, Encoding.Default);
+                string[] text = GiveList();
                 FileStream file = new FileStream(pathPL, FileMode.Truncate);
                 StreamWriter writer = new StreamWriter(file);
                 for (int i = 0; i < text.Length; i++)
@@ -66,7 +66,7 @@ namespace SimpleFuzzy.Service
         }
         public bool IsContainsName(string name)
         {
-            FileStream file = new FileStream(pathPL, FileMode.Open);
+            FileStream file = new FileStream(pathPL, FileMode.OpenOrCreate);
             StreamReader reader = new StreamReader(file);
             string? line;
             while (true)
@@ -109,7 +109,7 @@ namespace SimpleFuzzy.Service
             if (IsContainsName(name))
             {
                 string path = "";
-                string[] text = File.ReadAllLines(pathPL, Encoding.Default);
+                string[] text = GiveList();
                 for (int i = 0; i < text.Length; i++)
                 {
                     if (text[i] == name)
@@ -130,6 +130,28 @@ namespace SimpleFuzzy.Service
             }
             else { throw new InvalidOperationException("Проекта с таким именем не существует"); }
         }
-        public string[] GiveList() { return File.ReadAllLines(pathPL, Encoding.Default); }
+        public string[] GiveList() 
+        {
+            FileStream file = new FileStream(pathPL, FileMode.OpenOrCreate);
+            StreamReader reader = new StreamReader(file);
+            List<string> list = new List<string>();
+            while (true)
+            {
+                string line = reader.ReadLine();
+                if (line == null) { break; }
+                else 
+                {
+                    list.Add(line);
+                }
+            }
+            reader.Close();
+            file.Close();
+            string[] text = new string[list.Count];
+            for (int i = 0; i < list.Count; i++)
+            {
+                text[i] = list.ElementAt(i);
+            }
+            return text; 
+        }
     }
 }
