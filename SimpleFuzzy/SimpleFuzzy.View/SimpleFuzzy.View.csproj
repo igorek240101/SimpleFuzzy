@@ -9,8 +9,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="OxyPlot.Core" Version="2.1.2" />
-    <PackageReference Include="OxyPlot.WindowsForms" Version="2.1.2" />
     <PackageReference Include="Autofac" Version="8.0.0" />
     <PackageReference Include="Autofac.Mvc5" Version="6.1.0" />
     <PackageReference Include="ModernUI" Version="2.0.0" />
@@ -18,7 +16,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SimpleFuzzy.Abstract\SimpleFuzzy.Abstract.csproj" />
-    <ProjectReference Include="..\SimpleFuzzy.Model\SimpleFuzzy.Model.csproj" />
     <ProjectReference Include="..\SimpleFuzzy.Service\SimpleFuzzy.Service.csproj" />
   </ItemGroup>
 
