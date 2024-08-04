@@ -56,6 +56,12 @@ namespace SimpleFuzzy.View
         {
             // сохранение
         }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            AboutBox aboutBox = new AboutBox();
+            aboutBox.ShowDialog();
+        }
         public void Locked()
         {
             if (projectList.CurrentProjectName == null)
