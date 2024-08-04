@@ -33,6 +33,7 @@ namespace SimpleFuzzy.View
             button4 = new Button();
             button5 = new Button();
             button6 = new Button();
+            button7 = new Button();
             SuspendLayout();
             // 
             // Create
@@ -106,6 +107,17 @@ namespace SimpleFuzzy.View
             button6.UseVisualStyleBackColor = true;
             button6.Click += button6_Click;
             // 
+            // button7
+            // 
+            button7.Location = new Point(600, 0);
+            button7.Name = "button7";
+            button7.Size = new Size(94, 29);
+            button7.TabIndex = 8;
+            button7.Text = "О программе";
+            button7.UseVisualStyleBackColor = true;
+            button7.Click += button7_Click;
+            button7.AutoEllipsis = true;
+            // 
             // MainWindow
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -117,6 +129,7 @@ namespace SimpleFuzzy.View
             Controls.Add(button3);
             Controls.Add(button2);
             Controls.Add(button1);
+            Controls.Add(button7);
             Controls.Add(Create);
             Name = "MainWindow";
             Text = "SimpleFuzzy";
@@ -133,5 +146,6 @@ namespace SimpleFuzzy.View
         private Button button4;
         private Button button5;
         private Button button6;
+        private Button button7;
     }
 }

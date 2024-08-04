@@ -18,60 +18,100 @@ namespace SimpleFuzzy.View
 
         private void InitializeComponent()
         {
-            this.filePathTextBox = new MetroFramework.Controls.MetroTextBox();
-            this.browseButton = new MetroFramework.Controls.MetroButton();
-            this.loadButton = new MetroFramework.Controls.MetroButton();
-            this.messageTextBox = new MetroFramework.Controls.MetroTextBox();
-            this.SuspendLayout();
+            TreeNode treeNode1 = new TreeNode("Термы");
+            TreeNode treeNode2 = new TreeNode("Базовые множества");
+            TreeNode treeNode3 = new TreeNode("Симуляции");
+            filePathTextBox = new MetroFramework.Controls.MetroTextBox();
+            browseButton = new MetroFramework.Controls.MetroButton();
+            loadButton = new MetroFramework.Controls.MetroButton();
+            messageTextBox = new MetroFramework.Controls.MetroTextBox();
+            treeView1 = new TreeView();
+            SuspendLayout();
             // 
             // filePathTextBox
             // 
-            this.filePathTextBox.Location = new System.Drawing.Point(23, 63);
-            this.filePathTextBox.Name = "filePathTextBox";
-            this.filePathTextBox.Size = new System.Drawing.Size(399, 23);
-            this.filePathTextBox.TabIndex = 0;
-            this.filePathTextBox.BackColor = System.Drawing.Color.White;
-            this.filePathTextBox.ForeColor = System.Drawing.Color.Black;
-            this.filePathTextBox.Font = new System.Drawing.Font("Microsoft Open Sans", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            filePathTextBox.BackColor = Color.White;
+            filePathTextBox.Font = new Font("Microsoft Sans Serif", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            filePathTextBox.FontSize = MetroFramework.MetroTextBoxSize.Small;
+            filePathTextBox.FontWeight = MetroFramework.MetroTextBoxWeight.Regular;
+            filePathTextBox.ForeColor = Color.Black;
+            filePathTextBox.Location = new Point(23, 63);
+            filePathTextBox.Multiline = false;
+            filePathTextBox.Name = "filePathTextBox";
+            filePathTextBox.SelectedText = "";
+            filePathTextBox.Size = new Size(399, 23);
+            filePathTextBox.Style = MetroFramework.MetroColorStyle.Blue;
+            filePathTextBox.StyleManager = null;
+            filePathTextBox.TabIndex = 0;
+            filePathTextBox.Theme = MetroFramework.MetroThemeStyle.Light;
+            filePathTextBox.UseStyleColors = false;
             // 
             // browseButton
             // 
-            this.browseButton.Location = new System.Drawing.Point(428, 63);
-            this.browseButton.Name = "browseButton";
-            this.browseButton.Size = new System.Drawing.Size(100, 23);
-            this.browseButton.TabIndex = 1;
-            this.browseButton.Text = "Обзор";
-            this.browseButton.Click += new System.EventHandler(this.browseButton_Click);
+            browseButton.Highlight = false;
+            browseButton.Location = new Point(428, 63);
+            browseButton.Name = "browseButton";
+            browseButton.Size = new Size(100, 23);
+            browseButton.Style = MetroFramework.MetroColorStyle.Blue;
+            browseButton.StyleManager = null;
+            browseButton.TabIndex = 1;
+            browseButton.Text = "Обзор";
+            browseButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            browseButton.Click += browseButton_Click;
             // 
             // loadButton
             // 
-            this.loadButton.Location = new System.Drawing.Point(23, 92);
-            this.loadButton.Name = "loadButton";
-            this.loadButton.Size = new System.Drawing.Size(200, 23);
-            this.loadButton.TabIndex = 2;
-            this.loadButton.Text = "Загрузить модуль";
-            this.loadButton.Click += new System.EventHandler(this.loadButton_Click);            // 
-            //
+            loadButton.Highlight = false;
+            loadButton.Location = new Point(23, 92);
+            loadButton.Name = "loadButton";
+            loadButton.Size = new Size(200, 23);
+            loadButton.Style = MetroFramework.MetroColorStyle.Blue;
+            loadButton.StyleManager = null;
+            loadButton.TabIndex = 2;
+            loadButton.Text = "Загрузить модуль";
+            loadButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            loadButton.Click += loadButton_Click;
+            // 
             // messageTextBox
-            //                                                                                    // 
-            this.messageTextBox.Location = new System.Drawing.Point(23, 121);
-            this.messageTextBox.Multiline = true;
-            this.messageTextBox.Name = "messageTextBox";
-            this.messageTextBox.Size = new System.Drawing.Size(505, 100);
-            this.messageTextBox.TabIndex = 3;
+            // 
+            messageTextBox.FontSize = MetroFramework.MetroTextBoxSize.Small;
+            messageTextBox.FontWeight = MetroFramework.MetroTextBoxWeight.Regular;
+            messageTextBox.Location = new Point(23, 121);
+            messageTextBox.Multiline = true;
+            messageTextBox.Name = "messageTextBox";
+            messageTextBox.SelectedText = "";
+            messageTextBox.Size = new Size(505, 100);
+            messageTextBox.Style = MetroFramework.MetroColorStyle.Blue;
+            messageTextBox.StyleManager = null;
+            messageTextBox.TabIndex = 3;
+            messageTextBox.Theme = MetroFramework.MetroThemeStyle.Light;
+            messageTextBox.UseStyleColors = false;
+            // 
+            // treeView1
+            // 
+            treeView1.Location = new Point(23, 227);
+            treeView1.Name = "treeView1";
+            treeNode1.Name = "";
+            treeNode1.Text = "Термы";
+            treeNode2.Name = "";
+            treeNode2.Text = "Базовые множества";
+            treeNode3.Name = "";
+            treeNode3.Text = "Симуляции";
+            treeView1.Nodes.AddRange(new TreeNode[] { treeNode1, treeNode2, treeNode3 });
+            treeView1.Size = new Size(240, 145);
+            treeView1.TabIndex = 4;
             // 
             // LoaderForm
             // 
-            this.ClientSize = new System.Drawing.Size(551, 244);
-            this.Controls.Add(this.messageTextBox);
-            this.Controls.Add(this.loadButton);
-            this.Controls.Add(this.browseButton);
-            this.Controls.Add(this.filePathTextBox);
-            this.Name = "LoaderForm";
-            this.Text = "Загрузчик модулей";
-            this.BackColor = System.Drawing.Color.White;
-            this.ResumeLayout(false);
-
+            BackColor = Color.White;
+            Controls.Add(treeView1);
+            Controls.Add(messageTextBox);
+            Controls.Add(loadButton);
+            Controls.Add(browseButton);
+            Controls.Add(filePathTextBox);
+            Name = "LoaderForm";
+            Size = new Size(562, 456);
+            ResumeLayout(false);
         }
 
         #endregion
@@ -80,5 +120,6 @@ namespace SimpleFuzzy.View
         private MetroFramework.Controls.MetroButton browseButton;
         private MetroFramework.Controls.MetroButton loadButton;
         private MetroFramework.Controls.MetroTextBox messageTextBox;
+        private TreeView treeView1;
     }
 }
