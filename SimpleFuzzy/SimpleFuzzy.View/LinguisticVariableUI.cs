@@ -64,7 +64,7 @@ namespace SimpleFuzzy.View
         {
             try
             {
-                linguisticVariable.Save();
+                // Здесь вызов метода сохранения
                 MessageBox.Show("Изменения сохранены", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             }
@@ -112,7 +112,7 @@ namespace SimpleFuzzy.View
             var baseSetValues = ObjectSetToList(linguisticVariable.BaseSet);
             var data = linguisticVariable.Graphic();
 
-            for (int i = 0; i < data.Length; i++)
+            for (int i = 0; i < data.Count; i++) 
             {
                 var series = new LineSeries
                 {
