@@ -30,8 +30,13 @@ namespace SimpleFuzzy.View
                 MessageBox.Show(ex.Message);
                 return;
             }
-            button3_Click(sender, e);
             // Дальше открывается проект
+            if (Parent is MainWindow parent)
+            {
+                parent.OpenButtons();
+                parent.Locked();
+                parent.OpenLoader();
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
