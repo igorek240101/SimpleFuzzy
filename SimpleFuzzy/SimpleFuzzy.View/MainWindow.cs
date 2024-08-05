@@ -193,7 +193,7 @@ namespace SimpleFuzzy.View
             toolTip1.Active = true;
         }
 
-        public bool IsSimulationLoaded() // полная проверка на наводимость
+        public bool IsSimulationLoaded() // проверка на наводимость
         {
             if (isDisableSimulator) return false;
             else if (isContainSimulator) return true;
