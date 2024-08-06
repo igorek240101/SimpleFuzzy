@@ -24,19 +24,33 @@ namespace SimpleFuzzy.Service
                 {
                     if (array[j].IsAbstract || array[j].IsInterface) { continue; }
 
-                    if (array[j] is IMembershipFunction)
+                    if (array[j].GetInterface(nameof(IMembershipFunction)) != null)
                     {
-                        try { repositoryService.GetCollection<IMembershipFunction>().Add(array[j].GetConstructor(null).Invoke(null) as IMembershipFunction); }
+                        try 
+                        {
+                            var module = array[j].GetConstructor(new Type[] { }).Invoke(null) as IMembershipFunction;
+                            module.Active = true;
+                            repositoryService.GetCollection<IMembershipFunction>().Add(module); }
                         catch { }
                     }
-                    else if (array[j] is IObjectSet)
+                    else if (array[j].GetInterface(nameof(IObjectSet)) != null)
                     {
-                        try { repositoryService.GetCollection<IObjectSet>().Add(array[j].GetConstructor(null).Invoke(null) as IObjectSet); }
+                        try 
+                        {
+                            var module = array[j].GetConstructor(new Type[] { }).Invoke(null) as IObjectSet;
+                            module.Active = true;
+                            repositoryService.GetCollection<IObjectSet>().Add(module);
+                        }
                         catch { }
                     }
-                    else if (array[j] is ISimulator)
+                    else if (array[j].GetInterface(nameof(ISimulator)) != null)
                     {
-                        try { repositoryService.GetCollection<ISimulator>().Add(array[j].GetConstructor(null).Invoke(null) as ISimulator); }
+                        try 
+                        {
+                            var module = array[j].GetConstructor(new Type[] { }).Invoke(null) as ISimulator;
+                            module.Active = false;
+                            repositoryService.GetCollection<ISimulator>().Add(module);
+                        }
                         catch { }
                     }
                 }
