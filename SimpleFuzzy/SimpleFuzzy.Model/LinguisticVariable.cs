@@ -62,5 +62,57 @@ namespace SimpleFuzzy.Model
             }
             return list;
         }
+
+        public string GetResultofFuzzy(object elementBaseSet)
+        {
+            string result = "";
+            var toStringList = new Dictionary<string, double>();
+            var list = Fazzification(elementBaseSet);
+            for (int i = 0; i < list.Count; i++)
+            {
+                toStringList.Add(func[i].Name, list[i]);
+            }
+            double sum = 0;
+            foreach (var zeroValue in toStringList)
+            {
+                sum += zeroValue.Value;
+            }
+            if (sum == 0)
+            {
+                return "Нет соответствия";
+            }
+            var listofRange = new Dictionary<string, double[]>()
+            {
+                { "Почти точно", new double[2]{0.99, 0.9} },
+                { "Скорее", new double[2]{0.89, 0.8} },
+                { "Не совсем", new double[2]{0.79, 0.6} },
+                { "Наполовину", new double[2]{0.59, 0.4} },
+                { "Немного", new double[2]{0.39, 0.2} },
+                { "Совсем немного", new double[2]{0.19, 0.1} },
+                { "Едва ли", new double[2]{0.09, 0.01} }
+            };
+            int countTerms = 0;
+            foreach (var range in listofRange)
+            {
+                foreach (var pair in toStringList)
+                {
+                    if (range.Value[0] >= pair.Value && pair.Value >= range.Value[1])
+                    {
+                        result += $"{range.Key} {pair.Key}, ";
+                        countTerms++;
+                    }
+                }
+            }
+            result = result.Remove(result.Length - 2);
+            if (countTerms > 1)
+            {
+                string and = " и ";
+                int lastIndex = result.LastIndexOf(',');
+                result = result.Remove(lastIndex, 2);
+                result = result.Insert(lastIndex, and);
+            }
+            return result;
+        }
     }
 }
+
