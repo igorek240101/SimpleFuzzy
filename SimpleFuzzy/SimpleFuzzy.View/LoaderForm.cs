@@ -10,11 +10,13 @@ namespace SimpleFuzzy.View
 {
     public partial class LoaderForm : MetroUserControl
     {
-        private IAssemblyLoaderService moduleLoaderService;
+        public IAssemblyLoaderService moduleLoaderService;
+        public IRepositoryService repositoryService;
         public LoaderForm()
         {
             InitializeComponent();
             moduleLoaderService = AutofacIntegration.GetInstance<IAssemblyLoaderService>();
+            repositoryService = AutofacIntegration.GetInstance<IRepositoryService>();
         }
 
         private void browseButton_Click(object sender, EventArgs e)
@@ -50,7 +52,7 @@ namespace SimpleFuzzy.View
                     throw new FileFormatException("Файл должен иметь расширение .dll");
                 }
 
-                string assemblyName = moduleLoaderService.GetInfo(filePath);
+                string assemblyName = moduleLoaderService.AssemblyLoader(filePath);
                 TreeViewShow();
                 messageTextBox.Text = $"Модуль успешно загружен: {assemblyName}";
             }
@@ -69,10 +71,13 @@ namespace SimpleFuzzy.View
         }
         private void TreeViewShow()
         {
-            var treeinfo = moduleLoaderService.AddElements(moduleLoaderService.AssemblyContextList);
-            for (int i = 0; i < treeinfo.Item1.Count; i++) { treeView1.Nodes[0].Nodes.Add(treeinfo.Item1[i].Name); }
-            for (int i = 0; i < treeinfo.Item2.Count; i++) { treeView1.Nodes[1].Nodes.Add(treeinfo.Item2[i].Name); }
-            for (int i = 0; i < treeinfo.Item3.Count; i++) { treeView1.Nodes[2].Nodes.Add(treeinfo.Item3[i].Name); }
+            treeView1.Nodes.Clear();
+            List<IMembershipFunction> list1 = repositoryService.GetCollection<IMembershipFunction>();
+            for (int i = 0; i < list1.Count; i++) { treeView1.Nodes[0].Nodes.Add(list1[i].Name); }
+            List<IObjectSet> list2 = repositoryService.GetCollection<IObjectSet>();
+            for (int i = 0; i < list2.Count; i++) { treeView1.Nodes[1].Nodes.Add(list2[i].Name); }
+            List<ISimulator> list3 = repositoryService.GetCollection<ISimulator>();
+            for (int i = 0; i < list3.Count; i++) { treeView1.Nodes[2].Nodes.Add(list3[i].Name); }
             if (treeView1.Nodes[2].Nodes.Count > 0 && Parent is MainWindow parent) parent.isContainSimulator = true;
         }
 

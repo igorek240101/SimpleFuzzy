@@ -6,18 +6,17 @@ namespace SimpleFuzzy.Service
 {
     public class AssemblyLoaderService : IAssemblyLoaderService
     {
-        private List<AssemblyLoadContext> assemblyContextList;
-        public AssemblyLoadContext AssemblyContextList { get { return assemblyContextList[assemblyContextList.Count - 1]; } }
-        public AssemblyLoaderService()
+        public IRepositoryService repositoryService;
+        public AssemblyLoaderService(IRepositoryService repositoryService)
         {
-            assemblyContextList = new List<AssemblyLoadContext>();
+            this.repositoryService = repositoryService;
         }
-
-        public (List<IMembershipFunction>, List<IObjectSet>, List<ISimulator>) AddElements(AssemblyLoadContext context)
+        public string AssemblyLoader(string filePath)
         {
-            List<IMembershipFunction> memberFList = new List<IMembershipFunction>();
-            List<IObjectSet> objectSetList = new List<IObjectSet>();
-            List<ISimulator> simulatorList = new List<ISimulator>();
+            return AddElements(LoadAssembly(filePath));
+        }
+        private string AddElements(AssemblyLoadContext context)
+        {
             for (int i = 0; i < context.Assemblies.Count(); i++)
             {
                 Type[] array = context.Assemblies.ElementAt(i).GetTypes();
@@ -27,26 +26,26 @@ namespace SimpleFuzzy.Service
 
                     if (array[j] is IMembershipFunction)
                     {
-                        try { memberFList.Add(array[j].GetConstructor(null).Invoke(null) as IMembershipFunction); }
+                        try { repositoryService.GetCollection<IMembershipFunction>().Add(array[j].GetConstructor(null).Invoke(null) as IMembershipFunction); }
                         catch { }
                     }
                     else if (array[j] is IObjectSet)
                     {
-                        try { objectSetList.Add(array[j].GetConstructor(null).Invoke(null) as IObjectSet); }
+                        try { repositoryService.GetCollection<IObjectSet>().Add(array[j].GetConstructor(null).Invoke(null) as IObjectSet); }
                         catch { }
                     }
                     else if (array[j] is ISimulator)
                     {
-                        try { simulatorList.Add(array[j].GetConstructor(null).Invoke(null) as ISimulator); }
+                        try { repositoryService.GetCollection<ISimulator>().Add(array[j].GetConstructor(null).Invoke(null) as ISimulator); }
                         catch { }
                     }
                 }
-            } 
-            return (memberFList, objectSetList, simulatorList);
+            }
+            return context.Assemblies.ElementAt(0).FullName;
         }
-        public string GetInfo(string filePath)
+        private AssemblyLoadContext LoadAssembly(string filePath)
         {
-            foreach (var assemblyContextfromList in assemblyContextList)
+            foreach (var assemblyContextfromList in repositoryService.GetCollection<AssemblyLoadContext>())
             {
                 if (assemblyContextfromList.Name == filePath)
                 {
@@ -62,16 +61,13 @@ namespace SimpleFuzzy.Service
             {
                 throw new InvalidOperationException("Абсолютный путь файла введен неправильно.");
             }
-            assemblyContextList.Add(assemblyContext);
-            Assembly assembly = assemblyContext.Assemblies.ElementAt(0);
-            string ans = "";
-            ans = assembly.FullName;
-            return ans;
+            repositoryService.GetCollection<AssemblyLoadContext>().Add(assemblyContext);
+            return assemblyContext;
         }
         public void UnloadAssembly(string assemblyName)
         {
             bool loaded = false;
-            foreach (var assemblyContext in assemblyContextList)
+            foreach (var assemblyContext in repositoryService.GetCollection<AssemblyLoadContext>())
             {
                 if (assemblyContext.Assemblies.ElementAt(0).FullName == assemblyName)
                 {
@@ -81,7 +77,7 @@ namespace SimpleFuzzy.Service
                         assemblyContext.Unload();
                         GC.Collect();
                         GC.WaitForPendingFinalizers();
-                        assemblyContextList.Remove(assemblyContext);
+                        repositoryService.GetCollection<AssemblyLoadContext>().Remove(assemblyContext);
                         break;
                     }
                     catch
