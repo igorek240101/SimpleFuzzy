@@ -11,9 +11,9 @@ namespace SimpleFuzzy.Service
         {
             this.repositoryService = repositoryService;
         }
-        public string AssemblyLoader(string filePath)
+        public void AssemblyLoader(string filePath)
         {
-            return AddElements(LoadAssembly(filePath));
+            AddElements(LoadAssembly(filePath));
         }
         private string AddElements(AssemblyLoadContext context)
         {

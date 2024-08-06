@@ -4,7 +4,7 @@ namespace SimpleFuzzy.Abstract
 {
     public interface IAssemblyLoaderService
     {
-        public string AssemblyLoader(string filePath);
+        public void AssemblyLoader(string filePath);
         void UnloadAssembly(string assemblyName);
     }
 }
