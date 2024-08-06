@@ -3,6 +3,7 @@ using SimpleFuzzy.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Loader;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,13 +12,15 @@ namespace SimpleFuzzy.Service
     public class RepositoryService : IRepositoryService
     {
         // Коллекции для хранения различных типов объектов
-        private readonly List<IObjectSet> _objectSets;
-        private readonly List<IMembershipFunction> _membershipFunctions;
-        private readonly List<ISimulator> _simulators;
-        private readonly List<LinguisticVariable> _linguisticVariables;
+        public readonly List<AssemblyLoadContext> _assemblyContext;
+        public readonly List<IObjectSet> _objectSets;
+        public readonly List<IMembershipFunction> _membershipFunctions;
+        public readonly List<ISimulator> _simulators;
+        public readonly List<LinguisticVariable> _linguisticVariables;
 
         public RepositoryService()
         {
+            _assemblyContext = new List<AssemblyLoadContext>();
             _objectSets = new List<IObjectSet>();
             _membershipFunctions = new List<IMembershipFunction>();
             _simulators = new List<ISimulator>();
@@ -42,6 +45,10 @@ namespace SimpleFuzzy.Service
             if (typeof(T) == typeof(LinguisticVariable))
             {
                 return (List<T>)(object)_linguisticVariables;
+            }
+            if (typeof(T) == typeof(AssemblyLoadContext))
+            {
+                return (List<T>)(object)_assemblyContext;
             }
 
             throw new InvalidOperationException($"Collection for type {typeof(T).Name} is not supported.");
