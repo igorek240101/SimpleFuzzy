@@ -63,11 +63,10 @@ namespace SimpleFuzzy.Model
             return list;
         }
 
-        public string GetResultofFuzzy(object elementBaseSet)
+        public string GetResultofFuzzy(List<double> list)
         {
             string result = "";
             var toStringList = new Dictionary<string, double>();
-            var list = Fazzification(elementBaseSet);
             for (int i = 0; i < list.Count; i++)
             {
                 toStringList.Add(func[i].Name, list[i]);
@@ -83,6 +82,7 @@ namespace SimpleFuzzy.Model
             }
             var listofRange = new Dictionary<string, double[]>()
             {
+                { "Точно", new double[2]{1.01, 1} },
                 { "Почти точно", new double[2]{0.99, 0.9} },
                 { "Скорее", new double[2]{0.89, 0.8} },
                 { "Не совсем", new double[2]{0.79, 0.6} },
