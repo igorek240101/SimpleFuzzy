@@ -7,6 +7,7 @@ namespace SimpleFuzzy.Service
     public class AssemblyLoaderService : IAssemblyLoaderService
     {
         public IRepositoryService repositoryService;
+        public event UsingContext? UseAssembly;
         public AssemblyLoaderService(IRepositoryService repositoryService)
         {
             this.repositoryService = repositoryService;
@@ -64,13 +65,14 @@ namespace SimpleFuzzy.Service
             repositoryService.GetCollection<AssemblyLoadContext>().Add(assemblyContext);
             return assemblyContext;
         }
-        public void UnloadAssembly(string assemblyName)
+        public void UnloadAssembly(string assemblyName, UsingContext funcforEvent)
         {
             bool loaded = false;
             foreach (var assemblyContext in repositoryService.GetCollection<AssemblyLoadContext>())
             {
                 if (assemblyContext.Assemblies.ElementAt(0).FullName == assemblyName)
                 {
+                    UseAssembly += funcforEvent;
                     loaded = true;
                     try
                     {
