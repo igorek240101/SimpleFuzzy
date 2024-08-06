@@ -15,6 +15,7 @@ namespace SimpleFuzzy.View
         {
             InitializeComponent();
             moduleLoaderService = AutofacIntegration.GetInstance<IAssemblyLoaderService>();
+            checkBox1.Checked = true;
         }
 
         private void browseButton_Click(object sender, EventArgs e)
@@ -75,7 +76,6 @@ namespace SimpleFuzzy.View
             for (int i = 0; i < treeinfo.Item3.Count; i++) { treeView1.Nodes[2].Nodes.Add(treeinfo.Item3[i].Name); }
             if (treeView1.Nodes[2].Nodes.Count > 0 && Parent is MainWindow parent) parent.isContainSimulator = true;
         }
-
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBox1.Checked) 
@@ -83,6 +83,11 @@ namespace SimpleFuzzy.View
                 if (Parent is MainWindow parent)
                 {
                     parent.isDisableSimulator = true;
+                    if (!parent.IsSimulationLoaded())
+                    {
+                        parent.EnableSimulationsButton(false);
+                    }
+                    
                 }
             }
             else
@@ -90,6 +95,11 @@ namespace SimpleFuzzy.View
                 if (Parent is MainWindow parent)
                 {
                     parent.isDisableSimulator = false;
+                    if (parent.IsSimulationLoaded())
+                    {
+                        parent.EnableSimulationsButton(true);
+                    }
+                    
                 }
             }
         }
