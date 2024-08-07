@@ -36,7 +36,7 @@ namespace SimpleFuzzy.View
             filePathTextBox.FontSize = MetroFramework.MetroTextBoxSize.Small;
             filePathTextBox.FontWeight = MetroFramework.MetroTextBoxWeight.Regular;
             filePathTextBox.ForeColor = Color.Black;
-            filePathTextBox.Location = new Point(23, 63);
+            filePathTextBox.Location = new Point(269, 141);
             filePathTextBox.Multiline = false;
             filePathTextBox.Name = "filePathTextBox";
             filePathTextBox.SelectedText = "";
@@ -50,7 +50,7 @@ namespace SimpleFuzzy.View
             // browseButton
             // 
             browseButton.Highlight = false;
-            browseButton.Location = new Point(428, 63);
+            browseButton.Location = new Point(674, 227);
             browseButton.Name = "browseButton";
             browseButton.Size = new Size(100, 23);
             browseButton.Style = MetroFramework.MetroColorStyle.Blue;
@@ -63,7 +63,7 @@ namespace SimpleFuzzy.View
             // loadButton
             // 
             loadButton.Highlight = false;
-            loadButton.Location = new Point(23, 92);
+            loadButton.Location = new Point(269, 170);
             loadButton.Name = "loadButton";
             loadButton.Size = new Size(200, 23);
             loadButton.Style = MetroFramework.MetroColorStyle.Blue;
@@ -77,11 +77,11 @@ namespace SimpleFuzzy.View
             // 
             messageTextBox.FontSize = MetroFramework.MetroTextBoxSize.Small;
             messageTextBox.FontWeight = MetroFramework.MetroTextBoxWeight.Regular;
-            messageTextBox.Location = new Point(23, 121);
+            messageTextBox.Location = new Point(269, 199);
             messageTextBox.Multiline = true;
             messageTextBox.Name = "messageTextBox";
             messageTextBox.SelectedText = "";
-            messageTextBox.Size = new Size(505, 100);
+            messageTextBox.Size = new Size(505, 117);
             messageTextBox.Style = MetroFramework.MetroColorStyle.Blue;
             messageTextBox.StyleManager = null;
             messageTextBox.TabIndex = 3;
@@ -90,7 +90,7 @@ namespace SimpleFuzzy.View
             // 
             // treeView1
             // 
-            treeView1.Location = new Point(23, 227);
+            treeView1.Location = new Point(23, 141);
             treeView1.Name = "treeView1";
             treeNode1.Name = "";
             treeNode1.Text = "Термы";
@@ -105,7 +105,7 @@ namespace SimpleFuzzy.View
             // checkBox1
             // 
             checkBox1.AutoSize = true;
-            checkBox1.Location = new Point(23, 378);
+            checkBox1.Location = new Point(23, 292);
             checkBox1.Name = "checkBox1";
             checkBox1.Size = new Size(187, 24);
             checkBox1.TabIndex = 5;
@@ -123,7 +123,7 @@ namespace SimpleFuzzy.View
             Controls.Add(browseButton);
             Controls.Add(filePathTextBox);
             Name = "LoaderForm";
-            Size = new Size(562, 456);
+            Size = new Size(916, 456);
             ResumeLayout(false);
             PerformLayout();
         }

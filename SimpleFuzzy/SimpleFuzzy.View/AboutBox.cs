@@ -6,10 +6,14 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MetroFramework.Forms;
+using MetroFramework.Controls;
+using MetroFramework;
+using MetroFramework.Components;
 
 namespace SimpleFuzzy.View
 {
-    partial class AboutBox : Form
+    partial class AboutBox : MetroForm
     {
         public AboutBox()
         {

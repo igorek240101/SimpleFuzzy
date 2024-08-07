@@ -2,15 +2,16 @@ using SimpleFuzzy.Abstract;
 using SimpleFuzzy.Service;
 using System;
 using System.Windows.Forms;
-
+using MetroFramework.Controls;
+using MetroFramework.Forms;
 
 namespace SimpleFuzzy.View
 {
     public delegate UserControl ControlConstruct();
-    public partial class MainWindow : Form
+    public partial class MainWindow : MetroForm
     {
         Dictionary<UserControlsEnum, ControlConstruct> UserControls = new Dictionary<UserControlsEnum, ControlConstruct>();
-        public UserControl currentControl = null; 
+        public UserControl currentControl = null;
         IProjectListService projectList;
         private Button[] workspaceButtons;
         public bool isContainSimulator = false; // содержание симуляций
@@ -199,11 +200,16 @@ namespace SimpleFuzzy.View
             else if (isContainSimulator) return true;
             else return false;
         }
-        
+
         private void button13_Click(object sender, EventArgs e)
         {
             HelpWindow help = new HelpWindow(this);
             help.Show();
+        }
+
+        private void Create_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
