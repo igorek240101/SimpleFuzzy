@@ -6,18 +6,17 @@ namespace SimpleFuzzy.Service
 {
     public class AssemblyLoaderService : IAssemblyLoaderService
     {
-        private List<AssemblyLoadContext> assemblyContextList;
-        public AssemblyLoadContext AssemblyContextList { get { return assemblyContextList[assemblyContextList.Count - 1]; } }
-        public AssemblyLoaderService()
+        public IRepositoryService repositoryService;
+        public AssemblyLoaderService(IRepositoryService repositoryService)
         {
-            assemblyContextList = new List<AssemblyLoadContext>();
+            this.repositoryService = repositoryService;
         }
-
-        public (List<IMembershipFunction>, List<IObjectSet>, List<ISimulator>) AddElements(AssemblyLoadContext context)
+        public void AssemblyLoader(string filePath)
         {
-            List<IMembershipFunction> memberFList = new List<IMembershipFunction>();
-            List<IObjectSet> objectSetList = new List<IObjectSet>();
-            List<ISimulator> simulatorList = new List<ISimulator>();
+            AddElements(LoadAssembly(filePath));
+        }
+        private string AddElements(AssemblyLoadContext context)
+        {
             for (int i = 0; i < context.Assemblies.Count(); i++)
             {
                 Type[] array = context.Assemblies.ElementAt(i).GetTypes();
@@ -25,28 +24,42 @@ namespace SimpleFuzzy.Service
                 {
                     if (array[j].IsAbstract || array[j].IsInterface) { continue; }
 
-                    if (array[j] is IMembershipFunction)
+                    if (array[j].GetInterface(nameof(IMembershipFunction)) != null)
                     {
-                        try { memberFList.Add(array[j].GetConstructor(null).Invoke(null) as IMembershipFunction); }
+                        try 
+                        {
+                            var module = array[j].GetConstructor(new Type[] { }).Invoke(null) as IMembershipFunction;
+                            module.Active = true;
+                            repositoryService.GetCollection<IMembershipFunction>().Add(module); }
                         catch { }
                     }
-                    else if (array[j] is IObjectSet)
+                    else if (array[j].GetInterface(nameof(IObjectSet)) != null)
                     {
-                        try { objectSetList.Add(array[j].GetConstructor(null).Invoke(null) as IObjectSet); }
+                        try 
+                        {
+                            var module = array[j].GetConstructor(new Type[] { }).Invoke(null) as IObjectSet;
+                            module.Active = true;
+                            repositoryService.GetCollection<IObjectSet>().Add(module);
+                        }
                         catch { }
                     }
-                    else if (array[j] is ISimulator)
+                    else if (array[j].GetInterface(nameof(ISimulator)) != null)
                     {
-                        try { simulatorList.Add(array[j].GetConstructor(null).Invoke(null) as ISimulator); }
+                        try 
+                        {
+                            var module = array[j].GetConstructor(new Type[] { }).Invoke(null) as ISimulator;
+                            module.Active = false;
+                            repositoryService.GetCollection<ISimulator>().Add(module);
+                        }
                         catch { }
                     }
                 }
-            } 
-            return (memberFList, objectSetList, simulatorList);
+            }
+            return context.Assemblies.ElementAt(0).FullName;
         }
-        public string GetInfo(string filePath)
+        private AssemblyLoadContext LoadAssembly(string filePath)
         {
-            foreach (var assemblyContextfromList in assemblyContextList)
+            foreach (var assemblyContextfromList in repositoryService.GetCollection<AssemblyLoadContext>())
             {
                 if (assemblyContextfromList.Name == filePath)
                 {
@@ -62,16 +75,13 @@ namespace SimpleFuzzy.Service
             {
                 throw new InvalidOperationException("Абсолютный путь файла введен неправильно.");
             }
-            assemblyContextList.Add(assemblyContext);
-            Assembly assembly = assemblyContext.Assemblies.ElementAt(0);
-            string ans = "";
-            ans = assembly.FullName;
-            return ans;
+            repositoryService.GetCollection<AssemblyLoadContext>().Add(assemblyContext);
+            return assemblyContext;
         }
         public void UnloadAssembly(string assemblyName)
         {
             bool loaded = false;
-            foreach (var assemblyContext in assemblyContextList)
+            foreach (var assemblyContext in repositoryService.GetCollection<AssemblyLoadContext>())
             {
                 if (assemblyContext.Assemblies.ElementAt(0).FullName == assemblyName)
                 {
@@ -81,7 +91,7 @@ namespace SimpleFuzzy.Service
                         assemblyContext.Unload();
                         GC.Collect();
                         GC.WaitForPendingFinalizers();
-                        assemblyContextList.Remove(assemblyContext);
+                        repositoryService.GetCollection<AssemblyLoadContext>().Remove(assemblyContext);
                         break;
                     }
                     catch
