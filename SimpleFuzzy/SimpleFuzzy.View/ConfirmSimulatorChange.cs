@@ -12,9 +12,20 @@ namespace SimpleFuzzy.View
 {
     public partial class ConfirmSimulatorChange : UserControl
     {
-        public ConfirmSimulatorChange()
+        public ConfirmSimulatorChange(LoaderForm loader)
         {
             InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (Parent is LoaderForm parent) { parent.isApprove = true; }
+            Parent.Controls.Remove(this);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Parent.Controls.Remove(this);
         }
     }
 }

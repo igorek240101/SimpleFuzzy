@@ -12,16 +12,13 @@ namespace SimpleFuzzy.View
     {
         public IAssemblyLoaderService moduleLoaderService;
         public IRepositoryService repositoryService;
-        Dictionary<string, IModulable> modules = new Dictionary<string, IModulable>(); 
+        Dictionary<string, IModulable> modules = new Dictionary<string, IModulable>();
+        public bool isApprove = false;
         public LoaderForm()
         {
             InitializeComponent();
             moduleLoaderService = AutofacIntegration.GetInstance<IAssemblyLoaderService>();
-
-            checkBox1.Checked = true;
-
             repositoryService = AutofacIntegration.GetInstance<IRepositoryService>();
-
         }
 
         private void browseButton_Click(object sender, EventArgs e)
@@ -130,33 +127,6 @@ namespace SimpleFuzzy.View
             treeView1.ExpandAll();
             if (treeView1.Nodes[2].Nodes.Count > 0 && Parent is MainWindow parent) parent.isContainSimulator = true;
         }
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-            if (checkBox1.Checked)
-            {
-                if (Parent is MainWindow parent)
-                {
-                    parent.isDisableSimulator = true;
-                    if (!parent.IsSimulationLoaded())
-                    {
-                        parent.EnableSimulationsButton(false);
-                    }
-                    
-                }
-            }
-            else
-            {
-                if (Parent is MainWindow parent)
-                {
-                    parent.isDisableSimulator = false;
-                    if (parent.IsSimulationLoaded())
-                    {
-                        parent.EnableSimulationsButton(true);
-                    }
-                    
-                }
-            }
-        }
 
         private void treeView1_AfterCheck(object sender, TreeViewEventArgs e)
         {
@@ -177,10 +147,38 @@ namespace SimpleFuzzy.View
             {
                 if (node == e.Node)
                 {
-                    if (repositoryService.GetCollection<ISimulator>().Any(v => v.Active) && e.Node.Checked)
+                    if (e.Node.Checked)
                     {
-                        // открыть окно подтверждения
-                        return;
+                        if (Parent is MainWindow parent) 
+                        {
+                            parent.isContainSimulator = true;
+                            parent.EnableSimulationsButton(true);
+                        }
+                        if (repositoryService.GetCollection<ISimulator>().Any(v => v.Active))
+                        {
+                            ConfirmSimulatorChange confirm = new ConfirmSimulatorChange(this);
+                            Controls.Add(confirm);
+                            confirm.Dock = DockStyle.Fill;
+                            if (isApprove)
+                            {
+                                isApprove = false;
+                                foreach (TreeNode node1 in treeView1.Nodes[2].Nodes) 
+                                {
+                                    if (node1.Checked) { node1.Checked = false; } 
+                                }
+                                node.Checked = true;
+                            }
+                            else { node.Checked = false; }
+                            return;
+                        }
+                    }
+                    else 
+                    { 
+                        if (Parent is MainWindow parent) 
+                        {
+                            parent.isContainSimulator = false;
+                            parent.EnableSimulationsButton(false);
+                        }
                     }
                 }
             }
