@@ -38,11 +38,11 @@ namespace SimpleFuzzy.View
             filePathTextBox.FontSize = MetroFramework.MetroTextBoxSize.Small;
             filePathTextBox.FontWeight = MetroFramework.MetroTextBoxWeight.Regular;
             filePathTextBox.ForeColor = Color.Black;
-            filePathTextBox.Location = new Point(269, 141);
+            filePathTextBox.Location = new Point(306, 142);
             filePathTextBox.Multiline = false;
             filePathTextBox.Name = "filePathTextBox";
             filePathTextBox.SelectedText = "";
-            filePathTextBox.Size = new Size(399, 23);
+            filePathTextBox.Size = new Size(382, 23);
             filePathTextBox.Style = MetroFramework.MetroColorStyle.Blue;
             filePathTextBox.StyleManager = null;
             filePathTextBox.TabIndex = 0;
@@ -52,7 +52,7 @@ namespace SimpleFuzzy.View
             // browseButton
             // 
             browseButton.Highlight = false;
-            browseButton.Location = new Point(674, 227);
+            browseButton.Location = new Point(694, 142);
             browseButton.Name = "browseButton";
             browseButton.Size = new Size(100, 23);
             browseButton.Style = MetroFramework.MetroColorStyle.Blue;
@@ -65,9 +65,9 @@ namespace SimpleFuzzy.View
             // loadButton
             // 
             loadButton.Highlight = false;
-            loadButton.Location = new Point(269, 170);
+            loadButton.Location = new Point(306, 171);
             loadButton.Name = "loadButton";
-            loadButton.Size = new Size(200, 23);
+            loadButton.Size = new Size(200, 39);
             loadButton.Style = MetroFramework.MetroColorStyle.Blue;
             loadButton.StyleManager = null;
             loadButton.TabIndex = 2;
@@ -79,11 +79,11 @@ namespace SimpleFuzzy.View
             // 
             messageTextBox.FontSize = MetroFramework.MetroTextBoxSize.Small;
             messageTextBox.FontWeight = MetroFramework.MetroTextBoxWeight.Regular;
-            messageTextBox.Location = new Point(269, 199);
+            messageTextBox.Location = new Point(306, 216);
             messageTextBox.Multiline = true;
             messageTextBox.Name = "messageTextBox";
             messageTextBox.SelectedText = "";
-            messageTextBox.Size = new Size(505, 117);
+            messageTextBox.Size = new Size(488, 223);
             messageTextBox.Style = MetroFramework.MetroColorStyle.Blue;
             messageTextBox.StyleManager = null;
             messageTextBox.TabIndex = 3;
@@ -92,8 +92,8 @@ namespace SimpleFuzzy.View
             // 
             // treeView1
             // 
-            treeView1.Location = new Point(23, 141);
             treeView1.CheckBoxes = true;
+            treeView1.Location = new Point(15, 171);
             treeView1.Name = "treeView1";
             treeNode1.Checked = true;
             treeNode1.Name = "";
@@ -105,14 +105,14 @@ namespace SimpleFuzzy.View
             treeNode3.Text = "Симуляции";
             treeView1.Nodes.AddRange(new TreeNode[] { treeNode1, treeNode2, treeNode3 });
             treeView1.ShowNodeToolTips = true;
-            treeView1.Size = new Size(277, 155);
+            treeView1.Size = new Size(285, 268);
             treeView1.TabIndex = 4;
             treeView1.AfterCheck += treeView1_AfterCheck;
             // 
             // checkBox1
             // 
             checkBox1.AutoSize = true;
-            checkBox1.Location = new Point(23, 292);
+            checkBox1.Location = new Point(15, 141);
             checkBox1.Name = "checkBox1";
             checkBox1.Size = new Size(187, 24);
             checkBox1.TabIndex = 5;

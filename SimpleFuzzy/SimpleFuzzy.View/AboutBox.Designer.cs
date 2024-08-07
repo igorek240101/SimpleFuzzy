@@ -37,7 +37,6 @@ namespace SimpleFuzzy.View
             labelVersion = new MetroFramework.Controls.MetroLabel();
             labelCopyright = new MetroFramework.Controls.MetroLabel();
             labelCompanyName = new MetroFramework.Controls.MetroLabel();
-            textBoxDescription = new MetroFramework.Controls.MetroTextBox();
             okButton = new MetroFramework.Controls.MetroButton();
             tableLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)logoPictureBox).BeginInit();
@@ -53,7 +52,6 @@ namespace SimpleFuzzy.View
             tableLayoutPanel.Controls.Add(labelVersion, 1, 1);
             tableLayoutPanel.Controls.Add(labelCopyright, 1, 2);
             tableLayoutPanel.Controls.Add(labelCompanyName, 1, 3);
-            tableLayoutPanel.Controls.Add(textBoxDescription, 1, 4);
             tableLayoutPanel.Controls.Add(okButton, 1, 5);
             tableLayoutPanel.Dock = DockStyle.Fill;
             tableLayoutPanel.Location = new Point(12, 60);
@@ -161,26 +159,6 @@ namespace SimpleFuzzy.View
             labelCompanyName.TextAlign = ContentAlignment.MiddleLeft;
             labelCompanyName.Theme = MetroThemeStyle.Light;
             labelCompanyName.UseStyleColors = false;
-            // 
-            // textBoxDescription
-            // 
-            textBoxDescription.Dock = DockStyle.Fill;
-            textBoxDescription.Enabled = false;
-            textBoxDescription.FontSize = MetroTextBoxSize.Small;
-            textBoxDescription.FontWeight = MetroTextBoxWeight.Regular;
-            textBoxDescription.Location = new Point(191, 149);
-            textBoxDescription.Margin = new Padding(8, 5, 4, 5);
-            textBoxDescription.Multiline = true;
-            textBoxDescription.Name = "textBoxDescription";
-            textBoxDescription.SelectedText = "";
-            textBoxDescription.Size = new Size(361, 170);
-            textBoxDescription.Style = MetroColorStyle.Blue;
-            textBoxDescription.StyleManager = null;
-            textBoxDescription.TabIndex = 23;
-            textBoxDescription.TabStop = false;
-            textBoxDescription.Text = "Описание";
-            textBoxDescription.Theme = MetroThemeStyle.Light;
-            textBoxDescription.UseStyleColors = false;
             // 
             // okButton
             // 

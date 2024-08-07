@@ -1,5 +1,8 @@
 ﻿
+using MetroFramework.Controls;
 using System.Resources;
+using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
 namespace SimpleFuzzy.View
 {
@@ -22,22 +25,22 @@ namespace SimpleFuzzy.View
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
             folderBrowserDialog1 = new FolderBrowserDialog();
-            Create = new MetroFramework.Controls.MetroButton();
-            button1 = new MetroFramework.Controls.MetroButton();
-            button2 = new MetroFramework.Controls.MetroButton();
-            button3 = new MetroFramework.Controls.MetroButton();
-            button4 = new MetroFramework.Controls.MetroButton();
-            button5 = new MetroFramework.Controls.MetroButton();
-            button6 = new MetroFramework.Controls.MetroButton();
-            button7 = new MetroFramework.Controls.MetroButton();
-            button8 = new MetroFramework.Controls.MetroButton();
-            button9 = new MetroFramework.Controls.MetroButton();
-            button10 = new MetroFramework.Controls.MetroButton();
-            button11 = new MetroFramework.Controls.MetroButton();
-            button12 = new MetroFramework.Controls.MetroButton();
+            Create = new MetroButton();
+            button1 = new MetroButton();
+            button2 = new MetroButton();
+            button3 = new MetroButton();
+            button4 = new MetroButton();
+            button5 = new MetroButton();
+            button6 = new MetroButton();
+            button7 = new MetroButton();
+            button8 = new MetroButton();
+            button9 = new MetroButton();
+            button10 = new MetroButton();
+            button11 = new MetroButton();
+            button12 = new MetroButton();
             logoBox = new PictureBox();
             toolTip1 = new ToolTip(components);
-            button13 = new MetroFramework.Controls.MetroButton();
+            button13 = new MetroButton();
             ((System.ComponentModel.ISupportInitialize)logoBox).BeginInit();
             SuspendLayout();
             // 

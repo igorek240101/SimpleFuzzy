@@ -95,7 +95,7 @@
             textBox2.Style = MetroFramework.MetroColorStyle.Blue;
             textBox2.StyleManager = null;
             textBox2.TabIndex = 4;
-            textBox2.Text = "C:\\Users\\User\\AppData\\Local\\Microsoft\\VisualStudio\\17.0_09e0b232\\WinFormsDesigner\\riyi12hc.vvg\\Projects";
+            textBox2.Text = Directory.GetCurrentDirectory() + "\\Projects";
             textBox2.Theme = MetroFramework.MetroThemeStyle.Light;
             textBox2.UseStyleColors = false;
             // 

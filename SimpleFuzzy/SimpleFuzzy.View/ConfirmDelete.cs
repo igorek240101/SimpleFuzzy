@@ -32,7 +32,7 @@ namespace SimpleFuzzy.View
                 MessageBox.Show(ex.Message);
                 return;
             }
-            if (Parent is MainWindow parent) 
+            if (Parent is MainWindow parent)
             {
                 parent.OpenButtons();
                 parent.Locked();
@@ -40,7 +40,7 @@ namespace SimpleFuzzy.View
             Parent.Controls.Remove(this);
         }
 
-        private void button2_Click(object sender, EventArgs e) 
+        private void button2_Click(object sender, EventArgs e)
         {
             if (Parent is MainWindow parent) { parent.OpenButtons(); }
             Parent.Controls.Remove(this);
@@ -49,6 +49,11 @@ namespace SimpleFuzzy.View
         private void ConfirmDelete_Load(object sender, EventArgs e)
         {
             if (Parent is MainWindow parent) { parent.BlockButtons(); }
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
