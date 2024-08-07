@@ -64,14 +64,15 @@ namespace SimpleFuzzy.Service
             repositoryService.GetCollection<AssemblyLoadContext>().Add(assemblyContext);
             return assemblyContext;
         }
-        public void UnloadAssembly(string assemblyName, object sender, EventArgs e)
+        public void UnloadAssembly(string assemblyName)
         {
             bool loaded = false;
             foreach (var assemblyContext in repositoryService.GetCollection<AssemblyLoadContext>())
             {
                 if (assemblyContext.Assemblies.ElementAt(0).FullName == assemblyName)
                 {
-                    UseAssembly(sender, e);
+                    var e = new EventArgs();
+                    UseAssembly(assemblyContext, e);
                     loaded = true;
                     try
                     {
