@@ -160,9 +160,18 @@ namespace SimpleFuzzy.View
                     return;
                 }
             }
+            foreach(TreeNode node in treeView1.Nodes[2].Nodes)
+            {
+                if (node == e.Node)
+                {
+                    if (repositoryService.GetCollection<ISimulator>().Any(v => v.Active) && e.Node.Checked)
+                    {
+                        // открыть окно подтверждения
+                        return;
+                    }
+                }
+            }
             modules[e.Node.Text].Active = e.Node.Checked;
-            if (repositoryService.GetCollection<ISimulator>().Any(v => v.Active)) { }
-            else { }
         }
     }
 }
