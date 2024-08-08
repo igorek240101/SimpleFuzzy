@@ -102,7 +102,6 @@
             Name = "HelpWindow";
             Padding = new Padding(23, 80, 23, 27);
             Text = "Справка";
-            Load += HelpWindow_Load;
             ResumeLayout(false);
         }
 
