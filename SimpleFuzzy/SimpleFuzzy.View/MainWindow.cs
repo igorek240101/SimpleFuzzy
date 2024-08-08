@@ -14,8 +14,7 @@ namespace SimpleFuzzy.View
         public UserControl currentControl = null;
         IProjectListService projectList;
         private Button[] workspaceButtons;
-        public bool isContainSimulator = false; // содержание симуляций
-        public bool isDisableSimulator = false; // состояние кнопки включения симуляций
+        public bool isContainSimulator = false;
         bool IsShownToolTip1 = true;
         public MainWindow()
         {
@@ -93,7 +92,7 @@ namespace SimpleFuzzy.View
 
         private void button11_Click(object sender, EventArgs e)
         {
-            if (IsSimulationLoaded()) SwitchWorkspace(UserControlsEnum.Simulation, button11);
+            if (isContainSimulator) SwitchWorkspace(UserControlsEnum.Simulation, button11);
         }
         public void OpenLoader()
         {
@@ -174,6 +173,11 @@ namespace SimpleFuzzy.View
             GC.SuppressFinalize(this);
         }
 
+        public void EnableSimulationsButton(bool enable)
+        {
+            this.button11.Enabled = enable;
+        }
+
         public void SwichUserControl(UserControlsEnum? newWindowName)
         {
             var toRemove = this;
@@ -221,7 +225,7 @@ namespace SimpleFuzzy.View
 
             if (ctrl != null)
             {
-                if (ctrl == this.button11 && !IsShownToolTip1 && !IsSimulationLoaded())
+                if (ctrl == this.button11 && !IsShownToolTip1 && !isContainSimulator)
                 {
                     toolTip1.SetToolTip(this.button11, "Симуляция не загружена в проект или отключена в окне загрузчика");
                     string tipstring = this.toolTip1.GetToolTip(this.button11);

@@ -28,7 +28,6 @@ namespace SimpleFuzzy.View
             loadButton = new MetroFramework.Controls.MetroButton();
             messageTextBox = new MetroFramework.Controls.MetroTextBox();
             treeView1 = new TreeView();
-            checkBox1 = new CheckBox();
             SuspendLayout();
             // 
             // filePathTextBox
@@ -123,7 +122,6 @@ namespace SimpleFuzzy.View
             // LoaderForm
             // 
             BackColor = Color.White;
-            Controls.Add(checkBox1);
             Controls.Add(treeView1);
             Controls.Add(messageTextBox);
             Controls.Add(loadButton);
@@ -132,7 +130,6 @@ namespace SimpleFuzzy.View
             Name = "LoaderForm";
             Size = new Size(916, 477);
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -142,6 +139,5 @@ namespace SimpleFuzzy.View
         private MetroFramework.Controls.MetroButton loadButton;
         private MetroFramework.Controls.MetroTextBox messageTextBox;
         private TreeView treeView1;
-        private CheckBox checkBox1;
     }
 }
