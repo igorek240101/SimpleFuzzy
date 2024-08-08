@@ -220,8 +220,6 @@ namespace SimpleFuzzy.View
             toolTip1.SetToolTip(button11, "Симуляция не загружена в проект или отключена в окне загрузчика");
             button11.UseVisualStyleBackColor = true;
             button11.Click += button11_Click;
-            button11.MouseLeave += button11_MouseLeave;
-            button11.MouseHover += button11_MouseHover;
             // 
             // button12
             // 
@@ -264,7 +262,7 @@ namespace SimpleFuzzy.View
             // 
             // MainWindow
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
             Controls.Add(button12);

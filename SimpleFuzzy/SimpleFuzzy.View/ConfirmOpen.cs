@@ -28,7 +28,7 @@ namespace SimpleFuzzy.View
         {
             FolderBrowserDialog dialog = new FolderBrowserDialog();
             dialog.RootFolder = Environment.SpecialFolder.Desktop;
-            dialog.SelectedPath = Directory.GetCurrentDirectory() + "\\Projects";
+            dialog.SelectedPath = Directory.GetCurrentDirectory() + "\\Projects\\";
             if (dialog.ShowDialog() == DialogResult.Cancel) { return; }
             if (dialog.SelectedPath == "") { return; }
             try
@@ -67,7 +67,11 @@ namespace SimpleFuzzy.View
             if (Parent is MainWindow parent) { parent.BlockButtons(); }
             label2.Visible = false;
             string[] list = projectList.GiveList();
-            for (int i = 0; i < list.Length; i += 3) { listBox1.Items.Add(list[i]); }
+            for (int i = 1; i < list.Length; i += 3) 
+            {
+                if (Directory.Exists(list[i])) { listBox1.Items.Add(list[i - 1]); }
+                else {projectList.DeleteOnlyInList(list[i - 1]); }
+            }
             if (listBox1.Items.Count == 0)
             {
                 label2.Text = "Проектов пока нет, перейдите к созданию проекта";
