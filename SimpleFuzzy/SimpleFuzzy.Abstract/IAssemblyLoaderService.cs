@@ -1,5 +1,4 @@
-﻿using System.Runtime.Loader;
-
+﻿
 namespace SimpleFuzzy.Abstract
 {
     public interface IAssemblyLoaderService
