@@ -214,6 +214,10 @@ namespace SimpleFuzzy.View
             help.Show();
         }
 
+        private void Create_Click(object sender, EventArgs e)
+        {
+        }
+
         private void MainWindow_MouseMove(object sender, MouseEventArgs e)
         {
             Control ctrl = this.GetChildAtPoint(e.Location);
