@@ -1,4 +1,7 @@
-﻿namespace SimpleFuzzy.View
+﻿using MetroFramework;
+using MetroFramework.Components;
+
+namespace SimpleFuzzy.View
 {
     partial class AboutBox
     {
@@ -30,12 +33,11 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AboutBox));
             tableLayoutPanel = new TableLayoutPanel();
             logoPictureBox = new PictureBox();
-            labelProductName = new Label();
-            labelVersion = new Label();
-            labelCopyright = new Label();
-            labelCompanyName = new Label();
-            textBoxDescription = new TextBox();
-            okButton = new Button();
+            labelProductName = new MetroFramework.Controls.MetroLabel();
+            labelVersion = new MetroFramework.Controls.MetroLabel();
+            labelCopyright = new MetroFramework.Controls.MetroLabel();
+            labelCompanyName = new MetroFramework.Controls.MetroLabel();
+            okButton = new MetroFramework.Controls.MetroButton();
             tableLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)logoPictureBox).BeginInit();
             SuspendLayout();
@@ -50,10 +52,9 @@
             tableLayoutPanel.Controls.Add(labelVersion, 1, 1);
             tableLayoutPanel.Controls.Add(labelCopyright, 1, 2);
             tableLayoutPanel.Controls.Add(labelCompanyName, 1, 3);
-            tableLayoutPanel.Controls.Add(textBoxDescription, 1, 4);
             tableLayoutPanel.Controls.Add(okButton, 1, 5);
             tableLayoutPanel.Dock = DockStyle.Fill;
-            tableLayoutPanel.Location = new Point(12, 14);
+            tableLayoutPanel.Location = new Point(12, 60);
             tableLayoutPanel.Margin = new Padding(4, 5, 4, 5);
             tableLayoutPanel.Name = "tableLayoutPanel";
             tableLayoutPanel.RowCount = 6;
@@ -63,7 +64,7 @@
             tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
             tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
-            tableLayoutPanel.Size = new Size(556, 407);
+            tableLayoutPanel.Size = new Size(556, 361);
             tableLayoutPanel.TabIndex = 0;
             // 
             // logoPictureBox
@@ -74,83 +75,105 @@
             logoPictureBox.Margin = new Padding(4, 5, 4, 5);
             logoPictureBox.Name = "logoPictureBox";
             tableLayoutPanel.SetRowSpan(logoPictureBox, 6);
-            logoPictureBox.Size = new Size(175, 397);
+            logoPictureBox.Size = new Size(175, 351);
             logoPictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
             logoPictureBox.TabIndex = 12;
             logoPictureBox.TabStop = false;
             // 
             // labelProductName
             // 
+            labelProductName.CustomBackground = false;
             labelProductName.Dock = DockStyle.Fill;
+            labelProductName.FontSize = MetroLabelSize.Medium;
+            labelProductName.FontWeight = MetroLabelWeight.Bold;
+            labelProductName.LabelMode = MetroFramework.Controls.MetroLabelMode.Default;
             labelProductName.Location = new Point(191, 0);
             labelProductName.Margin = new Padding(8, 0, 4, 0);
             labelProductName.MaximumSize = new Size(0, 26);
             labelProductName.Name = "labelProductName";
             labelProductName.Size = new Size(361, 26);
+            labelProductName.Style = MetroColorStyle.Blue;
+            labelProductName.StyleManager = null;
             labelProductName.TabIndex = 19;
             labelProductName.Text = "Название продукта";
             labelProductName.TextAlign = ContentAlignment.MiddleLeft;
+            labelProductName.Theme = MetroThemeStyle.Light;
+            labelProductName.UseStyleColors = false;
             // 
             // labelVersion
             // 
+            labelVersion.CustomBackground = false;
             labelVersion.Dock = DockStyle.Fill;
-            labelVersion.Location = new Point(191, 40);
+            labelVersion.FontSize = MetroLabelSize.Medium;
+            labelVersion.FontWeight = MetroLabelWeight.Regular;
+            labelVersion.LabelMode = MetroFramework.Controls.MetroLabelMode.Default;
+            labelVersion.Location = new Point(191, 36);
             labelVersion.Margin = new Padding(8, 0, 4, 0);
             labelVersion.MaximumSize = new Size(0, 26);
             labelVersion.Name = "labelVersion";
             labelVersion.Size = new Size(361, 26);
+            labelVersion.Style = MetroColorStyle.Blue;
+            labelVersion.StyleManager = null;
             labelVersion.TabIndex = 0;
             labelVersion.Text = "Версия";
             labelVersion.TextAlign = ContentAlignment.MiddleLeft;
+            labelVersion.Theme = MetroThemeStyle.Light;
+            labelVersion.UseStyleColors = false;
             // 
             // labelCopyright
             // 
+            labelCopyright.CustomBackground = false;
             labelCopyright.Dock = DockStyle.Fill;
-            labelCopyright.Location = new Point(191, 80);
+            labelCopyright.FontSize = MetroLabelSize.Medium;
+            labelCopyright.FontWeight = MetroLabelWeight.Regular;
+            labelCopyright.LabelMode = MetroFramework.Controls.MetroLabelMode.Default;
+            labelCopyright.Location = new Point(191, 72);
             labelCopyright.Margin = new Padding(8, 0, 4, 0);
             labelCopyright.MaximumSize = new Size(0, 26);
             labelCopyright.Name = "labelCopyright";
             labelCopyright.Size = new Size(361, 26);
+            labelCopyright.Style = MetroColorStyle.Blue;
+            labelCopyright.StyleManager = null;
             labelCopyright.TabIndex = 21;
             labelCopyright.Text = "Авторские права";
             labelCopyright.TextAlign = ContentAlignment.MiddleLeft;
+            labelCopyright.Theme = MetroThemeStyle.Light;
+            labelCopyright.UseStyleColors = false;
             // 
             // labelCompanyName
             // 
+            labelCompanyName.CustomBackground = false;
             labelCompanyName.Dock = DockStyle.Fill;
-            labelCompanyName.Location = new Point(191, 120);
+            labelCompanyName.FontSize = MetroLabelSize.Medium;
+            labelCompanyName.FontWeight = MetroLabelWeight.Regular;
+            labelCompanyName.LabelMode = MetroFramework.Controls.MetroLabelMode.Default;
+            labelCompanyName.Location = new Point(191, 108);
             labelCompanyName.Margin = new Padding(8, 0, 4, 0);
             labelCompanyName.MaximumSize = new Size(0, 26);
             labelCompanyName.Name = "labelCompanyName";
             labelCompanyName.Size = new Size(361, 26);
+            labelCompanyName.Style = MetroColorStyle.Blue;
+            labelCompanyName.StyleManager = null;
             labelCompanyName.TabIndex = 22;
             labelCompanyName.Text = "Название организации";
             labelCompanyName.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // textBoxDescription
-            // 
-            textBoxDescription.Dock = DockStyle.Fill;
-            textBoxDescription.Location = new Point(191, 165);
-            textBoxDescription.Margin = new Padding(8, 5, 4, 5);
-            textBoxDescription.Multiline = true;
-            textBoxDescription.Name = "textBoxDescription";
-            textBoxDescription.ReadOnly = true;
-            textBoxDescription.ScrollBars = ScrollBars.Both;
-            textBoxDescription.Size = new Size(361, 193);
-            textBoxDescription.TabIndex = 23;
-            textBoxDescription.TabStop = false;
-            textBoxDescription.Text = "Описание";
+            labelCompanyName.Theme = MetroThemeStyle.Light;
+            labelCompanyName.UseStyleColors = false;
             // 
             // okButton
             // 
             okButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             okButton.DialogResult = DialogResult.Cancel;
-            okButton.Location = new Point(452, 368);
+            okButton.Highlight = true;
+            okButton.Location = new Point(452, 329);
             okButton.Margin = new Padding(4, 5, 4, 5);
             okButton.Name = "okButton";
-            okButton.Size = new Size(100, 34);
+            okButton.Size = new Size(100, 27);
+            okButton.Style = MetroColorStyle.Green;
+            okButton.StyleManager = null;
             okButton.TabIndex = 24;
             okButton.Text = "&ОК";
+            okButton.Theme = MetroThemeStyle.Light;
             // 
             // AboutBox
             // 
@@ -159,23 +182,16 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(580, 435);
             Controls.Add(tableLayoutPanel);
-            FormBorderStyle = FormBorderStyle.FixedDialog;
+            Location = new Point(0, 0);
             Margin = new Padding(4, 5, 4, 5);
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "AboutBox";
-            Padding = new Padding(12, 14, 12, 14);
+            Padding = new Padding(12, 60, 12, 14);
             ShowIcon = false;
             ShowInTaskbar = false;
             StartPosition = FormStartPosition.CenterParent;
-            Text = String.Format("О программе {0}", AssemblyTitle); 
-            labelProductName.Text = AssemblyProduct; 
-            labelVersion.Text = String.Format("Версия {0}", AssemblyVersion); 
-            labelCopyright.Text = AssemblyCopyright; 
-            labelCompanyName.Text = AssemblyCompany;
-            textBoxDescription.Text = AssemblyDescription;
             tableLayoutPanel.ResumeLayout(false);
-            tableLayoutPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)logoPictureBox).EndInit();
             ResumeLayout(false);
         }
@@ -184,11 +200,11 @@
 
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel;
         private System.Windows.Forms.PictureBox logoPictureBox;
-        private System.Windows.Forms.Label labelProductName;
-        private System.Windows.Forms.Label labelVersion;
-        private System.Windows.Forms.Label labelCopyright;
-        private System.Windows.Forms.Label labelCompanyName;
-        private System.Windows.Forms.TextBox textBoxDescription;
-        private System.Windows.Forms.Button okButton;
+        private MetroFramework.Controls.MetroLabel labelProductName;
+        private MetroFramework.Controls.MetroLabel labelVersion;
+        private MetroFramework.Controls.MetroLabel labelCopyright;
+        private MetroFramework.Controls.MetroLabel labelCompanyName;
+        private MetroFramework.Controls.MetroTextBox textBoxDescription;
+        private MetroFramework.Controls.MetroButton okButton;
     }
 }

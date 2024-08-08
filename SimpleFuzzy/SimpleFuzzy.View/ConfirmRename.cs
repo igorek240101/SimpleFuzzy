@@ -11,10 +11,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using MetroFramework.Controls;
+using MetroFramework.Forms;
 
 namespace SimpleFuzzy.View
 {
-    public partial class ConfirmRename : UserControl
+    public partial class ConfirmRename : MetroUserControl
     {
         IProjectListService projectList;
         public ConfirmRename()

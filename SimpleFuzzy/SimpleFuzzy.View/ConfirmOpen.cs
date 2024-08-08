@@ -11,10 +11,12 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
+using MetroFramework.Controls;
+using MetroFramework.Forms;
 
 namespace SimpleFuzzy.View
 {
-    public partial class ConfirmOpen : UserControl
+    public partial class ConfirmOpen : MetroUserControl
     {
         IProjectListService projectList;
         public ConfirmOpen()

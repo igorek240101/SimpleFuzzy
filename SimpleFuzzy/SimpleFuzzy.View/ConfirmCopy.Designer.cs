@@ -28,57 +28,85 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
-            button1 = new Button();
-            textBox1 = new TextBox();
-            button2 = new Button();
-            button3 = new Button();
+            label1 = new MetroFramework.Controls.MetroLabel();
+            button1 = new MetroFramework.Controls.MetroButton();
+            textBox1 = new MetroFramework.Controls.MetroTextBox();
+            button2 = new MetroFramework.Controls.MetroButton();
+            button3 = new MetroFramework.Controls.MetroButton();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(8, 125);
+            label1.CustomBackground = false;
+            label1.FontSize = MetroFramework.MetroLabelSize.Medium;
+            label1.FontWeight = MetroFramework.MetroLabelWeight.Light;
+            label1.LabelMode = MetroFramework.Controls.MetroLabelMode.Default;
+            label1.Location = new Point(8, 173);
             label1.Name = "label1";
-            label1.Size = new Size(112, 20);
+            label1.Size = new Size(105, 20);
+            label1.Style = MetroFramework.MetroColorStyle.Blue;
+            label1.StyleManager = null;
             label1.TabIndex = 0;
             label1.Text = "Расположение";
+            label1.Theme = MetroFramework.MetroThemeStyle.Light;
+            label1.UseStyleColors = false;
             // 
             // button1
             // 
-            button1.Location = new Point(391, 121);
+            button1.Highlight = false;
+            button1.Location = new Point(391, 170);
             button1.Name = "button1";
-            button1.Size = new Size(94, 29);
+            button1.Size = new Size(134, 29);
+            button1.Style = MetroFramework.MetroColorStyle.Blue;
+            button1.StyleManager = null;
             button1.TabIndex = 1;
             button1.Text = "Открыть проводник";
+            button1.Theme = MetroFramework.MetroThemeStyle.Light;
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(117, 122);
+            textBox1.FontSize = MetroFramework.MetroTextBoxSize.Small;
+            textBox1.FontWeight = MetroFramework.MetroTextBoxWeight.Regular;
+            textBox1.Location = new Point(117, 170);
+            textBox1.Multiline = false;
             textBox1.Name = "textBox1";
+            textBox1.SelectedText = "";
             textBox1.Size = new Size(268, 27);
+            textBox1.Style = MetroFramework.MetroColorStyle.Blue;
+            textBox1.StyleManager = null;
             textBox1.TabIndex = 2;
-            textBox1.Text = Directory.GetCurrentDirectory() + "\\Projects";
+            textBox1.Text = "C:\\Users\\User\\AppData\\Local\\Microsoft\\VisualStudio\\17.0_09e0b232\\WinFormsDesigner\\a1bqzmsp.eov\\Projects";
+            textBox1.Theme = MetroFramework.MetroThemeStyle.Light;
+            textBox1.UseStyleColors = false;
             // 
             // button2
             // 
-            button2.Location = new Point(38, 171);
+            button2.Highlight = false;
+            button2.Location = new Point(117, 203);
             button2.Name = "button2";
             button2.Size = new Size(94, 29);
+            button2.Style = MetroFramework.MetroColorStyle.Blue;
+            button2.StyleManager = null;
             button2.TabIndex = 3;
             button2.Text = "Готово";
+            button2.Theme = MetroFramework.MetroThemeStyle.Light;
             button2.UseVisualStyleBackColor = true;
             button2.Click += button2_Click;
             // 
             // button3
             // 
-            button3.Location = new Point(138, 171);
+            button3.Highlight = false;
+            button3.Location = new Point(217, 203);
             button3.Name = "button3";
             button3.Size = new Size(94, 29);
+            button3.Style = MetroFramework.MetroColorStyle.Blue;
+            button3.StyleManager = null;
             button3.TabIndex = 4;
             button3.Text = "Отмена";
+            button3.Theme = MetroFramework.MetroThemeStyle.Light;
             button3.UseVisualStyleBackColor = true;
             button3.Click += button3_Click;
             // 
@@ -100,10 +128,10 @@
 
         #endregion
 
-        private Label label1;
-        private Button button1;
-        private TextBox textBox1;
-        private Button button2;
-        private Button button3;
+        private MetroFramework.Controls.MetroLabel label1;
+        private MetroFramework.Controls.MetroButton button1;
+        private MetroFramework.Controls.MetroTextBox textBox1;
+        private MetroFramework.Controls.MetroButton button2;
+        private MetroFramework.Controls.MetroButton button3;
     }
 }

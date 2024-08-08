@@ -45,7 +45,8 @@
             // 
             // treeView1
             // 
-            treeView1.Location = new Point(12, 12);
+            treeView1.Location = new Point(14, 66);
+            treeView1.Margin = new Padding(3, 4, 3, 4);
             treeView1.Name = "treeView1";
             treeNode1.Name = "Create";
             treeNode1.Text = "1. Создать";
@@ -85,18 +86,21 @@
             treeNode12.ToolTipText = "Симулирует";
             treeView1.Nodes.AddRange(new TreeNode[] { treeNode7, treeNode8, treeNode9, treeNode10, treeNode11, treeNode12 });
             treeView1.ShowNodeToolTips = true;
-            treeView1.Size = new Size(216, 224);
+            treeView1.Size = new Size(246, 247);
             treeView1.TabIndex = 1;
             // 
             // HelpWindow
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(238, 251);
+            ClientSize = new Size(272, 335);
             Controls.Add(treeView1);
+            Location = new Point(0, 0);
+            Margin = new Padding(3, 4, 3, 4);
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "HelpWindow";
+            Padding = new Padding(23, 80, 23, 27);
             Text = "Справка";
             ResumeLayout(false);
         }

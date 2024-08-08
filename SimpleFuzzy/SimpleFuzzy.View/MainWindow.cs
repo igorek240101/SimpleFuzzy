@@ -2,12 +2,13 @@ using SimpleFuzzy.Abstract;
 using SimpleFuzzy.Service;
 using System;
 using System.Windows.Forms;
-
+using MetroFramework.Controls;
+using MetroFramework.Forms;
 
 namespace SimpleFuzzy.View
 {
     public delegate UserControl ControlConstruct();
-    public partial class MainWindow : Form
+    public partial class MainWindow : MetroForm
     {
         Dictionary<UserControlsEnum, ControlConstruct> UserControls = new Dictionary<UserControlsEnum, ControlConstruct>();
         public UserControl currentControl = null;
@@ -197,6 +198,7 @@ namespace SimpleFuzzy.View
             HelpWindow help = new HelpWindow(this);
             help.Show();
         }
+
 
         private void MainWindow_MouseMove(object sender, MouseEventArgs e)
         {
