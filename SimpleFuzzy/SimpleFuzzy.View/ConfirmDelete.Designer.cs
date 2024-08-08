@@ -35,7 +35,7 @@
             // 
             // button1
             // 
-            button1.Location = new Point(31, 113);
+            button1.Location = new Point(23, 109);
             button1.Name = "button1";
             button1.Size = new Size(94, 29);
             button1.TabIndex = 0;
@@ -45,7 +45,7 @@
             // 
             // button2
             // 
-            button2.Location = new Point(163, 113);
+            button2.Location = new Point(155, 109);
             button2.Name = "button2";
             button2.Size = new Size(94, 29);
             button2.TabIndex = 1;
@@ -56,9 +56,9 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(18, 39);
+            label1.Location = new Point(23, 70);
             label1.Name = "label1";
-            label1.Size = new Size(50, 20);
+            label1.Size = new Size(465, 20);
             label1.TabIndex = 2;
             label1.Text = "Вы действительно хотите безвозвратно удалить текущий проект?";
             // 
@@ -70,7 +70,7 @@
             Controls.Add(button2);
             Controls.Add(button1);
             Name = "ConfirmDelete";
-            Size = new Size(343, 189);
+            Size = new Size(561, 242);
             Load += ConfirmDelete_Load;
             ResumeLayout(false);
             PerformLayout();

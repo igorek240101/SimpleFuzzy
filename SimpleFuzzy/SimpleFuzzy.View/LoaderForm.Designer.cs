@@ -1,4 +1,6 @@
 ﻿
+using System.Windows.Forms;
+
 namespace SimpleFuzzy.View 
 { 
     partial class LoaderForm
@@ -26,6 +28,9 @@ namespace SimpleFuzzy.View
             loadButton = new MetroFramework.Controls.MetroButton();
             messageTextBox = new MetroFramework.Controls.MetroTextBox();
             treeView1 = new TreeView();
+            checkBox1 = new CheckBox();
+            dllListView = new ListView();
+            FileName = new ColumnHeader();
             SuspendLayout();
             // 
             // filePathTextBox
@@ -89,29 +94,57 @@ namespace SimpleFuzzy.View
             // 
             // treeView1
             // 
+            treeView1.CheckBoxes = true;
             treeView1.Location = new Point(23, 227);
             treeView1.Name = "treeView1";
+            treeNode1.Checked = true;
             treeNode1.Name = "";
             treeNode1.Text = "Термы";
+            treeNode2.Checked = true;
             treeNode2.Name = "";
             treeNode2.Text = "Базовые множества";
             treeNode3.Name = "";
             treeNode3.Text = "Симуляции";
             treeView1.Nodes.AddRange(new TreeNode[] { treeNode1, treeNode2, treeNode3 });
-            treeView1.Size = new Size(240, 145);
+            treeView1.ShowNodeToolTips = true;
+            treeView1.Size = new Size(277, 155);
             treeView1.TabIndex = 4;
+            treeView1.AfterCheck += treeView1_AfterCheck;
+            // 
+            // checkBox1
+            // 
+            checkBox1.AutoSize = true;
+            checkBox1.Location = new Point(23, 388);
+            checkBox1.Name = "checkBox1";
+            checkBox1.Size = new Size(187, 24);
+            checkBox1.TabIndex = 5;
+            checkBox1.Text = "Отключить симуляции";
+            checkBox1.UseVisualStyleBackColor = true;
+            checkBox1.CheckedChanged += checkBox1_CheckedChanged;
+            // 
+            // listView1
+            // 
+            dllListView.Columns.AddRange(new ColumnHeader[] { FileName });
+            dllListView.Location = new Point(647, 148);
+            dllListView.Name = "listView1";
+            dllListView.Size = new Size(222, 332);
+            dllListView.TabIndex = 6;
+            dllListView.UseCompatibleStateImageBehavior = false;
             // 
             // LoaderForm
             // 
             BackColor = Color.White;
+            Controls.Add(dllListView);
+            Controls.Add(checkBox1);
             Controls.Add(treeView1);
             Controls.Add(messageTextBox);
             Controls.Add(loadButton);
             Controls.Add(browseButton);
             Controls.Add(filePathTextBox);
             Name = "LoaderForm";
-            Size = new Size(562, 456);
+            Size = new Size(989, 728);
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -121,5 +154,8 @@ namespace SimpleFuzzy.View
         private MetroFramework.Controls.MetroButton loadButton;
         private MetroFramework.Controls.MetroTextBox messageTextBox;
         private TreeView treeView1;
+        private CheckBox checkBox1;
+        public ListView dllListView;
+        private ColumnHeader FileName;
     }
 }
