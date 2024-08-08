@@ -39,7 +39,7 @@
             // button1
             // 
             button1.Highlight = false;
-            button1.Location = new Point(423, 189);
+            button1.Location = new Point(422, 224);
             button1.Name = "button1";
             button1.Size = new Size(171, 29);
             button1.Style = MetroFramework.MetroColorStyle.Blue;
@@ -53,7 +53,7 @@
             // button2
             // 
             button2.Highlight = false;
-            button2.Location = new Point(423, 224);
+            button2.Location = new Point(422, 259);
             button2.Name = "button2";
             button2.Size = new Size(94, 29);
             button2.Style = MetroFramework.MetroColorStyle.Blue;
@@ -68,7 +68,7 @@
             // 
             listBox1.FormattingEnabled = true;
             listBox1.ItemHeight = 20;
-            listBox1.Location = new Point(9, 136);
+            listBox1.Location = new Point(8, 171);
             listBox1.Name = "listBox1";
             listBox1.ScrollAlwaysVisible = true;
             listBox1.Size = new Size(408, 284);
@@ -79,7 +79,7 @@
             // 
             textBox1.FontSize = MetroFramework.MetroTextBoxSize.Small;
             textBox1.FontWeight = MetroFramework.MetroTextBoxWeight.Regular;
-            textBox1.Location = new Point(576, 133);
+            textBox1.Location = new Point(575, 168);
             textBox1.Multiline = false;
             textBox1.Name = "textBox1";
             textBox1.SelectedText = "";
@@ -98,7 +98,7 @@
             label1.FontSize = MetroFramework.MetroLabelSize.Medium;
             label1.FontWeight = MetroFramework.MetroLabelWeight.Light;
             label1.LabelMode = MetroFramework.Controls.MetroLabelMode.Default;
-            label1.Location = new Point(423, 136);
+            label1.Location = new Point(422, 171);
             label1.Name = "label1";
             label1.Size = new Size(147, 20);
             label1.Style = MetroFramework.MetroColorStyle.Blue;
@@ -115,7 +115,7 @@
             label2.FontSize = MetroFramework.MetroLabelSize.Medium;
             label2.FontWeight = MetroFramework.MetroLabelWeight.Light;
             label2.LabelMode = MetroFramework.Controls.MetroLabelMode.Default;
-            label2.Location = new Point(424, 163);
+            label2.Location = new Point(423, 198);
             label2.Name = "label2";
             label2.Size = new Size(46, 20);
             label2.Style = MetroFramework.MetroColorStyle.Blue;
@@ -136,7 +136,7 @@
             Controls.Add(button2);
             Controls.Add(button1);
             Name = "ConfirmOpen";
-            Size = new Size(823, 425);
+            Size = new Size(823, 461);
             Load += ConfirmOpen_Load;
             ResumeLayout(false);
             PerformLayout();

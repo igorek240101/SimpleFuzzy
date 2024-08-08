@@ -25,7 +25,6 @@ namespace SimpleFuzzy.View
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
             folderBrowserDialog1 = new FolderBrowserDialog();
-            Create = new MetroButton();
             button1 = new MetroButton();
             button2 = new MetroButton();
             button3 = new MetroButton();
@@ -44,24 +43,13 @@ namespace SimpleFuzzy.View
             ((System.ComponentModel.ISupportInitialize)logoBox).BeginInit();
             SuspendLayout();
             // 
-            // Create
-            // 
-            Create.Highlight = false;
-            Create.Location = new Point(9, 63);
-            Create.Name = "Create";
-            Create.Size = new Size(75, 23);
-            Create.Style = MetroFramework.MetroColorStyle.Blue;
-            Create.StyleManager = null;
-            Create.TabIndex = 7;
-            Create.Theme = MetroFramework.MetroThemeStyle.Light;
-            Create.Click += Create_Click;
-            // 
             // button1
             // 
             button1.Highlight = false;
-            button1.Location = new Point(9, 63);
+            button1.Location = new Point(6, 72);
+            button1.Margin = new Padding(3, 4, 3, 4);
             button1.Name = "button1";
-            button1.Size = new Size(94, 29);
+            button1.Size = new Size(107, 39);
             button1.Style = MetroFramework.MetroColorStyle.Blue;
             button1.StyleManager = null;
             button1.TabIndex = 1;
@@ -73,9 +61,10 @@ namespace SimpleFuzzy.View
             // button2
             // 
             button2.Highlight = false;
-            button2.Location = new Point(109, 63);
+            button2.Location = new Point(121, 72);
+            button2.Margin = new Padding(3, 4, 3, 4);
             button2.Name = "button2";
-            button2.Size = new Size(94, 29);
+            button2.Size = new Size(107, 39);
             button2.Style = MetroFramework.MetroColorStyle.Blue;
             button2.StyleManager = null;
             button2.TabIndex = 2;
@@ -88,9 +77,10 @@ namespace SimpleFuzzy.View
             // 
             button3.Enabled = false;
             button3.Highlight = false;
-            button3.Location = new Point(209, 63);
+            button3.Location = new Point(235, 72);
+            button3.Margin = new Padding(3, 4, 3, 4);
             button3.Name = "button3";
-            button3.Size = new Size(94, 29);
+            button3.Size = new Size(107, 39);
             button3.Style = MetroFramework.MetroColorStyle.Blue;
             button3.StyleManager = null;
             button3.TabIndex = 3;
@@ -103,9 +93,10 @@ namespace SimpleFuzzy.View
             // 
             button4.Enabled = false;
             button4.Highlight = false;
-            button4.Location = new Point(309, 63);
+            button4.Location = new Point(349, 72);
+            button4.Margin = new Padding(3, 4, 3, 4);
             button4.Name = "button4";
-            button4.Size = new Size(94, 29);
+            button4.Size = new Size(107, 39);
             button4.Style = MetroFramework.MetroColorStyle.Blue;
             button4.StyleManager = null;
             button4.TabIndex = 4;
@@ -118,9 +109,10 @@ namespace SimpleFuzzy.View
             // 
             button5.Enabled = false;
             button5.Highlight = false;
-            button5.Location = new Point(409, 63);
+            button5.Location = new Point(463, 72);
+            button5.Margin = new Padding(3, 4, 3, 4);
             button5.Name = "button5";
-            button5.Size = new Size(94, 29);
+            button5.Size = new Size(107, 39);
             button5.Style = MetroFramework.MetroColorStyle.Blue;
             button5.StyleManager = null;
             button5.TabIndex = 5;
@@ -133,9 +125,10 @@ namespace SimpleFuzzy.View
             // 
             button6.Enabled = false;
             button6.Highlight = false;
-            button6.Location = new Point(509, 63);
+            button6.Location = new Point(578, 72);
+            button6.Margin = new Padding(3, 4, 3, 4);
             button6.Name = "button6";
-            button6.Size = new Size(94, 29);
+            button6.Size = new Size(107, 39);
             button6.Style = MetroFramework.MetroColorStyle.Blue;
             button6.StyleManager = null;
             button6.TabIndex = 6;
@@ -147,10 +140,10 @@ namespace SimpleFuzzy.View
             // button7
             // 
             button7.Highlight = false;
-            button7.Location = new Point(9, 97);
-            button7.Margin = new Padding(2);
+            button7.Location = new Point(6, 117);
+            button7.Margin = new Padding(2, 3, 2, 3);
             button7.Name = "button7";
-            button7.Size = new Size(139, 29);
+            button7.Size = new Size(159, 39);
             button7.Style = MetroFramework.MetroColorStyle.Blue;
             button7.StyleManager = null;
             button7.TabIndex = 8;
@@ -162,10 +155,10 @@ namespace SimpleFuzzy.View
             // button8
             // 
             button8.Highlight = false;
-            button8.Location = new Point(152, 97);
-            button8.Margin = new Padding(2);
+            button8.Location = new Point(170, 117);
+            button8.Margin = new Padding(2, 3, 2, 3);
             button8.Name = "button8";
-            button8.Size = new Size(139, 29);
+            button8.Size = new Size(159, 39);
             button8.Style = MetroFramework.MetroColorStyle.Blue;
             button8.StyleManager = null;
             button8.TabIndex = 9;
@@ -177,10 +170,10 @@ namespace SimpleFuzzy.View
             // button9
             // 
             button9.Highlight = false;
-            button9.Location = new Point(295, 97);
-            button9.Margin = new Padding(2);
+            button9.Location = new Point(333, 117);
+            button9.Margin = new Padding(2, 3, 2, 3);
             button9.Name = "button9";
-            button9.Size = new Size(139, 29);
+            button9.Size = new Size(159, 39);
             button9.Style = MetroFramework.MetroColorStyle.Blue;
             button9.StyleManager = null;
             button9.TabIndex = 10;
@@ -192,10 +185,10 @@ namespace SimpleFuzzy.View
             // button10
             // 
             button10.Highlight = false;
-            button10.Location = new Point(437, 97);
-            button10.Margin = new Padding(2);
+            button10.Location = new Point(495, 117);
+            button10.Margin = new Padding(2, 3, 2, 3);
             button10.Name = "button10";
-            button10.Size = new Size(139, 29);
+            button10.Size = new Size(159, 39);
             button10.Style = MetroFramework.MetroColorStyle.Blue;
             button10.StyleManager = null;
             button10.TabIndex = 11;
@@ -207,11 +200,11 @@ namespace SimpleFuzzy.View
             // button11
             // 
             button11.Highlight = false;
-            button11.Location = new Point(580, 97);
-            button11.Margin = new Padding(2);
+            button11.Location = new Point(659, 117);
+            button11.Margin = new Padding(2, 3, 2, 3);
             button11.Name = "button11";
             button11.RightToLeft = RightToLeft.No;
-            button11.Size = new Size(139, 29);
+            button11.Size = new Size(159, 39);
             button11.Style = MetroFramework.MetroColorStyle.Blue;
             button11.StyleManager = null;
             button11.TabIndex = 12;
@@ -225,9 +218,10 @@ namespace SimpleFuzzy.View
             // 
             button12.AutoEllipsis = true;
             button12.Highlight = false;
-            button12.Location = new Point(609, 63);
+            button12.Location = new Point(692, 72);
+            button12.Margin = new Padding(3, 4, 3, 4);
             button12.Name = "button12";
-            button12.Size = new Size(94, 29);
+            button12.Size = new Size(107, 39);
             button12.Style = MetroFramework.MetroColorStyle.Blue;
             button12.StyleManager = null;
             button12.TabIndex = 8;
@@ -239,9 +233,10 @@ namespace SimpleFuzzy.View
             // logoBox
             // 
             logoBox.Image = (Image)resources.GetObject("logoBox.Image");
-            logoBox.Location = new Point(55, 13);
+            logoBox.Location = new Point(61, 9);
+            logoBox.Margin = new Padding(3, 4, 3, 4);
             logoBox.Name = "logoBox";
-            logoBox.Size = new Size(396, 44);
+            logoBox.Size = new Size(453, 59);
             logoBox.SizeMode = PictureBoxSizeMode.Zoom;
             logoBox.TabIndex = 0;
             logoBox.TabStop = false;
@@ -249,9 +244,10 @@ namespace SimpleFuzzy.View
             // button13
             // 
             button13.Highlight = false;
-            button13.Location = new Point(709, 63);
+            button13.Location = new Point(806, 72);
+            button13.Margin = new Padding(3, 4, 3, 4);
             button13.Name = "button13";
-            button13.Size = new Size(85, 29);
+            button13.Size = new Size(97, 39);
             button13.Style = MetroFramework.MetroColorStyle.Blue;
             button13.StyleManager = null;
             button13.TabIndex = 9;
@@ -262,9 +258,9 @@ namespace SimpleFuzzy.View
             // 
             // MainWindow
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(914, 600);
             Controls.Add(button12);
             Controls.Add(button11);
             Controls.Add(button10);
@@ -278,10 +274,11 @@ namespace SimpleFuzzy.View
             Controls.Add(button3);
             Controls.Add(button2);
             Controls.Add(button1);
-            Controls.Add(Create);
             Controls.Add(logoBox);
             Location = new Point(0, 0);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "MainWindow";
+            Padding = new Padding(23, 80, 23, 27);
             ((System.ComponentModel.ISupportInitialize)logoBox).EndInit();
             ResumeLayout(false);
         }
@@ -289,7 +286,6 @@ namespace SimpleFuzzy.View
         #endregion
 
         private FolderBrowserDialog folderBrowserDialog1;
-        private MetroFramework.Controls.MetroButton Create;
         private MetroFramework.Controls.MetroButton button1;
         private MetroFramework.Controls.MetroButton button2;
         private MetroFramework.Controls.MetroButton button3;

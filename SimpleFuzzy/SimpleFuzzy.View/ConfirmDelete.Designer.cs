@@ -36,7 +36,7 @@
             // button1
             // 
             button1.Highlight = false;
-            button1.Location = new Point(13, 160);
+            button1.Location = new Point(16, 184);
             button1.Name = "button1";
             button1.Size = new Size(94, 29);
             button1.Style = MetroFramework.MetroColorStyle.Blue;
@@ -54,7 +54,7 @@
             label1.FontSize = MetroFramework.MetroLabelSize.Medium;
             label1.FontWeight = MetroFramework.MetroLabelWeight.Light;
             label1.LabelMode = MetroFramework.Controls.MetroLabelMode.Default;
-            label1.Location = new Point(13, 137);
+            label1.Location = new Point(16, 161);
             label1.Name = "label1";
             label1.Size = new Size(436, 20);
             label1.Style = MetroFramework.MetroColorStyle.Blue;
@@ -63,12 +63,11 @@
             label1.Text = "Вы действительно хотите безвозвратно удалить текущий проект?";
             label1.Theme = MetroFramework.MetroThemeStyle.Light;
             label1.UseStyleColors = false;
-            label1.Click += label1_Click;
             // 
             // button2
             // 
             button2.Highlight = false;
-            button2.Location = new Point(355, 160);
+            button2.Location = new Point(358, 184);
             button2.Name = "button2";
             button2.Size = new Size(94, 29);
             button2.Style = MetroFramework.MetroColorStyle.Blue;
@@ -87,7 +86,7 @@
             Controls.Add(button2);
             Controls.Add(button1);
             Name = "ConfirmDelete";
-            Size = new Size(561, 242);
+            Size = new Size(561, 275);
             Load += ConfirmDelete_Load;
             ResumeLayout(false);
             PerformLayout();

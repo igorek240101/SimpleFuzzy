@@ -42,7 +42,7 @@
             label1.FontSize = MetroFramework.MetroLabelSize.Medium;
             label1.FontWeight = MetroFramework.MetroLabelWeight.Light;
             label1.LabelMode = MetroFramework.Controls.MetroLabelMode.Default;
-            label1.Location = new Point(11, 135);
+            label1.Location = new Point(8, 173);
             label1.Name = "label1";
             label1.Size = new Size(105, 20);
             label1.Style = MetroFramework.MetroColorStyle.Blue;
@@ -55,7 +55,7 @@
             // button1
             // 
             button1.Highlight = false;
-            button1.Location = new Point(394, 132);
+            button1.Location = new Point(391, 170);
             button1.Name = "button1";
             button1.Size = new Size(134, 29);
             button1.Style = MetroFramework.MetroColorStyle.Blue;
@@ -70,7 +70,7 @@
             // 
             textBox1.FontSize = MetroFramework.MetroTextBoxSize.Small;
             textBox1.FontWeight = MetroFramework.MetroTextBoxWeight.Regular;
-            textBox1.Location = new Point(120, 132);
+            textBox1.Location = new Point(117, 170);
             textBox1.Multiline = false;
             textBox1.Name = "textBox1";
             textBox1.SelectedText = "";
@@ -85,7 +85,7 @@
             // button2
             // 
             button2.Highlight = false;
-            button2.Location = new Point(120, 165);
+            button2.Location = new Point(117, 203);
             button2.Name = "button2";
             button2.Size = new Size(94, 29);
             button2.Style = MetroFramework.MetroColorStyle.Blue;
@@ -99,7 +99,7 @@
             // button3
             // 
             button3.Highlight = false;
-            button3.Location = new Point(220, 165);
+            button3.Location = new Point(217, 203);
             button3.Name = "button3";
             button3.Size = new Size(94, 29);
             button3.Style = MetroFramework.MetroColorStyle.Blue;

@@ -38,7 +38,7 @@ namespace SimpleFuzzy.View
             filePathTextBox.FontSize = MetroFramework.MetroTextBoxSize.Small;
             filePathTextBox.FontWeight = MetroFramework.MetroTextBoxWeight.Regular;
             filePathTextBox.ForeColor = Color.Black;
-            filePathTextBox.Location = new Point(306, 142);
+            filePathTextBox.Location = new Point(301, 171);
             filePathTextBox.Multiline = false;
             filePathTextBox.Name = "filePathTextBox";
             filePathTextBox.SelectedText = "";
@@ -52,7 +52,7 @@ namespace SimpleFuzzy.View
             // browseButton
             // 
             browseButton.Highlight = false;
-            browseButton.Location = new Point(694, 142);
+            browseButton.Location = new Point(689, 171);
             browseButton.Name = "browseButton";
             browseButton.Size = new Size(100, 23);
             browseButton.Style = MetroFramework.MetroColorStyle.Blue;
@@ -65,7 +65,7 @@ namespace SimpleFuzzy.View
             // loadButton
             // 
             loadButton.Highlight = false;
-            loadButton.Location = new Point(306, 171);
+            loadButton.Location = new Point(301, 200);
             loadButton.Name = "loadButton";
             loadButton.Size = new Size(200, 39);
             loadButton.Style = MetroFramework.MetroColorStyle.Blue;
@@ -79,7 +79,7 @@ namespace SimpleFuzzy.View
             // 
             messageTextBox.FontSize = MetroFramework.MetroTextBoxSize.Small;
             messageTextBox.FontWeight = MetroFramework.MetroTextBoxWeight.Regular;
-            messageTextBox.Location = new Point(306, 216);
+            messageTextBox.Location = new Point(301, 245);
             messageTextBox.Multiline = true;
             messageTextBox.Name = "messageTextBox";
             messageTextBox.SelectedText = "";
@@ -93,7 +93,7 @@ namespace SimpleFuzzy.View
             // treeView1
             // 
             treeView1.CheckBoxes = true;
-            treeView1.Location = new Point(15, 171);
+            treeView1.Location = new Point(10, 200);
             treeView1.Name = "treeView1";
             treeNode1.Checked = true;
             treeNode1.Name = "";
@@ -112,7 +112,7 @@ namespace SimpleFuzzy.View
             // checkBox1
             // 
             checkBox1.AutoSize = true;
-            checkBox1.Location = new Point(15, 141);
+            checkBox1.Location = new Point(10, 170);
             checkBox1.Name = "checkBox1";
             checkBox1.Size = new Size(187, 24);
             checkBox1.TabIndex = 5;
@@ -130,7 +130,7 @@ namespace SimpleFuzzy.View
             Controls.Add(browseButton);
             Controls.Add(filePathTextBox);
             Name = "LoaderForm";
-            Size = new Size(916, 456);
+            Size = new Size(916, 477);
             ResumeLayout(false);
             PerformLayout();
         }
