@@ -102,7 +102,7 @@
             // button2
             // 
             button2.Highlight = false;
-            button2.Location = new Point(489, 156);
+            button2.Location = new Point(481, 164);
             button2.Name = "button2";
             button2.Size = new Size(194, 27);
             button2.Style = MetroFramework.MetroColorStyle.Blue;
