@@ -27,6 +27,47 @@ namespace SimpleFuzzy.Service
             _linguisticVariables = new List<LinguisticVariable>();
         }
 
+        public void AssemblyHandler(object sender, EventArgs e)
+        {
+            AssemblyLoadContext context = sender as AssemblyLoadContext;
+            for (int i = 0; i < context.Assemblies.Count(); i++)
+            {
+                Type[] array = context.Assemblies.ElementAt(i).GetTypes();
+                for (int j = 0; j < array.Length; j++)
+                {
+                    if (array[j].IsAbstract || array[j].IsInterface) { continue; }
+
+                    if (array[j].GetInterface(nameof(IMembershipFunction)) != null)
+                    {
+                        try
+                        {
+                            var module = array[j].GetConstructor(new Type[] { }).Invoke(null) as IMembershipFunction;
+                            GetCollection<IMembershipFunction>().Remove(module);
+                        }
+                        catch { }
+                    }
+                    else if (array[j].GetInterface(nameof(IObjectSet)) != null)
+                    {
+                        try
+                        {
+                            var module = array[j].GetConstructor(new Type[] { }).Invoke(null) as IObjectSet;
+                            GetCollection<IObjectSet>().Remove(module);
+                        }
+                        catch { }
+                    }
+                    else if (array[j].GetInterface(nameof(ISimulator)) != null)
+                    {
+                        try
+                        {
+                            var module = array[j].GetConstructor(new Type[] { }).Invoke(null) as ISimulator;
+                            GetCollection<ISimulator>().Remove(module);
+                        }
+                        catch { }
+                    }
+                }
+            }
+        }
+
         // Универсальный метод для получения коллекций
         public List<T> GetCollection<T>()
         {

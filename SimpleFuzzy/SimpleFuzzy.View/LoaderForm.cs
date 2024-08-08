@@ -21,6 +21,7 @@ namespace SimpleFuzzy.View
             repositoryService = AutofacIntegration.GetInstance<IRepositoryService>();
         }
 
+
         private void browseButton_Click(object sender, EventArgs e)
         {
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
@@ -175,7 +176,7 @@ namespace SimpleFuzzy.View
                         }
                     }
                     else 
-                    { 
+                    {
                         if (Parent is MainWindow parent) 
                         {
                             parent.isContainSimulator = false;

@@ -9,6 +9,7 @@ namespace SimpleFuzzy.Service
         public event EventHandler? UseAssembly;
         public AssemblyLoaderService(IRepositoryService repositoryService)
         {
+            UseAssembly += repositoryService.AssemblyHandler;
             this.repositoryService = repositoryService;
         }
         public void AssemblyLoader(string filePath)
