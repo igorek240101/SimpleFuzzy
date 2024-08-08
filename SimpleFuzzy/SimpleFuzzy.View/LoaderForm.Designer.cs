@@ -64,9 +64,9 @@ namespace SimpleFuzzy.View
             // loadButton
             // 
             loadButton.Highlight = false;
-            loadButton.Location = new Point(301, 200);
+            loadButton.Location = new Point(10, 171);
             loadButton.Name = "loadButton";
-            loadButton.Size = new Size(200, 39);
+            loadButton.Size = new Size(285, 23);
             loadButton.Style = MetroFramework.MetroColorStyle.Blue;
             loadButton.StyleManager = null;
             loadButton.TabIndex = 2;
@@ -78,11 +78,11 @@ namespace SimpleFuzzy.View
             // 
             messageTextBox.FontSize = MetroFramework.MetroTextBoxSize.Small;
             messageTextBox.FontWeight = MetroFramework.MetroTextBoxWeight.Regular;
-            messageTextBox.Location = new Point(301, 245);
+            messageTextBox.Location = new Point(301, 200);
             messageTextBox.Multiline = true;
             messageTextBox.Name = "messageTextBox";
             messageTextBox.SelectedText = "";
-            messageTextBox.Size = new Size(488, 223);
+            messageTextBox.Size = new Size(488, 268);
             messageTextBox.Style = MetroFramework.MetroColorStyle.Blue;
             messageTextBox.StyleManager = null;
             messageTextBox.TabIndex = 3;
@@ -107,17 +107,6 @@ namespace SimpleFuzzy.View
             treeView1.Size = new Size(285, 268);
             treeView1.TabIndex = 4;
             treeView1.AfterCheck += treeView1_AfterCheck;
-            // 
-            // checkBox1
-            // 
-            checkBox1.AutoSize = true;
-            checkBox1.Location = new Point(10, 170);
-            checkBox1.Name = "checkBox1";
-            checkBox1.Size = new Size(187, 24);
-            checkBox1.TabIndex = 5;
-            checkBox1.Text = "Отключить симуляции";
-            checkBox1.UseVisualStyleBackColor = true;
-            checkBox1.CheckedChanged += checkBox1_CheckedChanged;
             // 
             // LoaderForm
             // 

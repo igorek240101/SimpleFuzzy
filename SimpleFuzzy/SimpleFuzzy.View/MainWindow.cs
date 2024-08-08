@@ -193,25 +193,6 @@ namespace SimpleFuzzy.View
             }
         }
 
-        private void button11_MouseHover(object sender, EventArgs e)
-        {
-            if (IsSimulationLoaded()) { toolTip1.Active = false; }
-        }
-
-        private void button11_MouseLeave(object sender, EventArgs e)
-        {
-            toolTip1.Active = true;
-        }
-
-        public bool IsSimulationLoaded() // проверка на наводимость
-        {
-            return !isDisableSimulator && isContainSimulator;
-        }
-        public void EnableSimulationsButton(bool enable)
-        {
-            this.button11.Enabled = enable;
-        }
-
         private void button13_Click(object sender, EventArgs e)
         {
             HelpWindow help = new HelpWindow(this);
