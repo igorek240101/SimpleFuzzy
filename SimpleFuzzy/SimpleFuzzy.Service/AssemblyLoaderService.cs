@@ -15,8 +15,9 @@ namespace SimpleFuzzy.Service
         {
             AddElements(LoadAssembly(filePath));
         }
-        private string AddElements(AssemblyLoadContext context)
+        private void AddElements(AssemblyLoadContext context)
         {
+
             for (int i = 0; i < context.Assemblies.Count(); i++)
             {
                 Type[] array = context.Assemblies.ElementAt(i).GetTypes();
@@ -55,7 +56,6 @@ namespace SimpleFuzzy.Service
                     }
                 }
             }
-            return context.Assemblies.ElementAt(0).FullName;
         }
         private AssemblyLoadContext LoadAssembly(string filePath)
         {

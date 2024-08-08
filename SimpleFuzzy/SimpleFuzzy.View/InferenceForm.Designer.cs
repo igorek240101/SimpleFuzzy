@@ -1,16 +1,15 @@
-﻿namespace SimpleFuzzy.View
+﻿using System.Runtime.InteropServices;
+using System.Runtime.Loader;
+using System.Threading;
+using System.Windows.Forms;
+using WindowsFormsApplication1;
+
+namespace SimpleFuzzy.View
 {
     partial class InferenceForm
     {
-        /// <summary> 
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary> 
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -22,14 +21,17 @@
 
         #region Component Designer generated code
 
-        /// <summary> 
-        /// Required method for Designer support - do not modify 
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            SuspendLayout();
+            // 
+            // InferenceForm
+            // 
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            Name = "InferenceForm";
+            Size = new Size(941, 490);
+            ResumeLayout(false);
         }
 
         #endregion
