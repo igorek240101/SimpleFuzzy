@@ -198,11 +198,7 @@ namespace SimpleFuzzy.View
 
         public void RefreshDllList(List<AssemblyLoadContext> dllList)
         {
-            ListViewExtender extender = new ListViewExtender(dllListView);
-            ListViewButtonColumn buttonAction = new ListViewButtonColumn(1);
-            buttonAction.Click += OnButtonActionClick;
-            buttonAction.FixedWidth = true;
-            extender.AddColumn(buttonAction);
+            dllListView.Clear();
             foreach (var dll in dllList)
             {
                 ListViewItem item = dllListView.Items.Add(dll.Name);
@@ -259,7 +255,7 @@ namespace SimpleFuzzy.View
         {
             const string message = "Вы уверенны, что хотите удалить выбранный файл?";
             const string caption = "Удаление элемента";
-            var result = MessageBox.Show(message, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question); if (result == DialogResult.No)
+            var result = MessageBox.Show(message, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
                 dllListView.Items.Remove(sender as ListViewItem);

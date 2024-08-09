@@ -1,5 +1,6 @@
 ﻿
 using System.Windows.Forms;
+using WindowsFormsApplication1;
 
 namespace SimpleFuzzy.View 
 { 
@@ -120,6 +121,11 @@ namespace SimpleFuzzy.View
             dllListView.UseCompatibleStateImageBehavior = false;
             dllListView.FullRowSelect = true;
             dllListView.Scrollable = true;
+            ListViewExtender extender = new ListViewExtender(dllListView);
+            ListViewButtonColumn buttonAction = new ListViewButtonColumn(1);
+            buttonAction.Click += OnButtonActionClick;
+            buttonAction.FixedWidth = true;
+            extender.AddColumn(buttonAction);
             // 
             // LoaderForm
             // 
