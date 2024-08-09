@@ -2,19 +2,20 @@ using SimpleFuzzy.Abstract;
 using SimpleFuzzy.Service;
 using System;
 using System.Windows.Forms;
-
+using MetroFramework.Controls;
+using MetroFramework.Forms;
 
 namespace SimpleFuzzy.View
 {
     public delegate UserControl ControlConstruct();
-    public partial class MainWindow : Form
+    public partial class MainWindow : MetroForm
     {
         Dictionary<UserControlsEnum, ControlConstruct> UserControls = new Dictionary<UserControlsEnum, ControlConstruct>();
-        public UserControl currentControl = null; 
+        public UserControl currentControl = null;
         IProjectListService projectList;
         private Button[] workspaceButtons;
-        public bool isContainSimulator = false; // содержание симуляций
-        public bool isDisableSimulator = false; // состояние кнопки включения симуляций
+        public bool isContainSimulator = false;
+        bool IsShownToolTip1 = true;
         public MainWindow()
         {
             InitializeComponent();
@@ -34,6 +35,9 @@ namespace SimpleFuzzy.View
             UserControls.Add(UserControlsEnum.Defasification, () => new DefasificationForm());
             UserControls.Add(UserControlsEnum.Simulation, () => new SimulationForm());
 
+            toolTip1.AutoPopDelay = 5000;
+            toolTip1.InitialDelay = 1000;
+            toolTip1.ReshowDelay = 500;
             Locked();
         }
 
@@ -88,11 +92,12 @@ namespace SimpleFuzzy.View
 
         private void button11_Click(object sender, EventArgs e)
         {
-            if (IsSimulationLoaded()) SwitchWorkspace(UserControlsEnum.Simulation, button11);
+            if (isContainSimulator) SwitchWorkspace(UserControlsEnum.Simulation, button11);
         }
         public void OpenLoader()
         {
             SwitchWorkspace(UserControlsEnum.Loader, button7);
+            button11.Enabled = false;
         }
         private void button12_Click(object sender, EventArgs e)
         {
@@ -168,6 +173,11 @@ namespace SimpleFuzzy.View
             GC.SuppressFinalize(this);
         }
 
+        public void EnableSimulationsButton(bool enable)
+        {
+            this.button11.Enabled = enable;
+        }
+
         public void SwichUserControl(UserControlsEnum? newWindowName)
         {
             var toRemove = this;
@@ -183,27 +193,33 @@ namespace SimpleFuzzy.View
             }
         }
 
-        private void button11_MouseHover(object sender, EventArgs e)
-        {
-            if (IsSimulationLoaded()) { toolTip1.Active = false; }
-        }
-
-        private void button11_MouseLeave(object sender, EventArgs e)
-        {
-            toolTip1.Active = true;
-        }
-
-        public bool IsSimulationLoaded() // проверка на наводимость
-        {
-            if (isDisableSimulator) return false;
-            else if (isContainSimulator) return true;
-            else return false;
-        }
-        
         private void button13_Click(object sender, EventArgs e)
         {
             HelpWindow help = new HelpWindow(this);
             help.Show();
+        }
+
+
+        private void MainWindow_MouseMove(object sender, MouseEventArgs e)
+        {
+            Control ctrl = this.GetChildAtPoint(e.Location);
+
+            if (ctrl != null)
+            {
+                if (ctrl == this.button11 && !IsShownToolTip1 && !isContainSimulator)
+                {
+                    toolTip1.SetToolTip(this.button11, "Симуляция не загружена в проект или отключена в окне загрузчика");
+                    string tipstring = this.toolTip1.GetToolTip(this.button11);
+                    this.toolTip1.Show(tipstring, this.button11, this.button11.Width / 2, this.button11.Height / 2);
+                    IsShownToolTip1 = true;
+                }
+            }
+            else
+            {
+                this.toolTip1.Hide(this.button11);
+                IsShownToolTip1 = false;
+                toolTip1.SetToolTip(this.button11, null);
+            }
         }
     }
 }

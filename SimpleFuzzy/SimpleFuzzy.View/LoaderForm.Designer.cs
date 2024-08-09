@@ -28,7 +28,6 @@ namespace SimpleFuzzy.View
             loadButton = new MetroFramework.Controls.MetroButton();
             messageTextBox = new MetroFramework.Controls.MetroTextBox();
             treeView1 = new TreeView();
-            checkBox1 = new CheckBox();
             dllListView = new ListView();
             FileName = new ColumnHeader();
             SuspendLayout();
@@ -40,11 +39,11 @@ namespace SimpleFuzzy.View
             filePathTextBox.FontSize = MetroFramework.MetroTextBoxSize.Small;
             filePathTextBox.FontWeight = MetroFramework.MetroTextBoxWeight.Regular;
             filePathTextBox.ForeColor = Color.Black;
-            filePathTextBox.Location = new Point(23, 63);
+            filePathTextBox.Location = new Point(301, 171);
             filePathTextBox.Multiline = false;
             filePathTextBox.Name = "filePathTextBox";
             filePathTextBox.SelectedText = "";
-            filePathTextBox.Size = new Size(399, 23);
+            filePathTextBox.Size = new Size(382, 23);
             filePathTextBox.Style = MetroFramework.MetroColorStyle.Blue;
             filePathTextBox.StyleManager = null;
             filePathTextBox.TabIndex = 0;
@@ -54,7 +53,7 @@ namespace SimpleFuzzy.View
             // browseButton
             // 
             browseButton.Highlight = false;
-            browseButton.Location = new Point(428, 63);
+            browseButton.Location = new Point(689, 171);
             browseButton.Name = "browseButton";
             browseButton.Size = new Size(100, 23);
             browseButton.Style = MetroFramework.MetroColorStyle.Blue;
@@ -67,9 +66,9 @@ namespace SimpleFuzzy.View
             // loadButton
             // 
             loadButton.Highlight = false;
-            loadButton.Location = new Point(23, 92);
+            loadButton.Location = new Point(10, 171);
             loadButton.Name = "loadButton";
-            loadButton.Size = new Size(200, 23);
+            loadButton.Size = new Size(285, 23);
             loadButton.Style = MetroFramework.MetroColorStyle.Blue;
             loadButton.StyleManager = null;
             loadButton.TabIndex = 2;
@@ -81,11 +80,11 @@ namespace SimpleFuzzy.View
             // 
             messageTextBox.FontSize = MetroFramework.MetroTextBoxSize.Small;
             messageTextBox.FontWeight = MetroFramework.MetroTextBoxWeight.Regular;
-            messageTextBox.Location = new Point(23, 121);
+            messageTextBox.Location = new Point(301, 200);
             messageTextBox.Multiline = true;
             messageTextBox.Name = "messageTextBox";
             messageTextBox.SelectedText = "";
-            messageTextBox.Size = new Size(505, 100);
+            messageTextBox.Size = new Size(488, 268);
             messageTextBox.Style = MetroFramework.MetroColorStyle.Blue;
             messageTextBox.StyleManager = null;
             messageTextBox.TabIndex = 3;
@@ -95,7 +94,7 @@ namespace SimpleFuzzy.View
             // treeView1
             // 
             treeView1.CheckBoxes = true;
-            treeView1.Location = new Point(23, 227);
+            treeView1.Location = new Point(10, 200);
             treeView1.Name = "treeView1";
             treeNode1.Checked = true;
             treeNode1.Name = "";
@@ -107,20 +106,9 @@ namespace SimpleFuzzy.View
             treeNode3.Text = "Симуляции";
             treeView1.Nodes.AddRange(new TreeNode[] { treeNode1, treeNode2, treeNode3 });
             treeView1.ShowNodeToolTips = true;
-            treeView1.Size = new Size(277, 155);
+            treeView1.Size = new Size(285, 268);
             treeView1.TabIndex = 4;
             treeView1.AfterCheck += treeView1_AfterCheck;
-            // 
-            // checkBox1
-            // 
-            checkBox1.AutoSize = true;
-            checkBox1.Location = new Point(23, 388);
-            checkBox1.Name = "checkBox1";
-            checkBox1.Size = new Size(187, 24);
-            checkBox1.TabIndex = 5;
-            checkBox1.Text = "Отключить симуляции";
-            checkBox1.UseVisualStyleBackColor = true;
-            checkBox1.CheckedChanged += checkBox1_CheckedChanged;
             // 
             // listView1
             // 
@@ -133,18 +121,17 @@ namespace SimpleFuzzy.View
             // 
             // LoaderForm
             // 
-            BackColor = Color.White;
             Controls.Add(dllListView);
             Controls.Add(checkBox1);
+            BackColor = Color.White;
             Controls.Add(treeView1);
             Controls.Add(messageTextBox);
             Controls.Add(loadButton);
             Controls.Add(browseButton);
             Controls.Add(filePathTextBox);
             Name = "LoaderForm";
-            Size = new Size(989, 728);
+            Size = new Size(916, 477);
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -154,7 +141,6 @@ namespace SimpleFuzzy.View
         private MetroFramework.Controls.MetroButton loadButton;
         private MetroFramework.Controls.MetroTextBox messageTextBox;
         private TreeView treeView1;
-        private CheckBox checkBox1;
         public ListView dllListView;
         private ColumnHeader FileName;
     }
