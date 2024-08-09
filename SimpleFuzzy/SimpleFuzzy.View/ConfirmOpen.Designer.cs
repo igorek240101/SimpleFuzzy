@@ -137,7 +137,6 @@
             Controls.Add(button1);
             Name = "ConfirmOpen";
             Size = new Size(823, 461);
-            Load += ConfirmOpen_Load;
             ResumeLayout(false);
             PerformLayout();
         }
