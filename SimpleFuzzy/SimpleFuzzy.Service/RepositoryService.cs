@@ -27,6 +27,47 @@ namespace SimpleFuzzy.Service
             _linguisticVariables = new List<LinguisticVariable>();
         }
 
+        public void AssemblyHandler(object sender, EventArgs e)
+        {
+            AssemblyLoadContext context = sender as AssemblyLoadContext;
+            for (int i = 0; i < context.Assemblies.Count(); i++)
+            {
+                Type[] array = context.Assemblies.ElementAt(i).GetTypes();
+                for (int j = 0; j < array.Length; j++)
+                {
+                    bool isBreak = false;
+                    for (int k = 0; k < _membershipFunctions.Count; k++)
+                    {
+                        if (_membershipFunctions[k] == array[j] as IMembershipFunction) 
+                        {
+                            _membershipFunctions.RemoveAt(k);
+                            isBreak = true;
+                            break;
+                        }
+                    }
+                    if (isBreak) break;
+                    for (int k = 0; k < _objectSets.Count; k++)
+                    {
+                        if (_objectSets[k] == array[j] as IObjectSet)
+                        {
+                            _objectSets.RemoveAt(k);
+                            isBreak = true;
+                            break;
+                        }
+                    }
+                    if (isBreak) break;
+                    for (int k = 0; k < _simulators.Count; k++)
+                    {
+                        if (_simulators[k] == array[j] as ISimulator)
+                        {
+                            _simulators.RemoveAt(k);
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+
         // Универсальный метод для получения коллекций
         public List<T> GetCollection<T>()
         {
