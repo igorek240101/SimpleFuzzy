@@ -110,7 +110,7 @@ namespace SimpleFuzzy.View
             treeView1.TabIndex = 4;
             treeView1.AfterCheck += treeView1_AfterCheck;
             // 
-            // listView1
+            //  dllListView
             // 
             dllListView.Columns.AddRange(new ColumnHeader[] { FileName });
             dllListView.Location = new Point(647, 148);
@@ -118,11 +118,12 @@ namespace SimpleFuzzy.View
             dllListView.Size = new Size(222, 332);
             dllListView.TabIndex = 6;
             dllListView.UseCompatibleStateImageBehavior = false;
+            dllListView.FullRowSelect = true;
+            dllListView.Scrollable = true;
             // 
             // LoaderForm
             // 
             Controls.Add(dllListView);
-            Controls.Add(checkBox1);
             BackColor = Color.White;
             Controls.Add(treeView1);
             Controls.Add(messageTextBox);

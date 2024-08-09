@@ -20,6 +20,7 @@ namespace SimpleFuzzy.View
             InitializeComponent();
             moduleLoaderService = AutofacIntegration.GetInstance<IAssemblyLoaderService>();
             repositoryService = AutofacIntegration.GetInstance<IRepositoryService>();
+            RefreshDllList(repositoryService.GetCollection<AssemblyLoadContext>());
         }
 
         private void browseButton_Click(object sender, EventArgs e)
@@ -56,6 +57,7 @@ namespace SimpleFuzzy.View
                 }
 
                 moduleLoaderService.AssemblyLoader(filePath);
+                RefreshDllList(repositoryService.GetCollection<AssemblyLoadContext>());
                 TreeViewShow();
             }
             catch (FileNotFoundException ex)
@@ -194,61 +196,63 @@ namespace SimpleFuzzy.View
         //----------------------------------------------------------------------------------------
 
 
-        public void CreateDllList(AssemblyLoadContext dll)
+        public void RefreshDllList(List<AssemblyLoadContext> dllList)
         {
-            InitializeComponent();
-            dllListView.FullRowSelect = true;
-            dllListView.Scrollable = true;
             ListViewExtender extender = new ListViewExtender(dllListView);
             ListViewButtonColumn buttonAction = new ListViewButtonColumn(1);
             buttonAction.Click += OnButtonActionClick;
             buttonAction.FixedWidth = true;
             extender.AddColumn(buttonAction);
-            ListViewItem item = dllListView.Items.Add(dll.Name);
-            item.SubItems.Add("X");
-
-            string dllInfo = "Полное имя файла:\n" + dll.GetType().Assembly.Location + "\n" + "\n";
-
-            Type[] array = dll.Assemblies.ElementAt(0).GetTypes();
-            //--------------------------------------------------------------------------------------
-            dllInfo += "Термы:\n";
-            List<IMembershipFunction> MembershipList = repositoryService.GetCollection<IMembershipFunction>();
-            foreach (Type type in array) {
-                foreach (var type2 in MembershipList) {
-                    if(type == type2.GetType())
-                    {
-                        dllInfo += "    " + type2.Name + "\n";
-                    }
-                }
-            }
-            //----------------------------------------------------------------------------------
-            dllInfo += "Симуляции:\n";
-            List<ISimulator> SimulationshipList = repositoryService.GetCollection<ISimulator>();
-            foreach (Type type in array)
+            foreach (var dll in dllList)
             {
-                foreach (var type2 in SimulationshipList)
+                ListViewItem item = dllListView.Items.Add(dll.Name);
+                item.SubItems.Add("X");
+
+                string dllInfo = "Полное имя файла:\n" + dll.GetType().Assembly.Location + "\n" + "\n";
+
+                Type[] array = dll.Assemblies.ElementAt(0).GetTypes();
+                //--------------------------------------------------------------------------------------
+                dllInfo += "Термы:\n";
+                List<IMembershipFunction> MembershipList = repositoryService.GetCollection<IMembershipFunction>();
+                foreach (Type type in array)
                 {
-                    if (type == type2.GetType())
+                    foreach (var type2 in MembershipList)
                     {
-                        dllInfo += "    " + type2.Name + "\n";
+                        if (type == type2.GetType())
+                        {
+                            dllInfo += "    " + type2.Name + "\n";
+                        }
                     }
                 }
-            }
-            //-----------------------------------------------------------------------------------
-            dllInfo += "Базовые множества:\n";
-            List<IObjectSet> ObjectSetList = repositoryService.GetCollection<IObjectSet>();
-            foreach (Type type in array)
-            {
-                foreach (var type2 in ObjectSetList)
+                //----------------------------------------------------------------------------------
+                dllInfo += "Симуляции:\n";
+                List<ISimulator> SimulationshipList = repositoryService.GetCollection<ISimulator>();
+                foreach (Type type in array)
                 {
-                    if (type == type2.GetType())
+                    foreach (var type2 in SimulationshipList)
                     {
-                        dllInfo += "    " + type2.Name + "\n";
+                        if (type == type2.GetType())
+                        {
+                            dllInfo += "    " + type2.Name + "\n";
+                        }
                     }
                 }
+                //-----------------------------------------------------------------------------------
+                dllInfo += "Базовые множества:\n";
+                List<IObjectSet> ObjectSetList = repositoryService.GetCollection<IObjectSet>();
+                foreach (Type type in array)
+                {
+                    foreach (var type2 in ObjectSetList)
+                    {
+                        if (type == type2.GetType())
+                        {
+                            dllInfo += "    " + type2.Name + "\n";
+                        }
+                    }
+                }
+                //----------------------------------------------------------------------------------
+                item.ToolTipText = dllInfo;
             }
-            //----------------------------------------------------------------------------------
-            item.ToolTipText = dllInfo;
         }
         //----------------------------------------------------------------------------------------
         private void OnButtonActionClick(object sender, ListViewColumnMouseEventArgs e)
@@ -256,18 +260,14 @@ namespace SimpleFuzzy.View
             const string message = "Вы уверенны, что хотите удалить выбранный файл?";
             const string caption = "Удаление элемента";
             var result = MessageBox.Show(message, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Question); if (result == DialogResult.No)
-                if (result == DialogResult.No)
-                {
-                    CloseMessageBox();
-                }
-                else if (result == DialogResult.Yes)
-                {
-                    dllListView.Items.Remove(sender as ListViewItem);
-                    CloseMessageBox();
-                }
+            if (result == DialogResult.Yes)
+            {
+                dllListView.Items.Remove(sender as ListViewItem);
+            }
         }
 
         //----------------------------------------------------------------------------------------
+        /*принудительное закрытие окна 
         static extern IntPtr FindWindowByCaption(IntPtr ZeroOnly, string lpWindowName);
 
         [DllImport("user32.Dll")]
@@ -284,6 +284,6 @@ namespace SimpleFuzzy.View
 
             if (thread.IsAlive)
                 thread.Abort();
-        }
+        }*/
     }
 }
