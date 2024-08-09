@@ -2,7 +2,6 @@
 using System.Runtime.Loader;
 using System.Threading;
 using System.Windows.Forms;
-using WindowsFormsApplication1;
 
 namespace SimpleFuzzy.View
 {

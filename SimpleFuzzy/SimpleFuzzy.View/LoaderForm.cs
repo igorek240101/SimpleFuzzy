@@ -5,7 +5,6 @@ using SimpleFuzzy.Abstract;
 using SimpleFuzzy.Service;
 using System.Runtime.Loader;
 using System.Runtime.InteropServices;
-using WindowsFormsApplication1;
 
 namespace SimpleFuzzy.View
 {

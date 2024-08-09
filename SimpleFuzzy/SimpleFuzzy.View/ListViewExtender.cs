@@ -1,6 +1,7 @@
 ﻿using System.Windows.Forms.VisualStyles;
+using static System.Windows.Forms.View;
 
-namespace WindowsFormsApplication1
+namespace SimpleFuzzy.View
 {
     public class ListViewExtender : IDisposable
     {
@@ -11,7 +12,7 @@ namespace WindowsFormsApplication1
             if (listView == null)
                 throw new ArgumentNullException("listView");
 
-            if (listView.View != View.Details)
+            if (listView.View != Details)
                 throw new ArgumentException(null, "listView");
 
             ListView = listView;
