@@ -19,8 +19,14 @@ namespace SimpleFuzzy.View
             InitializeComponent();
             moduleLoaderService = AutofacIntegration.GetInstance<IAssemblyLoaderService>();
             repositoryService = AutofacIntegration.GetInstance<IRepositoryService>();
+            TreeViewShow();
+            moduleLoaderService.UseAssembly += AssemblyHandler;
         }
 
+        public void AssemblyHandler(object sender, EventArgs e)
+        {
+            modules.Clear();
+        }
 
         private void browseButton_Click(object sender, EventArgs e)
         {

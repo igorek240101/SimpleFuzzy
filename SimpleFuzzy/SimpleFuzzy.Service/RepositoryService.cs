@@ -35,34 +35,29 @@ namespace SimpleFuzzy.Service
                 Type[] array = context.Assemblies.ElementAt(i).GetTypes();
                 for (int j = 0; j < array.Length; j++)
                 {
-                    if (array[j].IsAbstract || array[j].IsInterface) { continue; }
-
-                    if (array[j].GetInterface(nameof(IMembershipFunction)) != null)
+                    for (int k = 0; k < _membershipFunctions.Count; k++)
                     {
-                        try
+                        if (_membershipFunctions[k] == array[j] as IMembershipFunction) 
                         {
-                            var module = array[j].GetConstructor(new Type[] { }).Invoke(null) as IMembershipFunction;
-                            GetCollection<IMembershipFunction>().Remove(module);
+                            _membershipFunctions.RemoveAt(k);
+                            break;
                         }
-                        catch { }
                     }
-                    else if (array[j].GetInterface(nameof(IObjectSet)) != null)
+                    for (int k = 0; k < _objectSets.Count; k++)
                     {
-                        try
+                        if (_objectSets[k] == array[j] as IObjectSet)
                         {
-                            var module = array[j].GetConstructor(new Type[] { }).Invoke(null) as IObjectSet;
-                            GetCollection<IObjectSet>().Remove(module);
+                            _objectSets.RemoveAt(k);
+                            break;
                         }
-                        catch { }
                     }
-                    else if (array[j].GetInterface(nameof(ISimulator)) != null)
+                    for (int k = 0; k < _simulators.Count; k++)
                     {
-                        try
+                        if (_simulators[k] == array[j] as ISimulator)
                         {
-                            var module = array[j].GetConstructor(new Type[] { }).Invoke(null) as ISimulator;
-                            GetCollection<ISimulator>().Remove(module);
+                            _simulators.RemoveAt(k);
+                            break;
                         }
-                        catch { }
                     }
                 }
             }
