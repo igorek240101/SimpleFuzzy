@@ -21,6 +21,13 @@ namespace SimpleFuzzy.View
             moduleLoaderService = AutofacIntegration.GetInstance<IAssemblyLoaderService>();
             repositoryService = AutofacIntegration.GetInstance<IRepositoryService>();
             RefreshDllList(repositoryService.GetCollection<AssemblyLoadContext>());
+            TreeViewShow();
+            moduleLoaderService.UseAssembly += AssemblyHandler;
+        }
+
+        public void AssemblyHandler(object sender, EventArgs e)
+        {
+            modules.Clear();
         }
 
         private void browseButton_Click(object sender, EventArgs e)
@@ -178,7 +185,7 @@ namespace SimpleFuzzy.View
                         }
                     }
                     else 
-                    { 
+                    {
                         if (Parent is MainWindow parent) 
                         {
                             parent.isContainSimulator = false;
