@@ -3,7 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleFuzzy.View", "SimpleFuzzy.View\SimpleFuzzy.View.csproj", "{5BFFCD35-2B1E-467C-AF7A-711FB174F72A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleFuzzy.View", "SimpleFuzzy.View\SimpleFuzzy.View.csproj", "{5BFFCD35-2B1E-467C-AF7A-711FB174F72A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleFuzzy.Service", "SimpleFuzzy.Service\SimpleFuzzy.Service.csproj", "{6243FCFB-9BD0-448C-A89E-466DA8EA4264}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleFuzzy.Model", "SimpleFuzzy.Model\SimpleFuzzy.Model.csproj", "{47FF897F-55DB-40A5-944C-ED9F85394D2F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleFuzzy.Abstract", "SimpleFuzzy.Abstract\SimpleFuzzy.Abstract.csproj", "{00D12C15-3F16-4468-BD34-CD54562028A2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +21,18 @@ Global
 		{5BFFCD35-2B1E-467C-AF7A-711FB174F72A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5BFFCD35-2B1E-467C-AF7A-711FB174F72A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5BFFCD35-2B1E-467C-AF7A-711FB174F72A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6243FCFB-9BD0-448C-A89E-466DA8EA4264}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6243FCFB-9BD0-448C-A89E-466DA8EA4264}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6243FCFB-9BD0-448C-A89E-466DA8EA4264}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6243FCFB-9BD0-448C-A89E-466DA8EA4264}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47FF897F-55DB-40A5-944C-ED9F85394D2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47FF897F-55DB-40A5-944C-ED9F85394D2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47FF897F-55DB-40A5-944C-ED9F85394D2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47FF897F-55DB-40A5-944C-ED9F85394D2F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00D12C15-3F16-4468-BD34-CD54562028A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00D12C15-3F16-4468-BD34-CD54562028A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00D12C15-3F16-4468-BD34-CD54562028A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00D12C15-3F16-4468-BD34-CD54562028A2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
