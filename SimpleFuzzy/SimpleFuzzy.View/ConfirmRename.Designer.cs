@@ -28,65 +28,80 @@
         /// </summary>
         private void InitializeComponent()
         {
-            textBox1 = new TextBox();
-            label1 = new Label();
-            button1 = new Button();
+            groupBox1 = new GroupBox();
             button2 = new Button();
+            button1 = new Button();
+            label1 = new Label();
+            textBox1 = new TextBox();
+            groupBox1.SuspendLayout();
             SuspendLayout();
             // 
-            // textBox1
+            // groupBox1
             // 
-            textBox1.Location = new Point(161, 52);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(125, 27);
-            textBox1.TabIndex = 0;
+            groupBox1.BackColor = Color.Transparent;
+            groupBox1.Controls.Add(button2);
+            groupBox1.Controls.Add(button1);
+            groupBox1.Controls.Add(label1);
+            groupBox1.Controls.Add(textBox1);
+            groupBox1.Location = new Point(3, 3);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(450, 118);
+            groupBox1.TabIndex = 0;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Переименование проекта";
             // 
-            // label1
+            // button2
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(12, 55);
-            label1.Name = "label1";
-            label1.Size = new Size(50, 20);
-            label1.TabIndex = 1;
-            label1.Text = "Введите новое имя";
+            button2.Location = new Point(146, 80);
+            button2.Name = "button2";
+            button2.Size = new Size(134, 29);
+            button2.TabIndex = 3;
+            button2.Text = "Отмена";
+            button2.Click += button2_Click;
             // 
             // button1
             // 
-            button1.Location = new Point(292, 52);
+            button1.Location = new Point(6, 80);
             button1.Name = "button1";
-            button1.Size = new Size(94, 29);
+            button1.Size = new Size(134, 29);
             button1.TabIndex = 2;
             button1.Text = "Готово";
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
-            // button2
+            // label1
             // 
-            button2.Location = new Point(292, 87);
-            button2.Name = "button2";
-            button2.Size = new Size(94, 29);
-            button2.TabIndex = 3;
-            button2.Text = "Отмена";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
+            label1.AutoSize = true;
+            label1.Location = new Point(6, 23);
+            label1.Name = "label1";
+            label1.Size = new Size(134, 20);
+            label1.TabIndex = 1;
+            label1.Text = "Введите новое имя";
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(6, 46);
+            textBox1.Multiline = false;
+            textBox1.Name = "textBox1";
+            textBox1.SelectedText = "";
+            textBox1.Size = new Size(438, 28);
+            textBox1.TabIndex = 0;
             // 
             // ConfirmRename
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(button2);
-            Controls.Add(button1);
-            Controls.Add(label1);
-            Controls.Add(textBox1);
+            Controls.Add(groupBox1);
             Name = "ConfirmRename";
-            Size = new Size(564, 308);
-            Load += ConfirmRename_Load;
+            Size = new Size(458, 131);
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
 
+        private GroupBox groupBox1;
         private TextBox textBox1;
         private Label label1;
         private Button button1;

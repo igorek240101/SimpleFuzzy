@@ -1,8 +1,8 @@
-﻿using System;
-using System.Windows.Forms;
-
 namespace SimpleFuzzy.View
 {
+    /// <summary>
+    ///  The main entry point for the application.
+    /// </summary>
     internal static class Program
     {
         /// <summary>

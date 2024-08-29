@@ -1,26 +1,17 @@
 ﻿using SimpleFuzzy.Abstract;
-using SimpleFuzzy.Service;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web.Mvc.Html;
-using System.Windows.Forms;
-using System.Windows.Forms.Design;
 
 namespace SimpleFuzzy.View
 {
     public partial class ConfirmCreate : UserControl
     {
+        IRepositoryService repositoryService;
         IProjectListService projectList;
         public ConfirmCreate()
         {
             InitializeComponent();
+            textBox2.Text = Directory.GetCurrentDirectory() + "\\Projects";
             projectList = AutofacIntegration.GetInstance<IProjectListService>();
+            repositoryService = AutofacIntegration.GetInstance<IRepositoryService>();
         }
         private void button1_Click(object sender, EventArgs e)
         {
@@ -30,13 +21,18 @@ namespace SimpleFuzzy.View
                 MessageBox.Show(ex.Message);
                 return;
             }
-            button3_Click(sender, e);
             // Дальше открывается проект
+            projectList.OpenProjectfromName(projectList.CurrentProjectName);
+            if (Parent is MainWindow parent)
+            {
+                parent.Locked();
+                parent.OpenLoader();
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            string path = Directory.GetCurrentDirectory() + "\\Projects";
+            string path = Directory.GetCurrentDirectory() + "\\Projects\\";
             FolderBrowserDialog dialog = new FolderBrowserDialog();
             dialog.RootFolder = Environment.SpecialFolder.Desktop;
             dialog.SelectedPath = path;
@@ -44,19 +40,22 @@ namespace SimpleFuzzy.View
             else { textBox2.Text = dialog.SelectedPath; }
         }
 
-        private void button3_Click(object sender, EventArgs e) 
+        private void button3_Click(object sender, EventArgs e)
         {
-            if (Parent is MainWindow parent)
-            { 
-                parent.OpenButtons();
-                parent.Locked();
+            if (Parent is MainWindow parent && parent.lastControlEnum != null)
+            {
+                parent.SwichUserControl(parent.lastControlEnum, parent.lastButton);
             }
-            Parent.Controls.Remove(this);
+            else if (Parent is MainWindow parent1) 
+            {
+                parent1.ColorDelete();
+                Parent.Controls.Remove(this); 
+            }
         }
 
-        private void ConfirmCreate_Load(object sender, EventArgs e) 
+        private void ConfirmCreate_Load(object sender, EventArgs e)
         {
-            if (Parent is MainWindow parent) { parent.BlockButtons(); }
+            if (Parent is MainWindow parent) parent.Locked();
         }
     }
 }

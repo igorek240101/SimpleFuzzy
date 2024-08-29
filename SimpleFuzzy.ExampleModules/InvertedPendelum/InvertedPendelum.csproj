@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+	<OutputType>library</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="SimpleFuzzy.Abstract">
+      <HintPath>..\..\SimpleFuzzy\SimpleFuzzy.Abstract\bin\Debug\net6.0\SimpleFuzzy.Abstract.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

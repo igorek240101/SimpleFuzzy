@@ -1,5 +1,5 @@
-﻿using System.CodeDom.Compiler;
-using SimpleFuzzy.Abstract;
+﻿using SimpleFuzzy.Abstract;
+using System.CodeDom.Compiler;
 
 namespace SimpleFuzzy.Service
 {

@@ -1,13 +1,13 @@
 ﻿using SimpleFuzzy.Abstract;
 
-public class AgeSet : IObjectSet
+public class BodyWeight : IObjectSet
 {
     public bool Active { get; set; }
-    public string Name { get; } = "Age set";
+    public string Name { get; } = "Масса тела";
 
-    private byte currentobject;
+    private double currentobject;
 
-    public AgeSet() => currentobject = 0;
+    public BodyWeight() => currentobject = 40;
 
     public object Extraction()
     {
@@ -22,14 +22,11 @@ public class AgeSet : IObjectSet
         }
         else
         {
-            currentobject++;
+            currentobject+=0.1;
         }
     }
 
-    public void ToFirst() => currentobject = 0;
+    public void ToFirst() => currentobject = 40;
 
-    public bool IsEnd() => currentobject > 100;   
+    public bool IsEnd() => currentobject > 130;
 }
-
-
-

@@ -9,13 +9,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="CoreCLR-NCalc" Version="3.1.253" />
+    <PackageReference Include="HIC.System.Windows.Forms.DataVisualization" Version="1.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Autofac" Version="8.0.0" />
     <PackageReference Include="Autofac.Mvc5" Version="6.1.0" />
     <PackageReference Include="ModernUI" Version="2.0.0" />
+    <PackageReference Include="OxyPlot.Core" Version="2.1.2" />
+    <PackageReference Include="OxyPlot.WindowsForms" Version="2.1.2" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\SimpleFuzzy.Abstract\SimpleFuzzy.Abstract.csproj" />
+    <ProjectReference Include="..\SimpleFuzzy.Model\SimpleFuzzy.Model.csproj" />
     <ProjectReference Include="..\SimpleFuzzy.Service\SimpleFuzzy.Service.csproj" />
   </ItemGroup>
 

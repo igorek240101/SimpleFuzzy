@@ -1,7 +1,5 @@
 ﻿using Autofac;
-using Autofac.Integration.Mvc;
 using SimpleFuzzy.Abstract;
-using System.Web.Mvc;
 using SimpleFuzzy.Service;
 
 public class AutofacConfig : Module
