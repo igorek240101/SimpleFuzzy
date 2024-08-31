@@ -1,49 +1,102 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Windows.Forms;
-using System.Windows.Forms.DataVisualization.Charting;
-using SimpleFuzzy.Service;
-using NCalc;
+﻿using Antlr4.Runtime.Tree;
+using Microsoft.CodeAnalysis.CSharp;
 using OxyPlot;
-using OxyPlot.Series;
 using OxyPlot.Axes;
-using OxyPlot.WindowsForms;
 using OxyPlot.Legends;
+using OxyPlot.Series;
+using OxyPlot.WindowsForms;
+using SimpleFuzzy.Abstract;
+using SimpleFuzzy.Model;
+using SimpleFuzzy.Service;
+using System.Numerics;
 
 namespace SimpleFuzzy.View
 {
     public partial class GenerationMembershipUI : UserControl
     {
         private List<(TextBox Condition, TextBox Value)> conditionControls = new List<(TextBox, TextBox)>();
-        private GenerationMembershipFunction generator = new GenerationMembershipFunction();
- 
-        public GenerationMembershipUI()
+        private IGenerationMembershipFunctionService generator;
+        private IRepositoryService repositoryService;
+        private ICompileService compileService;
+        private IProjectListService projectListService;
+        private IAssemblyLoaderService assemblyLoaderService;
+        private Dictionary<string, IObjectSet> setsName = new Dictionary<string, IObjectSet>();
+        private IObjectSet objectSet;
+        private CSharpCompilation compilation;
+        private Action close;
+
+        private readonly List<(string Condition, string Value)> _conditions = new List<(string, string)>();
+
+        public void AddCondition(string condition, string value)
         {
-            InitializeComponent();
-            InitializeTypeComboBox();
-            InitializeBaseSetComboBox();
-
-            plotView.Dock = DockStyle.Fill;
-            splitContainer.Panel2.Controls.Clear();
-            splitContainer.Panel2.Controls.Add(plotView);
-
-            plotView.Model = new PlotModel{};
+            _conditions.Add((condition, value));
         }
 
-
-        private void InitializeTypeComboBox()
+        public void RemoveCondition(int index)
         {
-            comboBoxType.Items.AddRange(new object[] { "int", "double", "float", "string" });
-            comboBoxType.SelectedIndex = 0;
+            if (index >= 0 && index < _conditions.Count)
+            {
+                _conditions.RemoveAt(index);
+            }
+            else
+            {
+                throw new ArgumentOutOfRangeException(nameof(index));
+            }
+        }
+        public void ClearConditions()
+        {
+            _conditions.Clear();
+        }
+
+        public GenerationMembershipUI()
+        {
+            generator = AutofacIntegration.GetInstance<IGenerationMembershipFunctionService>();
+            repositoryService = AutofacIntegration.GetInstance<IRepositoryService>();
+            compileService = AutofacIntegration.GetInstance<ICompileService>();
+            InitializeComponent();
+            InitializeBaseSetComboBox();
+        }
+
+        public GenerationMembershipUI(IObjectSet objectSet, Action close)
+        {
+            this.close = close;
+            this.objectSet = objectSet;
+            generator = AutofacIntegration.GetInstance<IGenerationMembershipFunctionService>();
+            repositoryService = AutofacIntegration.GetInstance<IRepositoryService>();
+            compileService = AutofacIntegration.GetInstance<ICompileService>();
+            projectListService = AutofacIntegration.GetInstance<IProjectListService>();
+            assemblyLoaderService = AutofacIntegration.GetInstance<IAssemblyLoaderService>();
+            InitializeComponent();
+            InitializeBaseSetComboBox();
         }
 
         private void InitializeBaseSetComboBox()
         {
-            comboBoxBaseSet.Items.Add("[-10, 10]");
-            comboBoxBaseSet.Items.Add("[-1.0, 1.0]");
-            comboBoxBaseSet.Items.Add("[\"a\", \"b\", \"c\", \"d\", \"e\"]");
-            comboBoxBaseSet.SelectedIndex = 0;
+            string selectName = null;
+            var list = repositoryService.GetCollection<IObjectSet>();
+            foreach (var value in repositoryService.GetCollection<IObjectSet>())
+            {
+                string name = value.Name;
+                if (objectSet.GetType() == value.GetType())
+                    selectName = name;
+                if (list.Count(t => t.Name == value.Name) > 1)
+                {
+                    name = $"{value.Name} - {value.GetType()}";
+                    if (list.Where(x => x.Name == value.Name).Count(x => x.GetType() == value.GetType()) > 1)
+                    {
+                        name = $"{value.Name} - {value.GetType()} - {value.GetType().Assembly.FullName}";
+                    }
+                }
+                setsName.Add(name, value);
+                comboBoxBaseSet.Items.Add(name);
+            }
+            if (selectName == null)
+            {
+                if (comboBoxBaseSet.Items.Count > 0)
+                    comboBoxBaseSet.SelectedIndex = 0;
+            }
+            else
+                comboBoxBaseSet.SelectedItem = selectName;
         }
 
         private void buttonAddCondition_Click(object sender, EventArgs e) => AddConditionRow();
@@ -104,25 +157,35 @@ namespace SimpleFuzzy.View
 
         private void buttonGenerateCode_Click(object sender, EventArgs e)
         {
-            generator.ClearConditions();
+            ClearConditions();
             foreach (var control in conditionControls)
             {
-                generator.AddCondition(control.Condition.Text, control.Value.Text);
+                AddCondition(control.Condition.Text, control.Value.Text);
             }
+            try
+            {
+                string generatedCode = generator.GenerateCode(objectSet[0].GetType(), textBox1.Text, _conditions);
+                var compile = compileService.Compile(generatedCode);
+                compilation = compile.Item1;
+                VisualizeFunction(compile.Item2 as IMembershipFunction);
+                compile.Item3.Unload();
+            }
+            catch (ArgumentNullException ex) { MessageBox.Show(ex.Message, "Имя не может быть пустым", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+            catch (Exception ex) { MessageBox.Show("Неверный ввод условий.", "Ошибка"); }
 
-            Type selectedType = Type.GetType($"System.{comboBoxType.SelectedItem}");
-            string generatedCode = generator.GenerateCode(selectedType);
-
-            textBoxGeneratedCode.Text = generatedCode;
         }
 
         private void buttonVisualize_Click(object sender, EventArgs e)
         {
-            VisualizeFunction();
-            plotView.InvalidatePlot(true);
-            plotView.Refresh();
+            if (compilation != null)
+            {
+                string dllName = $"Function-{DateTime.Now.Ticks}";
+                compileService.Save($"{projectListService.GivePath(projectListService.CurrentProjectName, true)}\\{dllName}.dll", compilation);
+                assemblyLoaderService.AssemblyLoader($"{projectListService.GivePath(projectListService.CurrentProjectName, true)}\\{dllName}.dll");
+                close();
+            }
         }
-        private void VisualizeFunction()
+        private void VisualizeFunction(IMembershipFunction function)
         {
             try
             {
@@ -131,118 +194,34 @@ namespace SimpleFuzzy.View
                 plotModel.Series.Clear();
 
                 var lineSeries = new LineSeries { Title = "Функция", StrokeThickness = 2, Color = OxyColors.Blue };
-                var intersectionSeries = new ScatterSeries { Title = "Пересечения", MarkerType = MarkerType.Circle, MarkerSize = 4, MarkerFill = OxyColors.Red };
 
-                var baseSet = ParseBaseSet(comboBoxBaseSet.SelectedItem.ToString());
-                double min = baseSet.Item1;
-                double max = baseSet.Item2;
+                var baseSetValues = objectSet;
 
-                double yMin = double.MaxValue;
-                double yMax = double.MinValue;
-
-                // Увеличим количество точек для более гладкого графика
-                int pointCount = 1000;
-                double step = (max - min) / pointCount;
-
-                for (int i = 0; i <= pointCount; i++)
+                for (int i = 0; i < baseSetValues.Count; i++)
                 {
-                    double x = min + i * step;
-                    double y = EvaluateFunction(x, out bool overlap);
-                    lineSeries.Points.Add(new OxyPlot.DataPoint(x, y));
-
-                    yMin = Math.Min(yMin, y);
-                    yMax = Math.Max(yMax, y);
-
-                    if (overlap)
-                    {
-                        intersectionSeries.Points.Add(new ScatterPoint(x, y));
-                    }
+                    lineSeries.Points.Add(new DataPoint(Convert.ToDouble(baseSetValues[i]), function != null ? function.MembershipFunction(baseSetValues[i]) : 0));
                 }
 
                 plotModel.Series.Add(lineSeries);
-                plotModel.Series.Add(intersectionSeries);
 
-                // Настройка осей
-                plotModel.Axes.Add(new LinearAxis { Position = AxisPosition.Bottom, Minimum = min, Maximum = max, Title = "X" });
-                plotModel.Axes.Add(new LinearAxis { Position = AxisPosition.Left, Minimum = Math.Max(0, yMin - 0.1), Maximum = yMax + 0.1, Title = "Y" });
-
-                // Добавление легенды
-                plotModel.Legends.Add(new OxyPlot.Legends.Legend
+                var plotView = new PlotView
                 {
-                    LegendPosition = LegendPosition.TopRight,
-                    LegendPlacement = LegendPlacement.Inside
-                });
+                    Model = plotModel,
+                    Dock = DockStyle.Fill
+                };
+                pictureBox1.Controls.Clear();
+                pictureBox1.Controls.Add(plotView);
 
-                plotView.Model = plotModel;
-                plotView.InvalidatePlot(true);
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Произошла ошибка при визуализации: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Ошибка при визуализации", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-
-        private (double, double) ParseBaseSet(string baseSetString)
+        private void comboBoxBaseSet_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Простой парсинг, предполагает правильный формат
-            var values = baseSetString.Trim('[', ']').Split(',');
-            return (double.Parse(values[0]), double.Parse(values[1]));
-        }
-
-        private double EvaluateFunction(double x, out bool overlap)
-        {
-            overlap = false;
-            double result = 0;
-            bool foundTrue = false;
-
-            foreach (var control in conditionControls)
-            {
-                string condition = control.Condition.Text.Replace("value", x.ToString());
-                if (EvaluateCondition(condition))
-                {
-                    string value = control.Value.Text.Replace("value", x.ToString());
-                    double newResult = EvaluateExpression(value);
-
-                    if (foundTrue) { overlap = true; }
-                    else
-                    {
-                        result = newResult;
-                        foundTrue = true;
-                    }
-                }
-            }
-
-            return result;
-        }
-
-        // Для обработки более сложных выражений, импортируем NCalc
-        private bool EvaluateCondition(string condition)
-        {
-            try
-            {
-                var e = new NCalc.Expression(condition);
-                return (bool)e.Evaluate();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Ошибка при оценке условия: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-        }
-
-        private double EvaluateExpression(string expression)
-        {
-            try
-            {
-                var e = new NCalc.Expression(expression);
-                return Convert.ToDouble(e.Evaluate());
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Ошибка при оценке выражения: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return 0;
-            }
+            VisualizeFunction(null);
         }
     }
 }

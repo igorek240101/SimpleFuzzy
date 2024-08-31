@@ -1,49 +1,40 @@
-﻿using SimpleFuzzy.Service;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+﻿using SimpleFuzzy.Abstract;
+
 
 namespace SimpleFuzzy.View
 {
     public partial class ConfirmDelete : UserControl
     {
-        ProjectListService projectList;
-        MainWindow window;
-        public ConfirmDelete(MainWindow mainWindow, ProjectListService project)
+        IProjectListService projectList;
+        public ConfirmDelete()
         {
             InitializeComponent();
-            window = mainWindow;
-            projectList = project;
+            projectList = AutofacIntegration.GetInstance<IProjectListService>();
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            try { projectList.DeleteProject(projectList.currentProjectName); }
-            catch (Exception ex)
+            try { projectList.DeleteProject(projectList.CurrentProjectName); }
+            catch 
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Пожалуйста, сообщите об этой проблеме разработчикам", "Ошибка удаления", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            window.OpenButtons(sender, e);
-            window.Locked(sender, e);
-            window.Controls.Remove(this);
+            if (Parent is MainWindow parent)
+            {
+                parent.ChangeNameOfProject();
+                parent.Locked();
+                parent.ColorDelete();
+            }
+            Parent.Controls.Remove(this);
         }
 
-        private void button2_Click(object sender, EventArgs e) 
+        private void button2_Click(object sender, EventArgs e)
         {
-            window.OpenButtons(sender, e);
-            window.Controls.Remove(this);
-        }
-
-        private void ConfirmDelete_Load(object sender, EventArgs e)
-        {
-            window.BlockButtons(sender, e);
+            if (Parent is MainWindow parent && parent.lastControlEnum != null)
+            {
+                parent.SwichUserControl(parent.lastControlEnum, parent.lastButton);
+            }
+            else { Parent.Controls.Remove(this); }
         }
     }
 }

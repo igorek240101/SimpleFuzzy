@@ -1,41 +1,54 @@
-﻿using SimpleFuzzy.Service;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using SimpleFuzzy.Abstract;
 
 namespace SimpleFuzzy.View
 {
     public partial class ConfirmCreate : UserControl
     {
-        ProjectListService projectList;
-        MainWindow window;
-        public ConfirmCreate(MainWindow mainWindow, ProjectListService project)
+        IRepositoryService repositoryService;
+        IProjectListService projectList;
+        IFilesPathsNamesValidator validator;
+        public ConfirmCreate()
         {
             InitializeComponent();
-            window = mainWindow;
-            projectList = project;
+            textBox2.Text = Directory.GetCurrentDirectory() + "\\Projects";
+            projectList = AutofacIntegration.GetInstance<IProjectListService>();
+            repositoryService = AutofacIntegration.GetInstance<IRepositoryService>();
+            validator = AutofacIntegration.GetInstance<IFilesPathsNamesValidator>();
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            try { projectList.AddProject(textBox1.Text, textBox2.Text + $"\\{textBox1.Text}"); }
-            catch (Exception ex)
+            textBox1.Text = textBox1.Text.TrimEnd('.');// Для файла
+            textBox1.Text = textBox1.Text.Trim(' ');
+            textBox2.Text = textBox2.Text.TrimEnd('/');//Для пути
+            textBox2.Text = textBox2.Text.TrimEnd('.');
+            if (validator.IsValidFileName(textBox1.Text)&&validator.IsValidDirectoryName(textBox2.Text))
             {
-                MessageBox.Show(ex.Message);
+
+                try { projectList.AddProject(textBox1.Text, textBox2.Text + $"\\{textBox1.Text}"); }
+catch (Exception ex)
+{
+    MessageBox.Show($"{ex.Message}", "Ошибка создания", MessageBoxButtons.OK, MessageBoxIcon.Error);
+    return;
+}
+            }
+            else
+            {
+                MessageBox.Show("Неверное имя файла или путь к нему!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            button3_Click(sender, e);
+            
             // Дальше открывается проект
+            projectList.OpenProjectfromName(projectList.CurrentProjectName);
+            if (Parent is MainWindow parent)
+            {
+                parent.Locked();
+                parent.OpenLoader();
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            string path = Directory.GetCurrentDirectory() + "\\Projects";
+            string path = Directory.GetCurrentDirectory() + "\\Projects\\";
             FolderBrowserDialog dialog = new FolderBrowserDialog();
             dialog.RootFolder = Environment.SpecialFolder.Desktop;
             dialog.SelectedPath = path;
@@ -43,16 +56,22 @@ namespace SimpleFuzzy.View
             else { textBox2.Text = dialog.SelectedPath; }
         }
 
-        private void button3_Click(object sender, EventArgs e) 
+        private void button3_Click(object sender, EventArgs e)
         {
-            window.OpenButtons(sender, e);
-            window.Locked(sender, e);
-            window.Controls.Remove(this);
+            if (Parent is MainWindow parent && parent.lastControlEnum != null)
+            {
+                parent.SwichUserControl(parent.lastControlEnum, parent.lastButton);
+            }
+            else if (Parent is MainWindow parent1) 
+            {
+                parent1.ColorDelete();
+                Parent.Controls.Remove(this); 
+            }
         }
 
-        private void ConfirmCreate_Load(object sender, EventArgs e) 
-        { 
-            window.BlockButtons(sender, e);
+        private void ConfirmCreate_Load(object sender, EventArgs e)
+        {
+            if (Parent is MainWindow parent) parent.Locked();
         }
     }
 }

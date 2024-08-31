@@ -1,4 +1,7 @@
 ﻿
+using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
+
 namespace SimpleFuzzy.View 
 { 
     partial class LoaderForm
@@ -18,67 +21,145 @@ namespace SimpleFuzzy.View
 
         private void InitializeComponent()
         {
-            this.filePathTextBox = new MetroFramework.Controls.MetroTextBox();
-            this.browseButton = new MetroFramework.Controls.MetroButton();
-            this.loadButton = new MetroFramework.Controls.MetroButton();
-            this.messageTextBox = new MetroFramework.Controls.MetroTextBox();
-            this.SuspendLayout();
+            filePathTextBox = new TextBox();
+            browseButton = new Button();
+            loadButton = new Button();
+            messageTextBox = new TextBox();
+            treeView1 = new RadioTree();
+            dllListView = new ListView();
+            FileName = new ColumnHeader();
+            CloseButton = new ColumnHeader();
+            groupBoxLoader = new GroupBox();
+            groupBoxModules = new GroupBox();
+            groupBoxDLL = new GroupBox();
+            groupBoxLoader.SuspendLayout();
+            groupBoxModules.SuspendLayout();
+            groupBoxDLL.SuspendLayout();
+            SuspendLayout();
             // 
             // filePathTextBox
             // 
-            this.filePathTextBox.Location = new System.Drawing.Point(23, 63);
-            this.filePathTextBox.Name = "filePathTextBox";
-            this.filePathTextBox.Size = new System.Drawing.Size(399, 23);
-            this.filePathTextBox.TabIndex = 0;
-            this.filePathTextBox.BackColor = System.Drawing.Color.White;
-            this.filePathTextBox.ForeColor = System.Drawing.Color.Black;
-            this.filePathTextBox.Font = new System.Drawing.Font("Microsoft Open Sans", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            filePathTextBox.Location = new Point(8, 51);
+            filePathTextBox.Name = "filePathTextBox";
+            filePathTextBox.Size = new Size(358, 27);
+            filePathTextBox.TabIndex = 0;
             // 
             // browseButton
             // 
-            this.browseButton.Location = new System.Drawing.Point(428, 63);
-            this.browseButton.Name = "browseButton";
-            this.browseButton.Size = new System.Drawing.Size(100, 23);
-            this.browseButton.TabIndex = 1;
-            this.browseButton.Text = "Обзор";
-            this.browseButton.Click += new System.EventHandler(this.browseButton_Click);
+            browseButton.Location = new Point(372, 51);
+            browseButton.Name = "browseButton";
+            browseButton.Size = new Size(99, 27);
+            browseButton.TabIndex = 1;
+            browseButton.Text = "Обзор";
+            browseButton.Click += browseButton_Click;
             // 
             // loadButton
             // 
-            this.loadButton.Location = new System.Drawing.Point(23, 92);
-            this.loadButton.Name = "loadButton";
-            this.loadButton.Size = new System.Drawing.Size(200, 23);
-            this.loadButton.TabIndex = 2;
-            this.loadButton.Text = "Загрузить модуль";
-            this.loadButton.Click += new System.EventHandler(this.loadButton_Click);            // 
-            //
+            loadButton.Location = new Point(8, 18);
+            loadButton.Name = "loadButton";
+            loadButton.Size = new Size(463, 30);
+            loadButton.TabIndex = 2;
+            loadButton.Text = "Загрузить модуль";
+            loadButton.Click += loadButton_Click;
+            // 
             // messageTextBox
-            //                                                                                    // 
-            this.messageTextBox.Location = new System.Drawing.Point(23, 121);
-            this.messageTextBox.Multiline = true;
-            this.messageTextBox.Name = "messageTextBox";
-            this.messageTextBox.Size = new System.Drawing.Size(505, 100);
-            this.messageTextBox.TabIndex = 3;
+            // 
+            messageTextBox.Enabled = false;
+            messageTextBox.Location = new Point(8, 84);
+            messageTextBox.Multiline = true;
+            messageTextBox.Name = "messageTextBox";
+            messageTextBox.Size = new Size(463, 163);
+            messageTextBox.TabIndex = 3;
+            // 
+            // treeView1
+            // 
+            treeView1.Location = new Point(10, 20);
+            treeView1.Name = "treeView1";
+            treeView1.Size = new Size(398, 227);
+            treeView1.TabIndex = 0;
+            treeView1.BaseSetCheckedChange += BaseSetCheck;
+            treeView1.TermCheckedChange += TermCheck;
+            treeView1.SimulatorCheckedChange += SimulatorCheck;
+            // 
+            // dllListView
+            // 
+            dllListView.FullRowSelect = true;
+            dllListView.Location = new Point(10, 23);
+            dllListView.Name = "dllListView";
+            dllListView.ShowItemToolTips = true;
+            dllListView.Size = new Size(881, 186);
+            dllListView.TabIndex = 6;
+            dllListView.UseCompatibleStateImageBehavior = false;
+            dllListView.View = System.Windows.Forms.View.Details;
+            // 
+            // FileName
+            // 
+            FileName.Text = "Имя";
+            // 
+            // CloseButton
+            // 
+            CloseButton.Text = "";
+            // 
+            // groupBoxLoader
+            // 
+            groupBoxLoader.Controls.Add(filePathTextBox);
+            groupBoxLoader.Controls.Add(browseButton);
+            groupBoxLoader.Controls.Add(loadButton);
+            groupBoxLoader.Controls.Add(messageTextBox);
+            groupBoxLoader.Location = new Point(430, 3);
+            groupBoxLoader.Name = "groupBoxLoader";
+            groupBoxLoader.Size = new Size(483, 256);
+            groupBoxLoader.TabIndex = 0;
+            groupBoxLoader.TabStop = false;
+            groupBoxLoader.Text = "Загрузка модуля";
+            // 
+            // groupBoxModules
+            // 
+            groupBoxModules.Controls.Add(treeView1);
+            groupBoxModules.Location = new Point(10, 3);
+            groupBoxModules.Name = "groupBoxModules";
+            groupBoxModules.Size = new Size(414, 256);
+            groupBoxModules.TabIndex = 1;
+            groupBoxModules.TabStop = false;
+            groupBoxModules.Text = "Загруженные модули";
+            // 
+            // groupBoxDLL
+            // 
+            groupBoxDLL.Controls.Add(dllListView);
+            groupBoxDLL.Location = new Point(10, 265);
+            groupBoxDLL.Name = "groupBoxDLL";
+            groupBoxDLL.Size = new Size(903, 215);
+            groupBoxDLL.TabIndex = 7;
+            groupBoxDLL.TabStop = false;
+            groupBoxDLL.Text = "Загруженные DLL файлы";
             // 
             // LoaderForm
             // 
-            this.ClientSize = new System.Drawing.Size(551, 244);
-            this.Controls.Add(this.messageTextBox);
-            this.Controls.Add(this.loadButton);
-            this.Controls.Add(this.browseButton);
-            this.Controls.Add(this.filePathTextBox);
-            this.Name = "LoaderForm";
-            this.Text = "Загрузчик модулей";
-            this.BackColor = System.Drawing.Color.White;
-            this.ResumeLayout(false);
-
+            BackColor = Color.White;
+            Controls.Add(groupBoxLoader);
+            Controls.Add(groupBoxModules);
+            Controls.Add(groupBoxDLL);
+            Name = "LoaderForm";
+            Size = new Size(916, 490);
+            groupBoxLoader.ResumeLayout(false);
+            groupBoxLoader.PerformLayout();
+            groupBoxModules.ResumeLayout(false);
+            groupBoxDLL.ResumeLayout(false);
+            ResumeLayout(false);
         }
-
         #endregion
 
-        private MetroFramework.Controls.MetroTextBox filePathTextBox;
-        private MetroFramework.Controls.MetroButton browseButton;
-        private MetroFramework.Controls.MetroButton loadButton;
-        private MetroFramework.Controls.MetroTextBox messageTextBox;
+        private TextBox filePathTextBox;
+        private Button browseButton;
+        private Button loadButton;
+        private TextBox messageTextBox;
+        private RadioTree treeView1;
+        public ListView dllListView;
+        private ColumnHeader FileName;
+        private ColumnHeader CloseButton;
+        private GroupBox groupBoxLoader;
+        private GroupBox groupBoxModules;
+        private GroupBox groupBoxDLL;
     }
 }
+

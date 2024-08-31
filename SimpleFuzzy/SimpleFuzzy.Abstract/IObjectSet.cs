@@ -2,9 +2,8 @@
 {
     public interface IObjectSet : IModulable
     {
-        object Extraction();
-        void MoveNext();
-        void ToFirst();
-        bool IsEnd();
+
+        object this[int index] { get; }
+        int Count { get; }
     }
 }

@@ -1,43 +1,35 @@
 ﻿using SimpleFuzzy.Abstract;
+using System.Xml.Linq;
 
 namespace SimpleFuzzy.Service
 {
     public class GenerationMembershipFunctionService : IGenerationMembershipFunctionService
     {
-        private readonly List<(string Condition, string Value)> _conditions = new List<(string, string)>();
 
-        public void AddCondition(string condition, string value)
+        public string GenerateCode(Type inputType, string name, List<(string Condition, string Value)> conditions)
         {
-            _conditions.Add((condition, value));
-        }
-
-        public void RemoveCondition(int index)
-        {
-            if (index >= 0 && index < _conditions.Count)
-            {
-                _conditions.RemoveAt(index);
-            }
-            else
-            {
-                throw new ArgumentOutOfRangeException(nameof(index));
-            }
-        }
-        public void ClearConditions()
-        {
-            _conditions.Clear();
-        }
-
-        public string GenerateCode(Type inputType)
-        {
-            var conditionsCode = string.Join(", ", _conditions.Select(c => $"(({c.Condition}), ({c.Value}))"));
+            if(name.Replace(" ", "") == "") throw new ArgumentNullException("name");
+            var conditionsCode = string.Join(", ", conditions.Select(c => $"(({c.Condition}), ({c.Value}))"));
 
             return $@"
-namespace SimpleFuzzy.SimpleModule
+using System;
+using System.IO;
+using System.Net;
+using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Collections.Generic;
+using SimpleFuzzy.Abstract;
+namespace SimpleFuzzy.GenerateModule
 {{
     public class MembershipFunc : IMembershipFunction
     {{
         public Type InputType => typeof({inputType});
         public bool HasOverlappingConditions {{ get; private set; }}
+
+        public bool Active {{ get; set; }}
+
+        public string Name {{ get; set; }} = ""{name}"";
 
         public double MembershipFunction(object elem)
         {{
@@ -46,10 +38,10 @@ namespace SimpleFuzzy.SimpleModule
                 throw new ArgumentNullException(nameof(elem));
             }}
 
-            {inputType} inputValue;
+            {inputType} value;
             try
             {{
-                inputValue = ({inputType})Convert.ChangeType(elem, typeof({inputType}));
+                value = ({inputType})Convert.ChangeType(elem, typeof({inputType}));
             }}
             catch (Exception ex)
             {{
@@ -67,10 +59,10 @@ namespace SimpleFuzzy.SimpleModule
                         HasOverlappingConditions = true;
                     }}
                     foundTrue = true;
-                    double value = condition.Item2;
-                    if (value > maxValue)
+                    double resValue = condition.Item2;
+                    if (resValue > maxValue)
                     {{
-                        maxValue = value;
+                        maxValue = resValue;
                     }}
                 }}
             }}

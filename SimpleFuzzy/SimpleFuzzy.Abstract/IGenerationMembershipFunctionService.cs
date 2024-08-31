@@ -2,12 +2,6 @@
 {
     public interface IGenerationMembershipFunctionService
     {
-        public void AddCondition(string condition, string value);
-
-        public void RemoveCondition(int index);
-
-        public void ClearConditions();
-
-        public string GenerateCode(Type inputType);
+        public string GenerateCode(Type inputType, string name, List<(string Condition, string Value)> conditions);
     }
 }

@@ -6,26 +6,47 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
+    <AssemblyName>Simple Fuzzy</AssemblyName>
+    <ApplicationIcon>SF.ico</ApplicationIcon>
+    <GenerateDocumentationFile>False</GenerateDocumentationFile>
+    <SignAssembly>False</SignAssembly>
+    <Title>Simple Fuzzy</Title>
+    <Version>$(VersionPrefix)</Version>
+    <AssemblyVersion>0.3</AssemblyVersion>
+    <Copyright> Apache License Version 2.0</Copyright>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <Company>ETU</Company>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="CoreCLR-NCalc" Version="3.1.253" />
-    <PackageReference Include="HIC.System.Windows.Forms.DataVisualization" Version="1.0.1" />
-    <PackageReference Include="OxyPlot.Core" Version="2.1.2" />
-    <PackageReference Include="OxyPlot.WindowsForms" Version="2.1.2" />
+    <Content Include="SF.ico" />
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="SimpleFuzzy.Service">
-      <HintPath>..\SimpleFuzzy.Service\bin\Debug\net6.0\SimpleFuzzy.Service.dll</HintPath>
-    </Reference>
+    <None Include="..\..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CoreCLR-NCalc" Version="3.1.253" />
+    <PackageReference Include="HIC.System.Windows.Forms.DataVisualization" Version="1.0.1" />    
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Autofac" Version="8.0.0" />
     <PackageReference Include="Autofac.Mvc5" Version="6.1.0" />
-    <PackageReference Include="ModernUI" Version="2.0.0" />
+    <PackageReference Include="Microsoft.NetFX20" Version="1.0.3" />
+    <PackageReference Include="OxyPlot.Core" Version="2.1.2" />
+    <PackageReference Include="OxyPlot.WindowsForms" Version="2.1.2" />
+    <PackageReference Include="package.mscorlib" Version="1.0.1" />
+    <PackageReference Include="System.Core" Version="3.5.21022.801" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\SimpleFuzzy.Abstract\SimpleFuzzy.Abstract.csproj" />
+    <ProjectReference Include="..\SimpleFuzzy.Model\SimpleFuzzy.Model.csproj" />
     <ProjectReference Include="..\SimpleFuzzy.Service\SimpleFuzzy.Service.csproj" />
   </ItemGroup>
 

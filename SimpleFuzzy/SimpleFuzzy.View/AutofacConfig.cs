@@ -1,24 +1,20 @@
 ﻿using Autofac;
-using Autofac.Integration.Mvc;
+using SimpleFuzzy.Model;
 using SimpleFuzzy.Abstract;
-using System.Web.Mvc;
 using SimpleFuzzy.Service;
+using SimpleFuzzy.View;
 
-public static class AutofacConfig
+public class AutofacConfig : Module
 {
-    public static void ConfigureContainer()
+    protected override void Load(ContainerBuilder builder)
     {
-        var builder = new ContainerBuilder();
-
-        builder.RegisterType<AssemblyLoaderService>().As<IAssemblyLoaderService>();
-        builder.RegisterType<GenerationMembershipFunctionService>().As<IGenerationMembershipFunctionService>();
-        builder.RegisterType<GenerationObjectSetService>().As<IGenerationObjectSetService>();
-        builder.RegisterType<Repository>().As<IRepository>();
-        builder.RegisterType<ProjectListService>().As<IProjectListService>();
-        builder.RegisterType<CompileService>().As<ICompileService>();
-
-        var container = builder.Build();
-
-        DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
+        builder.RegisterType<AssemblyLoaderService>().As<IAssemblyLoaderService>().SingleInstance();
+        builder.RegisterType<GenerationMembershipFunctionService>().As<IGenerationMembershipFunctionService>().SingleInstance();
+        builder.RegisterType<GenerationObjectSetService>().As<IGenerationObjectSetService>().SingleInstance();
+        builder.RegisterType<ProjectListService>().As<IProjectListService>().SingleInstance();
+        builder.RegisterType<CompileService>().As<ICompileService>().SingleInstance();
+        builder.RegisterType<RepositoryService>().As<IRepositoryService>().SingleInstance();
+        builder.RegisterType<FilesPathsNamesValidatorService>().As<IFilesPathsNamesValidator>().SingleInstance();
+        builder.RegisterType<DefizificationService>().As<IDefazificationService>().SingleInstance();
     }
 }

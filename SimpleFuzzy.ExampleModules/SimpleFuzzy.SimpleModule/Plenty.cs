@@ -2,16 +2,16 @@
 
 namespace SimpleFuzzy.SimpleModule
 {
-    public class MembershipFunc : IMembershipFunction
+    public class Plenty : IMembershipFunction
     {
         public bool Active { get; set; }
-        public string Name { get; } = "Membership Function";
+        public string Name { get; } = "Много";
 
-        public Type InputType => typeof(byte);
+        public Type InputType => typeof(int);
 
         public double MembershipFunction(object elem)
         {
-            byte[] values = { 25, 50, 75, 100 };
+            int[] values = { 2800, 3000, 3800, 4000 };
             if (elem == null)
             {
                 throw new ArgumentNullException(nameof(elem));

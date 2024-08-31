@@ -4,41 +4,47 @@ namespace SimpleFuzzy.Service
 {
     public class GenerationObjectSetService : IGenerationObjectSetService
     {
-        public string ReturnObjectSet(double first, double stepik, double last)
+        public string ReturnObjectSet(double first, double stepik, double last, string name)
         {
-            if (Math.Sign(last - first) != Math.Sign(stepik) || stepik == 0 || (last - first) % stepik != 0)
+            if(name.Replace(" ", "") == "") throw new ArgumentNullException("name");
+            int digits = 0;
+            for (var values = (first, stepik, last);
+                (int)values.first != values.first ||
+                (int)values.stepik != values.stepik ||
+                (int)values.last != values.last;
+                values = (values.first * 10, values.stepik * 10, values.last * 10))
+                digits++;
+
+            if (Math.Sign(last - first) != Math.Sign(stepik) || stepik == 0)
             {
                 throw new InvalidOperationException("Создание множества с такими параметрами невозможно");
             }
             else
             {
                 string classTemplate = $@"
-namespace SimpleFuzzy.Abstract
+using System;
+using System.IO;
+using System.Net;
+using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Collections.Generic;
+using SimpleFuzzy.Abstract;
+namespace SimpleFuzzy.GenerateModule
 {{
     public class ObjectSet : IObjectSet
     {{
-        private double initalvalue = {first};
-        private double currentvalue = {first};
-        private double limitvalue = {last};
-        private double step = {stepik};
+        private double initalvalue = {first.ToString().Replace(',', '.')};
+        private double limitvalue = {last.ToString().Replace(',', '.')};
+        private double step = {stepik.ToString().Replace(',', '.')};
 
-        public object Extraction()
-        {{
-            return currentvalue;
-        }}
+        public bool Active {{ get; set; }}
 
-        public void MoveNext()
-        {{
-            currentvalue = currentvalue + step;
-            if (IsEnd())
-            {{
-                throw new InvalidOperationException(""Текущий элемент последний. Переход к следующему невозможен"");
-            }}
-        }}
+        public string Name {{ get; set; }} = ""{name}"";
 
-        public void ToFirst() => currentvalue = initalvalue;
+        public int Count => (int)((limitvalue - initalvalue) / step) + 1;
 
-        public bool IsEnd() => currentvalue > limitvalue;
+        public object this[int index] => Math.Round(initalvalue + index * step, {digits});
     }}
 }}
 ";
