@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+	<UseWindowsForms>true</UseWindowsForms>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="SimpleFuzzy.Abstract">
+      <HintPath>..\..\SimpleFuzzy\SimpleFuzzy.Abstract\bin\Debug\net6.0\SimpleFuzzy.Abstract.dll</HintPath>
+    </Reference>
+    <Reference Include="SimpleFuzzy.View">
+      <HintPath>..\..\SimpleFuzzy\SimpleFuzzy.View\bin\Debug\net6.0-windows\SimpleFuzzy.View.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+</Project>
